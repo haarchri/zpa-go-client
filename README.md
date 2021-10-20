@@ -11,3 +11,4 @@ To generate the code [install go-swagger](https://goswagger.io/install.html) and
 ```bash
 swagger generate client -f doc/zpa-api-docs.json --skip-validation -c pkg/client -m pkg/models --default-scheme=https
 ```
+
