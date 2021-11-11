@@ -87,16 +87,16 @@ type Application struct {
 	ServerGroups []*AppServerGroup `json:"serverGroups"`
 
 	// tcp port ranges
-	TCPPortRanges []int32 `json:"tcpPortRanges"`
+	TCPPortRanges []string `json:"tcpPortRanges"`
 
 	// tcp ports in
-	TCPPortsIn []int32 `json:"tcpPortsIn"`
+	TCPPortsIn []string `json:"tcpPortsIn"`
 
 	// tcp ports out
-	TCPPortsOut []int32 `json:"tcpPortsOut"`
+	TCPPortsOut []string `json:"tcpPortsOut"`
 
 	// udp port ranges
-	UDPPortRanges []int32 `json:"udpPortRanges"`
+	UDPPortRanges []string `json:"udpPortRanges"`
 }
 
 // Validate validates this application

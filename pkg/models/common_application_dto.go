@@ -23,10 +23,10 @@ type CommonApplicationDto struct {
 	AppsConfig []*CommonAppConfigDto `json:"appsConfig"`
 
 	// deleted ba apps
-	DeletedBaApps []int64 `json:"deletedBaApps"`
+	DeletedBaApps []string `json:"deletedBaApps"`
 
 	// deleted inspect apps
-	DeletedInspectApps []int64 `json:"deletedInspectApps"`
+	DeletedInspectApps []string `json:"deletedInspectApps"`
 }
 
 // Validate validates this common application dto

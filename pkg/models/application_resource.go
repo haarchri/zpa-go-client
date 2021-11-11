@@ -102,10 +102,10 @@ type ApplicationResource struct {
 	ServerGroups []*AppServerGroup `json:"serverGroups"`
 
 	// tcp port ranges
-	TCPPortRanges []int32 `json:"tcpPortRanges"`
+	TCPPortRanges []string `json:"tcpPortRanges"`
 
 	// udp port ranges
-	UDPPortRanges []int32 `json:"udpPortRanges"`
+	UDPPortRanges []string `json:"udpPortRanges"`
 }
 
 // Validate validates this application resource

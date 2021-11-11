@@ -2456,29 +2456,25 @@
         "tcpPortRanges" : {
           "type" : "array",
           "items" : {
-            "type" : "integer",
-            "format" : "int32"
+            "type" : "string"
           }
         },
         "tcpPortsIn" : {
           "type" : "array",
           "items" : {
-            "type" : "integer",
-            "format" : "int32"
+            "type" : "string"
           }
         },
         "tcpPortsOut" : {
           "type" : "array",
           "items" : {
-            "type" : "integer",
-            "format" : "int32"
+            "type" : "string"
           }
         },
         "udpPortRanges" : {
           "type" : "array",
           "items" : {
-            "type" : "integer",
-            "format" : "int32"
+            "type" : "string"
           }
         }
       }
@@ -2588,15 +2584,13 @@
         "tcpPortRanges" : {
           "type" : "array",
           "items" : {
-            "type" : "integer",
-            "format" : "int32"
+            "type" : "string"
           }
         },
         "udpPortRanges" : {
           "type" : "array",
           "items" : {
-            "type" : "integer",
-            "format" : "int32"
+            "type" : "string"
           }
         }
       }
@@ -2900,15 +2894,13 @@
         "deletedBaApps" : {
           "type" : "array",
           "items" : {
-            "type" : "integer",
-            "format" : "int64"
+            "type" : "string"
           }
         },
         "deletedInspectApps" : {
           "type" : "array",
           "items" : {
-            "type" : "integer",
-            "format" : "int64"
+            "type" : "string"
           }
         }
       }
