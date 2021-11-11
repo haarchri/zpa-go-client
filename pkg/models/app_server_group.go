@@ -25,7 +25,7 @@ type AppServerGroup struct {
 	ConfigSpace string `json:"configSpace,omitempty"`
 
 	// creation time
-	CreationTime int32 `json:"creationTime,omitempty"`
+	CreationTime string `json:"creationTime,omitempty"`
 
 	// description
 	Description string `json:"description,omitempty"`
@@ -43,7 +43,7 @@ type AppServerGroup struct {
 	ModifiedBy int64 `json:"modifiedBy,omitempty"`
 
 	// modified time
-	ModifiedTime int32 `json:"modifiedTime,omitempty"`
+	ModifiedTime string `json:"modifiedTime,omitempty"`
 
 	// name
 	// Required: true

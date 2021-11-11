@@ -30,13 +30,13 @@ type Application struct {
 	ConfigSpace string `json:"configSpace,omitempty"`
 
 	// creation time
-	CreationTime int32 `json:"creationTime,omitempty"`
+	CreationTime string `json:"creationTime,omitempty"`
 
 	// default idle timeout
-	DefaultIdleTimeout int32 `json:"defaultIdleTimeout,omitempty"`
+	DefaultIdleTimeout string `json:"defaultIdleTimeout,omitempty"`
 
 	// default max age
-	DefaultMaxAge int32 `json:"defaultMaxAge,omitempty"`
+	DefaultMaxAge string `json:"defaultMaxAge,omitempty"`
 
 	// description
 	Description string `json:"description,omitempty"`
@@ -74,7 +74,7 @@ type Application struct {
 	ModifiedBy int64 `json:"modifiedBy,omitempty"`
 
 	// modified time
-	ModifiedTime int32 `json:"modifiedTime,omitempty"`
+	ModifiedTime string `json:"modifiedTime,omitempty"`
 
 	// name
 	// Required: true

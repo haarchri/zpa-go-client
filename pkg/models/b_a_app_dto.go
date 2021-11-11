@@ -27,7 +27,7 @@ type BAAppDto struct {
 	AppID int64 `json:"appId,omitempty"`
 
 	// application port
-	ApplicationPort int32 `json:"applicationPort,omitempty"`
+	ApplicationPort string `json:"applicationPort,omitempty"`
 
 	// application protocol
 	// Enum: [HTTP HTTPS FTP RDP]

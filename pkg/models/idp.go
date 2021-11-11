@@ -27,7 +27,7 @@ type Idp struct {
 	AdminSpSigningCertID int64 `json:"adminSpSigningCertId,omitempty"`
 
 	// defaults to 0.
-	AutoProvision int32 `json:"autoProvision,omitempty"`
+	AutoProvision string `json:"autoProvision,omitempty"`
 
 	// certificates
 	Certificates []*IdpCertDto `json:"certificates"`
@@ -93,7 +93,7 @@ type Idp struct {
 	ScimSharedSecretExists bool `json:"scimSharedSecretExists,omitempty"`
 
 	// Defaults to 1.
-	SignSamlRequest int32 `json:"signSamlRequest,omitempty"`
+	SignSamlRequest string `json:"signSamlRequest,omitempty"`
 
 	// sso type
 	SsoType []string `json:"ssoType"`

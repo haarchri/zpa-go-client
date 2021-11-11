@@ -36,13 +36,13 @@ type ApplicationResource struct {
 	ConfigSpace string `json:"configSpace,omitempty"`
 
 	// Only applicable for a GET request. Ignored in PUT/POST/DELETE requests.
-	CreationTime int32 `json:"creationTime,omitempty"`
+	CreationTime string `json:"creationTime,omitempty"`
 
 	// default idle timeout
-	DefaultIdleTimeout int32 `json:"defaultIdleTimeout,omitempty"`
+	DefaultIdleTimeout string `json:"defaultIdleTimeout,omitempty"`
 
 	// default max age
-	DefaultMaxAge int32 `json:"defaultMaxAge,omitempty"`
+	DefaultMaxAge string `json:"defaultMaxAge,omitempty"`
 
 	// description
 	Description string `json:"description,omitempty"`
@@ -84,7 +84,7 @@ type ApplicationResource struct {
 	ModifiedBy string `json:"modifiedBy,omitempty"`
 
 	// Only applicable for a GET request. Ignored in PUT/POST/DELETE requests.
-	ModifiedTime int32 `json:"modifiedTime,omitempty"`
+	ModifiedTime string `json:"modifiedTime,omitempty"`
 
 	// name
 	Name string `json:"name,omitempty"`

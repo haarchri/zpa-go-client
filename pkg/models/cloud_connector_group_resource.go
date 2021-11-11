@@ -23,7 +23,7 @@ type CloudConnectorGroupResource struct {
 	CloudConnectors []*Znf `json:"cloudConnectors"`
 
 	// Only applicable for a GET request. Ignored in PUT/POST/DELETE requests.
-	CreationTime int32 `json:"creationTime,omitempty"`
+	CreationTime string `json:"creationTime,omitempty"`
 
 	// description
 	Description string `json:"description,omitempty"`
@@ -41,7 +41,7 @@ type CloudConnectorGroupResource struct {
 	ModifiedBy string `json:"modifiedBy,omitempty"`
 
 	// Only applicable for a GET request. Ignored in PUT/POST/DELETE requests.
-	ModifiedTime int32 `json:"modifiedTime,omitempty"`
+	ModifiedTime string `json:"modifiedTime,omitempty"`
 
 	// name
 	Name string `json:"name,omitempty"`

@@ -113,7 +113,7 @@ type Connector struct {
 	SigningCert map[string]string `json:"signingCert,omitempty"`
 
 	// Read only. Ignored in PUT/POST calls.
-	UpgradeAttempt int32 `json:"upgradeAttempt,omitempty"`
+	UpgradeAttempt string `json:"upgradeAttempt,omitempty"`
 
 	// Read only. Ignored in PUT/POST calls.
 	// Enum: [COMPLETE IN_PROGRESS FAILED UNKNOWN RESTARTING]

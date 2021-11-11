@@ -2259,8 +2259,7 @@
           "type" : "string"
         },
         "creationTime" : {
-          "type" : "integer",
-          "format" : "int32"
+          "type" : "string"
         },
         "description" : {
           "type" : "string"
@@ -2294,8 +2293,7 @@
           "format" : "int64"
         },
         "modifiedTime" : {
-          "type" : "integer",
-          "format" : "int32"
+          "type" : "string"
         },
         "name" : {
           "type" : "string"
@@ -2341,8 +2339,7 @@
           "enum" : [ "DEFAULT", "SIEM" ]
         },
         "creationTime" : {
-          "type" : "integer",
-          "format" : "int32"
+          "type" : "string"
         },
         "description" : {
           "type" : "string"
@@ -2362,8 +2359,7 @@
           "format" : "int64"
         },
         "modifiedTime" : {
-          "type" : "integer",
-          "format" : "int32"
+          "type" : "string"
         },
         "name" : {
           "type" : "string"
@@ -2382,16 +2378,13 @@
           "enum" : [ "DEFAULT", "SIEM" ]
         },
         "creationTime" : {
-          "type" : "integer",
-          "format" : "int32"
+          "type" : "string"
         },
         "defaultIdleTimeout" : {
-          "type" : "integer",
-          "format" : "int32"
+          "type" : "string"
         },
         "defaultMaxAge" : {
-          "type" : "integer",
-          "format" : "int32"
+          "type" : "string"
         },
         "description" : {
           "type" : "string"
@@ -2438,8 +2431,7 @@
           "format" : "int64"
         },
         "modifiedTime" : {
-          "type" : "integer",
-          "format" : "int32"
+          "type" : "string"
         },
         "name" : {
           "type" : "string"
@@ -2505,17 +2497,14 @@
           "enum" : [ "DEFAULT", "SIEM" ]
         },
         "creationTime" : {
-          "type" : "integer",
-          "format" : "int32",
+          "type" : "string",
           "description" : "Only applicable for a GET request. Ignored in PUT/POST/DELETE requests."
         },
         "defaultIdleTimeout" : {
-          "type" : "integer",
-          "format" : "int32"
+          "type" : "string"
         },
         "defaultMaxAge" : {
-          "type" : "integer",
-          "format" : "int32"
+          "type" : "string"
         },
         "description" : {
           "type" : "string"
@@ -2565,8 +2554,7 @@
           "description" : "Only applicable for a GET request. Ignored in PUT/POST/DELETE requests."
         },
         "modifiedTime" : {
-          "type" : "integer",
-          "format" : "int32",
+          "type" : "string",
           "description" : "Only applicable for a GET request. Ignored in PUT/POST/DELETE requests."
         },
         "name" : {
@@ -2612,8 +2600,7 @@
           "enum" : [ "DEFAULT", "SIEM" ]
         },
         "creationTime" : {
-          "type" : "integer",
-          "format" : "int32"
+          "type" : "string"
         },
         "description" : {
           "type" : "string"
@@ -2630,8 +2617,7 @@
           "format" : "int64"
         },
         "modifiedTime" : {
-          "type" : "integer",
-          "format" : "int32"
+          "type" : "string"
         },
         "name" : {
           "type" : "string"
@@ -2648,8 +2634,7 @@
           "format" : "int64"
         },
         "applicationPort" : {
-          "type" : "integer",
-          "format" : "int32"
+          "type" : "string"
         },
         "applicationProtocol" : {
           "type" : "string",
@@ -2712,8 +2697,7 @@
           "description" : "The certificate text is in PEM format."
         },
         "creationTime" : {
-          "type" : "integer",
-          "format" : "int32"
+          "type" : "string"
         },
         "description" : {
           "type" : "string"
@@ -2733,8 +2717,7 @@
           "format" : "int64"
         },
         "modifiedTime" : {
-          "type" : "integer",
-          "format" : "int32"
+          "type" : "string"
         },
         "name" : {
           "type" : "string"
@@ -2767,8 +2750,7 @@
     "CloudConnectorGroupResource" : {
       "properties" : {
         "creationTime" : {
-          "type" : "integer",
-          "format" : "int32",
+          "type" : "string",
           "description" : "Only applicable for a GET request. Ignored in PUT/POST/DELETE requests."
         },
         "description" : {
@@ -2796,8 +2778,7 @@
           "description" : "Only applicable for a GET request. Ignored in PUT/POST/DELETE requests."
         },
         "modifiedTime" : {
-          "type" : "integer",
-          "format" : "int32",
+          "type" : "string",
           "description" : "Only applicable for a GET request. Ignored in PUT/POST/DELETE requests."
         },
         "name" : {
@@ -3060,8 +3041,7 @@
           }
         },
         "upgradeAttempt" : {
-          "type" : "integer",
-          "format" : "int32",
+          "type" : "string",
           "description" : "Read only. Ignored in PUT/POST calls."
         },
         "upgradeStatus" : {
@@ -3082,8 +3062,7 @@
           "format" : "int64"
         },
         "autoProvision" : {
-          "type" : "integer",
-          "format" : "int32",
+          "type" : "string",
           "description" : "defaults to 0."
         },
         "certificates" : {
@@ -3158,8 +3137,7 @@
           "type" : "boolean"
         },
         "signSamlRequest" : {
-          "type" : "integer",
-          "format" : "int32",
+          "type" : "string",
           "description" : "Defaults to 1."
         },
         "ssoType" : {
@@ -3854,8 +3832,7 @@
           "enum" : [ "DEFAULT", "SIEM" ]
         },
         "creationTime" : {
-          "type" : "integer",
-          "format" : "int32",
+          "type" : "string",
           "description" : "Only applicable for a GET request. Ignored in PUT/POST/DELETE requests."
         },
         "description" : {
@@ -3880,8 +3857,7 @@
           "description" : "Only applicable for a GET request. Ignored in PUT/POST/DELETE requests."
         },
         "modifiedTime" : {
-          "type" : "integer",
-          "format" : "int32",
+          "type" : "string",
           "description" : "Only applicable for a GET request. Ignored in PUT/POST/DELETE requests."
         },
         "name" : {
