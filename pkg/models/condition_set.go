@@ -22,7 +22,7 @@ import (
 type ConditionSet struct {
 
 	// creation time
-	CreationTime int32 `json:"creationTime,omitempty"`
+	CreationTime string `json:"creationTime,omitempty"`
 
 	// id
 	ID int64 `json:"id,omitempty"`

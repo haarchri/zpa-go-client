@@ -41,7 +41,7 @@ type PolicyRule struct {
 	Conditions []*ConditionSet `json:"conditions"`
 
 	// creation time
-	CreationTime int32 `json:"creationTime,omitempty"`
+	CreationTime string `json:"creationTime,omitempty"`
 
 	// custom msg
 	CustomMsg string `json:"customMsg,omitempty"`

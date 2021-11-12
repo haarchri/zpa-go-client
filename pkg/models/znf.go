@@ -20,7 +20,7 @@ import (
 type Znf struct {
 
 	// creation time
-	CreationTime int32 `json:"creationTime,omitempty"`
+	CreationTime string `json:"creationTime,omitempty"`
 
 	// description
 	Description string `json:"description,omitempty"`

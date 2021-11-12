@@ -919,6 +919,9 @@
               "$ref" : "#/definitions/ApplicationResource"
             }
           },
+          "400" : {
+            "description" : "BadRequest"
+          },
           "401" : {
             "description" : "Unauthorized"
           },
@@ -2102,6 +2105,9 @@
               "$ref" : "#/definitions/ApplicationResource"
             }
           },
+          "400" : {
+            "description" : "BadRequest"
+          },
           "401" : {
             "description" : "Unauthorized"
           },
@@ -2889,8 +2895,7 @@
     "ConditionSet" : {
       "properties" : {
         "creationTime" : {
-          "type" : "integer",
-          "format" : "int32"
+          "type" : "string"
         },
         "id" : {
           "type" : "integer",
@@ -2938,8 +2943,7 @@
           "enum" : [ "UNKNOWN", "ZPN_STATUS_AUTHENTICATED", "ZPN_STATUS_DISCONNECTED" ]
         },
         "creationTime" : {
-          "type" : "integer",
-          "format" : "int32"
+          "type" : "string"
         },
         "ctrlBrokerName" : {
           "type" : "string",
@@ -3072,8 +3076,7 @@
           }
         },
         "creationTime" : {
-          "type" : "integer",
-          "format" : "int32"
+          "type" : "string"
         },
         "description" : {
           "type" : "string"
@@ -3222,8 +3225,7 @@
       "required" : [ "name" ],
       "properties" : {
         "creationTime" : {
-          "type" : "integer",
-          "format" : "int32"
+          "type" : "string"
         },
         "description" : {
           "type" : "string"
@@ -3272,8 +3274,7 @@
       "required" : [ "name" ],
       "properties" : {
         "creationTime" : {
-          "type" : "integer",
-          "format" : "int32"
+          "type" : "string"
         },
         "description" : {
           "type" : "string"
@@ -3318,8 +3319,7 @@
     "Operand" : {
       "properties" : {
         "creationTime" : {
-          "type" : "integer",
-          "format" : "int32"
+          "type" : "string"
         },
         "id" : {
           "type" : "integer",
@@ -3511,8 +3511,7 @@
           }
         },
         "creationTime" : {
-          "type" : "integer",
-          "format" : "int32"
+          "type" : "string"
         },
         "customMsg" : {
           "type" : "string"
@@ -3592,8 +3591,7 @@
       "required" : [ "name" ],
       "properties" : {
         "creationTime" : {
-          "type" : "integer",
-          "format" : "int32"
+          "type" : "string"
         },
         "description" : {
           "type" : "string"
@@ -3632,8 +3630,7 @@
       "required" : [ "name" ],
       "properties" : {
         "creationTime" : {
-          "type" : "integer",
-          "format" : "int32"
+          "type" : "string"
         },
         "domain" : {
           "type" : "string"
@@ -3681,8 +3678,7 @@
           "type" : "boolean"
         },
         "creationTime" : {
-          "type" : "integer",
-          "format" : "int32"
+          "type" : "string"
         },
         "dataType" : {
           "type" : "string"
@@ -3733,8 +3729,7 @@
       "required" : [ "name" ],
       "properties" : {
         "creationTime" : {
-          "type" : "integer",
-          "format" : "int32"
+          "type" : "string"
         },
         "id" : {
           "type" : "integer",
@@ -3780,8 +3775,7 @@
           "enum" : [ "DEFAULT", "SIEM" ]
         },
         "creationTime" : {
-          "type" : "integer",
-          "format" : "int32"
+          "type" : "string"
         },
         "description" : {
           "type" : "string"
@@ -3894,8 +3888,7 @@
       "required" : [ "name" ],
       "properties" : {
         "creationTime" : {
-          "type" : "integer",
-          "format" : "int32"
+          "type" : "string"
         },
         "domain" : {
           "type" : "string"
@@ -3930,8 +3923,7 @@
       "required" : [ "name" ],
       "properties" : {
         "creationTime" : {
-          "type" : "integer",
-          "format" : "int32"
+          "type" : "string"
         },
         "description" : {
           "type" : "string"

@@ -33,7 +33,7 @@ type Idp struct {
 	Certificates []*IdpCertDto `json:"certificates"`
 
 	// creation time
-	CreationTime int32 `json:"creationTime,omitempty"`
+	CreationTime string `json:"creationTime,omitempty"`
 
 	// description
 	Description string `json:"description,omitempty"`

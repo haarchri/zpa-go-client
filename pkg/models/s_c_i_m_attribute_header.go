@@ -26,7 +26,7 @@ type SCIMAttributeHeader struct {
 	CaseSensitive bool `json:"caseSensitive,omitempty"`
 
 	// creation time
-	CreationTime int32 `json:"creationTime,omitempty"`
+	CreationTime string `json:"creationTime,omitempty"`
 
 	// data type
 	DataType string `json:"dataType,omitempty"`

@@ -34,7 +34,7 @@ type Connector struct {
 	ControlChannelStatus string `json:"controlChannelStatus,omitempty"`
 
 	// creation time
-	CreationTime int32 `json:"creationTime,omitempty"`
+	CreationTime string `json:"creationTime,omitempty"`
 
 	// Read only. Ignored in PUT/POST calls.
 	CtrlBrokerName string `json:"ctrlBrokerName,omitempty"`

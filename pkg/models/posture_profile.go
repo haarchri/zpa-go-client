@@ -20,7 +20,7 @@ import (
 type PostureProfile struct {
 
 	// creation time
-	CreationTime int32 `json:"creationTime,omitempty"`
+	CreationTime string `json:"creationTime,omitempty"`
 
 	// domain
 	Domain string `json:"domain,omitempty"`
