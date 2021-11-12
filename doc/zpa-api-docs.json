@@ -243,6 +243,9 @@
               "$ref" : "#/definitions/SegmentGroup"
             }
           },
+          "400" : {
+            "description" : "BadRequest"
+          },
           "401" : {
             "description" : "Unauthorized"
           },
