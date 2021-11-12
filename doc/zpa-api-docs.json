@@ -3784,16 +3784,13 @@
           "type" : "boolean"
         },
         "id" : {
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         },
         "modifiedBy" : {
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         },
         "modifiedTime" : {
-          "type" : "integer",
-          "format" : "int32"
+          "type" : "string"
         },
         "name" : {
           "type" : "string"
@@ -3802,8 +3799,7 @@
           "type" : "boolean"
         },
         "tcpKeepAliveEnabled" : {
-          "type" : "integer",
-          "format" : "int32"
+          "type" : "string"
         }
       }
     },

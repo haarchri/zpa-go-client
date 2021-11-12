@@ -38,13 +38,13 @@ type SegmentGroup struct {
 	Enabled bool `json:"enabled,omitempty"`
 
 	// id
-	ID int64 `json:"id,omitempty"`
+	ID string `json:"id,omitempty"`
 
 	// modified by
-	ModifiedBy int64 `json:"modifiedBy,omitempty"`
+	ModifiedBy string `json:"modifiedBy,omitempty"`
 
 	// modified time
-	ModifiedTime int32 `json:"modifiedTime,omitempty"`
+	ModifiedTime string `json:"modifiedTime,omitempty"`
 
 	// name
 	// Required: true
@@ -54,7 +54,7 @@ type SegmentGroup struct {
 	PolicyMigrated bool `json:"policyMigrated,omitempty"`
 
 	// tcp keep alive enabled
-	TCPKeepAliveEnabled int32 `json:"tcpKeepAliveEnabled,omitempty"`
+	TCPKeepAliveEnabled string `json:"tcpKeepAliveEnabled,omitempty"`
 }
 
 // Validate validates this segment group
