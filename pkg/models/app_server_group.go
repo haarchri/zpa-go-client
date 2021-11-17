@@ -37,7 +37,7 @@ type AppServerGroup struct {
 	Enabled bool `json:"enabled,omitempty"`
 
 	// id
-	ID int64 `json:"id,omitempty"`
+	ID string `json:"id,omitempty"`
 
 	// modified by
 	ModifiedBy int64 `json:"modifiedBy,omitempty"`

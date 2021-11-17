@@ -71,10 +71,8 @@ type GetAppServerUsingGET1Params struct {
 	/* ServerID.
 
 	   The unique identifier of the Server.
-
-	   Format: int64
 	*/
-	ServerID int64
+	ServerID string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -141,13 +139,13 @@ func (o *GetAppServerUsingGET1Params) SetCustomerID(customerID int64) {
 }
 
 // WithServerID adds the serverID to the get app server using g e t 1 params
-func (o *GetAppServerUsingGET1Params) WithServerID(serverID int64) *GetAppServerUsingGET1Params {
+func (o *GetAppServerUsingGET1Params) WithServerID(serverID string) *GetAppServerUsingGET1Params {
 	o.SetServerID(serverID)
 	return o
 }
 
 // SetServerID adds the serverId to the get app server using g e t 1 params
-func (o *GetAppServerUsingGET1Params) SetServerID(serverID int64) {
+func (o *GetAppServerUsingGET1Params) SetServerID(serverID string) {
 	o.ServerID = serverID
 }
 
@@ -165,7 +163,7 @@ func (o *GetAppServerUsingGET1Params) WriteToRequest(r runtime.ClientRequest, re
 	}
 
 	// path param serverId
-	if err := r.SetPathParam("serverId", swag.FormatInt64(o.ServerID)); err != nil {
+	if err := r.SetPathParam("serverId", o.ServerID); err != nil {
 		return err
 	}
 

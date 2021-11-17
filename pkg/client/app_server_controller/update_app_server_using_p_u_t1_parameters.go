@@ -79,10 +79,8 @@ type UpdateAppServerUsingPUT1Params struct {
 	/* ServerID.
 
 	   The unique identifier of the Server.
-
-	   Format: int64
 	*/
-	ServerID int64
+	ServerID string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -160,13 +158,13 @@ func (o *UpdateAppServerUsingPUT1Params) SetServer(server *models.ApplicationSer
 }
 
 // WithServerID adds the serverID to the update app server using p u t 1 params
-func (o *UpdateAppServerUsingPUT1Params) WithServerID(serverID int64) *UpdateAppServerUsingPUT1Params {
+func (o *UpdateAppServerUsingPUT1Params) WithServerID(serverID string) *UpdateAppServerUsingPUT1Params {
 	o.SetServerID(serverID)
 	return o
 }
 
 // SetServerID adds the serverId to the update app server using p u t 1 params
-func (o *UpdateAppServerUsingPUT1Params) SetServerID(serverID int64) {
+func (o *UpdateAppServerUsingPUT1Params) SetServerID(serverID string) {
 	o.ServerID = serverID
 }
 
@@ -189,7 +187,7 @@ func (o *UpdateAppServerUsingPUT1Params) WriteToRequest(r runtime.ClientRequest,
 	}
 
 	// path param serverId
-	if err := r.SetPathParam("serverId", swag.FormatInt64(o.ServerID)); err != nil {
+	if err := r.SetPathParam("serverId", o.ServerID); err != nil {
 		return err
 	}
 

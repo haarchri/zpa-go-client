@@ -32,6 +32,12 @@ func (o *UpdateAppServerUsingPUT1Reader) ReadResponse(response runtime.ClientRes
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewUpdateAppServerUsingPUT1BadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	case 401:
 		result := NewUpdateAppServerUsingPUT1Unauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -93,6 +99,27 @@ func (o *UpdateAppServerUsingPUT1NoContent) Error() string {
 }
 
 func (o *UpdateAppServerUsingPUT1NoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	return nil
+}
+
+// NewUpdateAppServerUsingPUT1BadRequest creates a UpdateAppServerUsingPUT1BadRequest with default headers values
+func NewUpdateAppServerUsingPUT1BadRequest() *UpdateAppServerUsingPUT1BadRequest {
+	return &UpdateAppServerUsingPUT1BadRequest{}
+}
+
+/* UpdateAppServerUsingPUT1BadRequest describes a response with status code 400, with default header values.
+
+BadRequest
+*/
+type UpdateAppServerUsingPUT1BadRequest struct {
+}
+
+func (o *UpdateAppServerUsingPUT1BadRequest) Error() string {
+	return fmt.Sprintf("[PUT /mgmtconfig/v1/admin/customers/{customerId}/server/{serverId}][%d] updateAppServerUsingPUT1BadRequest ", 400)
+}
+
+func (o *UpdateAppServerUsingPUT1BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }

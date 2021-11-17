@@ -1734,8 +1734,7 @@
           "in" : "path",
           "description" : "The unique identifier of the Server.",
           "required" : true,
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         } ],
         "responses" : {
           "200" : {
@@ -1785,8 +1784,7 @@
           "in" : "path",
           "description" : "The unique identifier of the Server.",
           "required" : true,
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         } ],
         "responses" : {
           "201" : {
@@ -1794,6 +1792,9 @@
           },
           "204" : {
             "description" : "No Content"
+          },
+          "400" : {
+            "description" : "BadRequest"
           },
           "401" : {
             "description" : "Unauthorized"
@@ -1824,8 +1825,7 @@
           "in" : "path",
           "description" : "The unique identifier of the Server.",
           "required" : true,
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         } ],
         "responses" : {
           "204" : {
@@ -2357,8 +2357,7 @@
           "type" : "boolean"
         },
         "id" : {
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         },
         "dynamicDiscovery" : {
           "type" : "boolean"
@@ -2618,8 +2617,7 @@
           "type" : "boolean"
         },
         "id" : {
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         },
         "modifiedBy" : {
           "type" : "integer",
