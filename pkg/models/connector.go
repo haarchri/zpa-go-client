@@ -27,7 +27,7 @@ type Connector struct {
 	AppConnectorGroupName string `json:"appConnectorGroupName,omitempty"`
 
 	// application start time
-	ApplicationStartTime int64 `json:"applicationStartTime,omitempty"`
+	ApplicationStartTime string `json:"applicationStartTime,omitempty"`
 
 	// Read only. Ignored in PUT/POST calls. Expected values: UNKNOWN/ZPN_STATUS_AUTHENTICATED(1)/ZPN_STATUS_DISCONNECTED
 	// Enum: [UNKNOWN ZPN_STATUS_AUTHENTICATED ZPN_STATUS_DISCONNECTED]
@@ -49,7 +49,7 @@ type Connector struct {
 	Enabled bool `json:"enabled,omitempty"`
 
 	// Read only. Ignored in PUT/POST calls.
-	ExpectedUpgradeTime int64 `json:"expectedUpgradeTime,omitempty"`
+	ExpectedUpgradeTime string `json:"expectedUpgradeTime,omitempty"`
 
 	// Read only. Ignored in PUT/POST calls.
 	ExpectedVersion string `json:"expectedVersion,omitempty"`
@@ -58,22 +58,22 @@ type Connector struct {
 	Fingerprint string `json:"fingerprint,omitempty"`
 
 	// id
-	ID int64 `json:"id,omitempty"`
+	ID string `json:"id,omitempty"`
 
 	// ip Acl
 	IPACL []string `json:"ipAcl"`
 
 	// issued cert Id
-	IssuedCertID int64 `json:"issuedCertId,omitempty"`
+	IssuedCertID string `json:"issuedCertId,omitempty"`
 
 	// Read only. Ignored in PUT/POST calls.
-	LastBrokerConnectTime int64 `json:"lastBrokerConnectTime,omitempty"`
+	LastBrokerConnectTime string `json:"lastBrokerConnectTime,omitempty"`
 
 	// Read only. Ignored in PUT/POST calls.
-	LastBrokerDisconnectTime int64 `json:"lastBrokerDisconnectTime,omitempty"`
+	LastBrokerDisconnectTime string `json:"lastBrokerDisconnectTime,omitempty"`
 
 	// Read only. Ignored in PUT/POST calls.
-	LastUpgradeTime int64 `json:"lastUpgradeTime,omitempty"`
+	LastUpgradeTime string `json:"lastUpgradeTime,omitempty"`
 
 	// latitude
 	Latitude float64 `json:"latitude,omitempty"`
@@ -85,10 +85,10 @@ type Connector struct {
 	Longitude float64 `json:"longitude,omitempty"`
 
 	// modified by
-	ModifiedBy int64 `json:"modifiedBy,omitempty"`
+	ModifiedBy string `json:"modifiedBy,omitempty"`
 
 	// modified time
-	ModifiedTime int32 `json:"modifiedTime,omitempty"`
+	ModifiedTime string `json:"modifiedTime,omitempty"`
 
 	// name
 	// Required: true

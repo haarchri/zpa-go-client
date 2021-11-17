@@ -14,7 +14,6 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
-	"github.com/go-openapi/swag"
 )
 
 // NewGetAppConnectorGroupUsingGET1Params creates a new GetAppConnectorGroupUsingGET1Params object,
@@ -63,18 +62,14 @@ type GetAppConnectorGroupUsingGET1Params struct {
 	/* AppConnectorGroupID.
 
 	   The unique identifier of the App Connector Group.
-
-	   Format: int64
 	*/
-	AppConnectorGroupID int64
+	AppConnectorGroupID string
 
 	/* CustomerID.
 
 	   The unique identifier of the ZPA tenant.
-
-	   Format: int64
 	*/
-	CustomerID int64
+	CustomerID string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -130,24 +125,24 @@ func (o *GetAppConnectorGroupUsingGET1Params) SetHTTPClient(client *http.Client)
 }
 
 // WithAppConnectorGroupID adds the appConnectorGroupID to the get app connector group using g e t 1 params
-func (o *GetAppConnectorGroupUsingGET1Params) WithAppConnectorGroupID(appConnectorGroupID int64) *GetAppConnectorGroupUsingGET1Params {
+func (o *GetAppConnectorGroupUsingGET1Params) WithAppConnectorGroupID(appConnectorGroupID string) *GetAppConnectorGroupUsingGET1Params {
 	o.SetAppConnectorGroupID(appConnectorGroupID)
 	return o
 }
 
 // SetAppConnectorGroupID adds the appConnectorGroupId to the get app connector group using g e t 1 params
-func (o *GetAppConnectorGroupUsingGET1Params) SetAppConnectorGroupID(appConnectorGroupID int64) {
+func (o *GetAppConnectorGroupUsingGET1Params) SetAppConnectorGroupID(appConnectorGroupID string) {
 	o.AppConnectorGroupID = appConnectorGroupID
 }
 
 // WithCustomerID adds the customerID to the get app connector group using g e t 1 params
-func (o *GetAppConnectorGroupUsingGET1Params) WithCustomerID(customerID int64) *GetAppConnectorGroupUsingGET1Params {
+func (o *GetAppConnectorGroupUsingGET1Params) WithCustomerID(customerID string) *GetAppConnectorGroupUsingGET1Params {
 	o.SetCustomerID(customerID)
 	return o
 }
 
 // SetCustomerID adds the customerId to the get app connector group using g e t 1 params
-func (o *GetAppConnectorGroupUsingGET1Params) SetCustomerID(customerID int64) {
+func (o *GetAppConnectorGroupUsingGET1Params) SetCustomerID(customerID string) {
 	o.CustomerID = customerID
 }
 
@@ -160,12 +155,12 @@ func (o *GetAppConnectorGroupUsingGET1Params) WriteToRequest(r runtime.ClientReq
 	var res []error
 
 	// path param appConnectorGroupId
-	if err := r.SetPathParam("appConnectorGroupId", swag.FormatInt64(o.AppConnectorGroupID)); err != nil {
+	if err := r.SetPathParam("appConnectorGroupId", o.AppConnectorGroupID); err != nil {
 		return err
 	}
 
 	// path param customerId
-	if err := r.SetPathParam("customerId", swag.FormatInt64(o.CustomerID)); err != nil {
+	if err := r.SetPathParam("customerId", o.CustomerID); err != nil {
 		return err
 	}
 

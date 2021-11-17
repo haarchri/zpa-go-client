@@ -24,7 +24,7 @@ type Idp struct {
 	AdminMetadata *ServiceProvider `json:"adminMetadata,omitempty"`
 
 	// admin sp signing cert Id
-	AdminSpSigningCertID int64 `json:"adminSpSigningCertId,omitempty"`
+	AdminSpSigningCertID string `json:"adminSpSigningCertId,omitempty"`
 
 	// defaults to 0.
 	AutoProvision string `json:"autoProvision,omitempty"`
@@ -51,7 +51,7 @@ type Idp struct {
 	Enabled bool `json:"enabled,omitempty"`
 
 	// id
-	ID int64 `json:"id,omitempty"`
+	ID string `json:"id,omitempty"`
 
 	// idp entity Id
 	// Required: true
@@ -65,10 +65,10 @@ type Idp struct {
 	LoginURL *string `json:"loginUrl"`
 
 	// modified by
-	ModifiedBy int64 `json:"modifiedBy,omitempty"`
+	ModifiedBy string `json:"modifiedBy,omitempty"`
 
 	// modified time
-	ModifiedTime int32 `json:"modifiedTime,omitempty"`
+	ModifiedTime string `json:"modifiedTime,omitempty"`
 
 	// name
 	// Required: true
@@ -105,7 +105,7 @@ type Idp struct {
 	UserMetadata *ServiceProvider `json:"userMetadata,omitempty"`
 
 	// user sp signing cert Id
-	UserSpSigningCertID int64 `json:"userSpSigningCertId,omitempty"`
+	UserSpSigningCertID string `json:"userSpSigningCertId,omitempty"`
 }
 
 // Validate validates this idp

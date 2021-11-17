@@ -30,16 +30,16 @@ type MachineGroup struct {
 	Enabled bool `json:"enabled,omitempty"`
 
 	// id
-	ID int64 `json:"id,omitempty"`
+	ID string `json:"id,omitempty"`
 
 	// machines
 	Machines []*Machine `json:"machines"`
 
 	// modified by
-	ModifiedBy int64 `json:"modifiedBy,omitempty"`
+	ModifiedBy string `json:"modifiedBy,omitempty"`
 
 	// modified time
-	ModifiedTime int32 `json:"modifiedTime,omitempty"`
+	ModifiedTime string `json:"modifiedTime,omitempty"`
 
 	// name
 	// Required: true

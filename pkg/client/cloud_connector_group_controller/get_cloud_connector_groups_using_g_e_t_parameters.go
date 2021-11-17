@@ -63,10 +63,8 @@ type GetCloudConnectorGroupsUsingGETParams struct {
 	/* CustomerID.
 
 	   The unique identifier of the ZPA tenant.
-
-	   Format: int64
 	*/
-	CustomerID int64
+	CustomerID string
 
 	/* Page.
 
@@ -144,13 +142,13 @@ func (o *GetCloudConnectorGroupsUsingGETParams) SetHTTPClient(client *http.Clien
 }
 
 // WithCustomerID adds the customerID to the get cloud connector groups using g e t params
-func (o *GetCloudConnectorGroupsUsingGETParams) WithCustomerID(customerID int64) *GetCloudConnectorGroupsUsingGETParams {
+func (o *GetCloudConnectorGroupsUsingGETParams) WithCustomerID(customerID string) *GetCloudConnectorGroupsUsingGETParams {
 	o.SetCustomerID(customerID)
 	return o
 }
 
 // SetCustomerID adds the customerId to the get cloud connector groups using g e t params
-func (o *GetCloudConnectorGroupsUsingGETParams) SetCustomerID(customerID int64) {
+func (o *GetCloudConnectorGroupsUsingGETParams) SetCustomerID(customerID string) {
 	o.CustomerID = customerID
 }
 
@@ -196,7 +194,7 @@ func (o *GetCloudConnectorGroupsUsingGETParams) WriteToRequest(r runtime.ClientR
 	var res []error
 
 	// path param customerId
-	if err := r.SetPathParam("customerId", swag.FormatInt64(o.CustomerID)); err != nil {
+	if err := r.SetPathParam("customerId", o.CustomerID); err != nil {
 		return err
 	}
 

@@ -14,7 +14,6 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
-	"github.com/go-openapi/swag"
 
 	"github.com/haarchri/zpa-go-client/pkg/models"
 )
@@ -65,10 +64,8 @@ type UpdateSegmentGroupUsingPUT1Params struct {
 	/* CustomerID.
 
 	   The unique identifier of the ZPA tenant.
-
-	   Format: int64
 	*/
-	CustomerID int64
+	CustomerID string
 
 	/* SegmentGroup.
 
@@ -79,10 +76,8 @@ type UpdateSegmentGroupUsingPUT1Params struct {
 	/* SegmentGroupID.
 
 	   The unique identifier of the Segment Group.
-
-	   Format: int64
 	*/
-	SegmentGroupID int64
+	SegmentGroupID string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -138,13 +133,13 @@ func (o *UpdateSegmentGroupUsingPUT1Params) SetHTTPClient(client *http.Client) {
 }
 
 // WithCustomerID adds the customerID to the update segment group using p u t 1 params
-func (o *UpdateSegmentGroupUsingPUT1Params) WithCustomerID(customerID int64) *UpdateSegmentGroupUsingPUT1Params {
+func (o *UpdateSegmentGroupUsingPUT1Params) WithCustomerID(customerID string) *UpdateSegmentGroupUsingPUT1Params {
 	o.SetCustomerID(customerID)
 	return o
 }
 
 // SetCustomerID adds the customerId to the update segment group using p u t 1 params
-func (o *UpdateSegmentGroupUsingPUT1Params) SetCustomerID(customerID int64) {
+func (o *UpdateSegmentGroupUsingPUT1Params) SetCustomerID(customerID string) {
 	o.CustomerID = customerID
 }
 
@@ -160,13 +155,13 @@ func (o *UpdateSegmentGroupUsingPUT1Params) SetSegmentGroup(segmentGroup *models
 }
 
 // WithSegmentGroupID adds the segmentGroupID to the update segment group using p u t 1 params
-func (o *UpdateSegmentGroupUsingPUT1Params) WithSegmentGroupID(segmentGroupID int64) *UpdateSegmentGroupUsingPUT1Params {
+func (o *UpdateSegmentGroupUsingPUT1Params) WithSegmentGroupID(segmentGroupID string) *UpdateSegmentGroupUsingPUT1Params {
 	o.SetSegmentGroupID(segmentGroupID)
 	return o
 }
 
 // SetSegmentGroupID adds the segmentGroupId to the update segment group using p u t 1 params
-func (o *UpdateSegmentGroupUsingPUT1Params) SetSegmentGroupID(segmentGroupID int64) {
+func (o *UpdateSegmentGroupUsingPUT1Params) SetSegmentGroupID(segmentGroupID string) {
 	o.SegmentGroupID = segmentGroupID
 }
 
@@ -179,7 +174,7 @@ func (o *UpdateSegmentGroupUsingPUT1Params) WriteToRequest(r runtime.ClientReque
 	var res []error
 
 	// path param customerId
-	if err := r.SetPathParam("customerId", swag.FormatInt64(o.CustomerID)); err != nil {
+	if err := r.SetPathParam("customerId", o.CustomerID); err != nil {
 		return err
 	}
 	if o.SegmentGroup != nil {
@@ -189,7 +184,7 @@ func (o *UpdateSegmentGroupUsingPUT1Params) WriteToRequest(r runtime.ClientReque
 	}
 
 	// path param segmentGroupId
-	if err := r.SetPathParam("segmentGroupId", swag.FormatInt64(o.SegmentGroupID)); err != nil {
+	if err := r.SetPathParam("segmentGroupId", o.SegmentGroupID); err != nil {
 		return err
 	}
 

@@ -14,7 +14,6 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
-	"github.com/go-openapi/swag"
 )
 
 // NewGetAllIssuedCertsUsingGET1Params creates a new GetAllIssuedCertsUsingGET1Params object,
@@ -63,10 +62,8 @@ type GetAllIssuedCertsUsingGET1Params struct {
 	/* CustomerID.
 
 	   The unique identifier of the ZPA tenant.
-
-	   Format: int64
 	*/
-	CustomerID int64
+	CustomerID string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -122,13 +119,13 @@ func (o *GetAllIssuedCertsUsingGET1Params) SetHTTPClient(client *http.Client) {
 }
 
 // WithCustomerID adds the customerID to the get all issued certs using g e t 1 params
-func (o *GetAllIssuedCertsUsingGET1Params) WithCustomerID(customerID int64) *GetAllIssuedCertsUsingGET1Params {
+func (o *GetAllIssuedCertsUsingGET1Params) WithCustomerID(customerID string) *GetAllIssuedCertsUsingGET1Params {
 	o.SetCustomerID(customerID)
 	return o
 }
 
 // SetCustomerID adds the customerId to the get all issued certs using g e t 1 params
-func (o *GetAllIssuedCertsUsingGET1Params) SetCustomerID(customerID int64) {
+func (o *GetAllIssuedCertsUsingGET1Params) SetCustomerID(customerID string) {
 	o.CustomerID = customerID
 }
 
@@ -141,7 +138,7 @@ func (o *GetAllIssuedCertsUsingGET1Params) WriteToRequest(r runtime.ClientReques
 	var res []error
 
 	// path param customerId
-	if err := r.SetPathParam("customerId", swag.FormatInt64(o.CustomerID)); err != nil {
+	if err := r.SetPathParam("customerId", o.CustomerID); err != nil {
 		return err
 	}
 

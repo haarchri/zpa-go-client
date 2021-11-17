@@ -32,19 +32,19 @@ type Znf struct {
 	Fingerprint string `json:"fingerprint,omitempty"`
 
 	// id
-	ID int64 `json:"id,omitempty"`
+	ID string `json:"id,omitempty"`
 
 	// ip Acl
 	IPACL []string `json:"ipAcl"`
 
 	// issued cert Id
-	IssuedCertID int64 `json:"issuedCertId,omitempty"`
+	IssuedCertID string `json:"issuedCertId,omitempty"`
 
 	// modified by
-	ModifiedBy int64 `json:"modifiedBy,omitempty"`
+	ModifiedBy string `json:"modifiedBy,omitempty"`
 
 	// modified time
-	ModifiedTime int32 `json:"modifiedTime,omitempty"`
+	ModifiedTime string `json:"modifiedTime,omitempty"`
 
 	// name
 	// Required: true

@@ -63,18 +63,14 @@ type DeleteApplicationUsingDELETE1Params struct {
 	/* ApplicationID.
 
 	   The unique identifier of the Application Segment.
-
-	   Format: int64
 	*/
-	ApplicationID int64
+	ApplicationID string
 
 	/* CustomerID.
 
 	   The unique identifier of the ZPA tenant.
-
-	   Format: int64
 	*/
-	CustomerID int64
+	CustomerID string
 
 	/* ForceDelete.
 
@@ -147,24 +143,24 @@ func (o *DeleteApplicationUsingDELETE1Params) SetHTTPClient(client *http.Client)
 }
 
 // WithApplicationID adds the applicationID to the delete application using d e l e t e 1 params
-func (o *DeleteApplicationUsingDELETE1Params) WithApplicationID(applicationID int64) *DeleteApplicationUsingDELETE1Params {
+func (o *DeleteApplicationUsingDELETE1Params) WithApplicationID(applicationID string) *DeleteApplicationUsingDELETE1Params {
 	o.SetApplicationID(applicationID)
 	return o
 }
 
 // SetApplicationID adds the applicationId to the delete application using d e l e t e 1 params
-func (o *DeleteApplicationUsingDELETE1Params) SetApplicationID(applicationID int64) {
+func (o *DeleteApplicationUsingDELETE1Params) SetApplicationID(applicationID string) {
 	o.ApplicationID = applicationID
 }
 
 // WithCustomerID adds the customerID to the delete application using d e l e t e 1 params
-func (o *DeleteApplicationUsingDELETE1Params) WithCustomerID(customerID int64) *DeleteApplicationUsingDELETE1Params {
+func (o *DeleteApplicationUsingDELETE1Params) WithCustomerID(customerID string) *DeleteApplicationUsingDELETE1Params {
 	o.SetCustomerID(customerID)
 	return o
 }
 
 // SetCustomerID adds the customerId to the delete application using d e l e t e 1 params
-func (o *DeleteApplicationUsingDELETE1Params) SetCustomerID(customerID int64) {
+func (o *DeleteApplicationUsingDELETE1Params) SetCustomerID(customerID string) {
 	o.CustomerID = customerID
 }
 
@@ -188,12 +184,12 @@ func (o *DeleteApplicationUsingDELETE1Params) WriteToRequest(r runtime.ClientReq
 	var res []error
 
 	// path param applicationId
-	if err := r.SetPathParam("applicationId", swag.FormatInt64(o.ApplicationID)); err != nil {
+	if err := r.SetPathParam("applicationId", o.ApplicationID); err != nil {
 		return err
 	}
 
 	// path param customerId
-	if err := r.SetPathParam("customerId", swag.FormatInt64(o.CustomerID)); err != nil {
+	if err := r.SetPathParam("customerId", o.CustomerID); err != nil {
 		return err
 	}
 

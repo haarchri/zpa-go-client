@@ -29,10 +29,10 @@ type Machine struct {
 	Fingerprint string `json:"fingerprint,omitempty"`
 
 	// id
-	ID int64 `json:"id,omitempty"`
+	ID string `json:"id,omitempty"`
 
 	// issued cert Id
-	IssuedCertID int64 `json:"issuedCertId,omitempty"`
+	IssuedCertID string `json:"issuedCertId,omitempty"`
 
 	// machine group Id
 	MachineGroupID string `json:"machineGroupId,omitempty"`
@@ -41,13 +41,13 @@ type Machine struct {
 	MachineGroupName string `json:"machineGroupName,omitempty"`
 
 	// machine token Id
-	MachineTokenID int64 `json:"machineTokenId,omitempty"`
+	MachineTokenID string `json:"machineTokenId,omitempty"`
 
 	// modified by
-	ModifiedBy int64 `json:"modifiedBy,omitempty"`
+	ModifiedBy string `json:"modifiedBy,omitempty"`
 
 	// modified time
-	ModifiedTime int32 `json:"modifiedTime,omitempty"`
+	ModifiedTime string `json:"modifiedTime,omitempty"`
 
 	// name
 	// Required: true

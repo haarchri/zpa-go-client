@@ -63,10 +63,8 @@ type GetPolicyRulesByPageUsingGET1Params struct {
 	/* CustomerID.
 
 	   The unique identifier of the ZPA tenant.
-
-	   Format: int64
 	*/
-	CustomerID int64
+	CustomerID string
 
 	/* Page.
 
@@ -150,13 +148,13 @@ func (o *GetPolicyRulesByPageUsingGET1Params) SetHTTPClient(client *http.Client)
 }
 
 // WithCustomerID adds the customerID to the get policy rules by page using g e t 1 params
-func (o *GetPolicyRulesByPageUsingGET1Params) WithCustomerID(customerID int64) *GetPolicyRulesByPageUsingGET1Params {
+func (o *GetPolicyRulesByPageUsingGET1Params) WithCustomerID(customerID string) *GetPolicyRulesByPageUsingGET1Params {
 	o.SetCustomerID(customerID)
 	return o
 }
 
 // SetCustomerID adds the customerId to the get policy rules by page using g e t 1 params
-func (o *GetPolicyRulesByPageUsingGET1Params) SetCustomerID(customerID int64) {
+func (o *GetPolicyRulesByPageUsingGET1Params) SetCustomerID(customerID string) {
 	o.CustomerID = customerID
 }
 
@@ -213,7 +211,7 @@ func (o *GetPolicyRulesByPageUsingGET1Params) WriteToRequest(r runtime.ClientReq
 	var res []error
 
 	// path param customerId
-	if err := r.SetPathParam("customerId", swag.FormatInt64(o.CustomerID)); err != nil {
+	if err := r.SetPathParam("customerId", o.CustomerID); err != nil {
 		return err
 	}
 

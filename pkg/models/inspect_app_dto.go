@@ -21,7 +21,7 @@ import (
 type InspectAppDto struct {
 
 	// app Id
-	AppID int64 `json:"appId,omitempty"`
+	AppID string `json:"appId,omitempty"`
 
 	// application port
 	ApplicationPort int32 `json:"applicationPort,omitempty"`
@@ -31,7 +31,7 @@ type InspectAppDto struct {
 	ApplicationProtocol string `json:"applicationProtocol,omitempty"`
 
 	// certificate Id
-	CertificateID int64 `json:"certificateId,omitempty"`
+	CertificateID string `json:"certificateId,omitempty"`
 
 	// certificate name
 	CertificateName string `json:"certificateName,omitempty"`
@@ -46,7 +46,7 @@ type InspectAppDto struct {
 	Enabled bool `json:"enabled,omitempty"`
 
 	// id
-	ID int64 `json:"id,omitempty"`
+	ID string `json:"id,omitempty"`
 
 	// name
 	Name string `json:"name,omitempty"`

@@ -62,7 +62,7 @@ type Application struct {
 	IcmpAccessType string `json:"icmpAccessType,omitempty"`
 
 	// id
-	ID int64 `json:"id,omitempty"`
+	ID string `json:"id,omitempty"`
 
 	// ip anchored
 	IPAnchored bool `json:"ipAnchored,omitempty"`
@@ -71,7 +71,7 @@ type Application struct {
 	LogFeatures []string `json:"logFeatures"`
 
 	// modified by
-	ModifiedBy int64 `json:"modifiedBy,omitempty"`
+	ModifiedBy string `json:"modifiedBy,omitempty"`
 
 	// modified time
 	ModifiedTime string `json:"modifiedTime,omitempty"`

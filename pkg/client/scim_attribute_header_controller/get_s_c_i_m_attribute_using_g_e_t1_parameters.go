@@ -14,7 +14,6 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
-	"github.com/go-openapi/swag"
 )
 
 // NewGetSCIMAttributeUsingGET1Params creates a new GetSCIMAttributeUsingGET1Params object,
@@ -63,26 +62,20 @@ type GetSCIMAttributeUsingGET1Params struct {
 	/* CustomerID.
 
 	   The unique identifier of the ZPA tenant.
-
-	   Format: int64
 	*/
-	CustomerID int64
+	CustomerID string
 
 	/* IdpID.
 
 	   The unique identifier of the IdP.
-
-	   Format: int64
 	*/
-	IdpID int64
+	IdpID string
 
 	/* ScimAttributeID.
 
 	   The unique identifier of the SCIM attribute.
-
-	   Format: int64
 	*/
-	ScimAttributeID int64
+	ScimAttributeID string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -138,35 +131,35 @@ func (o *GetSCIMAttributeUsingGET1Params) SetHTTPClient(client *http.Client) {
 }
 
 // WithCustomerID adds the customerID to the get s c i m attribute using g e t 1 params
-func (o *GetSCIMAttributeUsingGET1Params) WithCustomerID(customerID int64) *GetSCIMAttributeUsingGET1Params {
+func (o *GetSCIMAttributeUsingGET1Params) WithCustomerID(customerID string) *GetSCIMAttributeUsingGET1Params {
 	o.SetCustomerID(customerID)
 	return o
 }
 
 // SetCustomerID adds the customerId to the get s c i m attribute using g e t 1 params
-func (o *GetSCIMAttributeUsingGET1Params) SetCustomerID(customerID int64) {
+func (o *GetSCIMAttributeUsingGET1Params) SetCustomerID(customerID string) {
 	o.CustomerID = customerID
 }
 
 // WithIdpID adds the idpID to the get s c i m attribute using g e t 1 params
-func (o *GetSCIMAttributeUsingGET1Params) WithIdpID(idpID int64) *GetSCIMAttributeUsingGET1Params {
+func (o *GetSCIMAttributeUsingGET1Params) WithIdpID(idpID string) *GetSCIMAttributeUsingGET1Params {
 	o.SetIdpID(idpID)
 	return o
 }
 
 // SetIdpID adds the idpId to the get s c i m attribute using g e t 1 params
-func (o *GetSCIMAttributeUsingGET1Params) SetIdpID(idpID int64) {
+func (o *GetSCIMAttributeUsingGET1Params) SetIdpID(idpID string) {
 	o.IdpID = idpID
 }
 
 // WithScimAttributeID adds the scimAttributeID to the get s c i m attribute using g e t 1 params
-func (o *GetSCIMAttributeUsingGET1Params) WithScimAttributeID(scimAttributeID int64) *GetSCIMAttributeUsingGET1Params {
+func (o *GetSCIMAttributeUsingGET1Params) WithScimAttributeID(scimAttributeID string) *GetSCIMAttributeUsingGET1Params {
 	o.SetScimAttributeID(scimAttributeID)
 	return o
 }
 
 // SetScimAttributeID adds the scimAttributeId to the get s c i m attribute using g e t 1 params
-func (o *GetSCIMAttributeUsingGET1Params) SetScimAttributeID(scimAttributeID int64) {
+func (o *GetSCIMAttributeUsingGET1Params) SetScimAttributeID(scimAttributeID string) {
 	o.ScimAttributeID = scimAttributeID
 }
 
@@ -179,17 +172,17 @@ func (o *GetSCIMAttributeUsingGET1Params) WriteToRequest(r runtime.ClientRequest
 	var res []error
 
 	// path param customerId
-	if err := r.SetPathParam("customerId", swag.FormatInt64(o.CustomerID)); err != nil {
+	if err := r.SetPathParam("customerId", o.CustomerID); err != nil {
 		return err
 	}
 
 	// path param idpId
-	if err := r.SetPathParam("idpId", swag.FormatInt64(o.IdpID)); err != nil {
+	if err := r.SetPathParam("idpId", o.IdpID); err != nil {
 		return err
 	}
 
 	// path param scimAttributeId
-	if err := r.SetPathParam("scimAttributeId", swag.FormatInt64(o.ScimAttributeID)); err != nil {
+	if err := r.SetPathParam("scimAttributeId", o.ScimAttributeID); err != nil {
 		return err
 	}
 

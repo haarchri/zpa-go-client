@@ -40,7 +40,7 @@ type AppServerGroup struct {
 	ID string `json:"id,omitempty"`
 
 	// modified by
-	ModifiedBy int64 `json:"modifiedBy,omitempty"`
+	ModifiedBy string `json:"modifiedBy,omitempty"`
 
 	// modified time
 	ModifiedTime string `json:"modifiedTime,omitempty"`

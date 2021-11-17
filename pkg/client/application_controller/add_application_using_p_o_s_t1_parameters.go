@@ -14,7 +14,6 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
-	"github.com/go-openapi/swag"
 
 	"github.com/haarchri/zpa-go-client/pkg/models"
 )
@@ -71,10 +70,8 @@ type AddApplicationUsingPOST1Params struct {
 	/* CustomerID.
 
 	   The unique identifier of the ZPA tenant.
-
-	   Format: int64
 	*/
-	CustomerID int64
+	CustomerID string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -141,13 +138,13 @@ func (o *AddApplicationUsingPOST1Params) SetApplication(application *models.Appl
 }
 
 // WithCustomerID adds the customerID to the add application using p o s t 1 params
-func (o *AddApplicationUsingPOST1Params) WithCustomerID(customerID int64) *AddApplicationUsingPOST1Params {
+func (o *AddApplicationUsingPOST1Params) WithCustomerID(customerID string) *AddApplicationUsingPOST1Params {
 	o.SetCustomerID(customerID)
 	return o
 }
 
 // SetCustomerID adds the customerId to the add application using p o s t 1 params
-func (o *AddApplicationUsingPOST1Params) SetCustomerID(customerID int64) {
+func (o *AddApplicationUsingPOST1Params) SetCustomerID(customerID string) {
 	o.CustomerID = customerID
 }
 
@@ -165,7 +162,7 @@ func (o *AddApplicationUsingPOST1Params) WriteToRequest(r runtime.ClientRequest,
 	}
 
 	// path param customerId
-	if err := r.SetPathParam("customerId", swag.FormatInt64(o.CustomerID)); err != nil {
+	if err := r.SetPathParam("customerId", o.CustomerID); err != nil {
 		return err
 	}
 

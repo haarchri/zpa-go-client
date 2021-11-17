@@ -14,7 +14,6 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
-	"github.com/go-openapi/swag"
 )
 
 // NewDeleteSegmentGroupUsingDELETE1Params creates a new DeleteSegmentGroupUsingDELETE1Params object,
@@ -63,18 +62,14 @@ type DeleteSegmentGroupUsingDELETE1Params struct {
 	/* CustomerID.
 
 	   The unique identifier of the ZPA tenant.
-
-	   Format: int64
 	*/
-	CustomerID int64
+	CustomerID string
 
 	/* SegmentGroupID.
 
 	   The unique identifier of the Segment Group.
-
-	   Format: int64
 	*/
-	SegmentGroupID int64
+	SegmentGroupID string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -130,24 +125,24 @@ func (o *DeleteSegmentGroupUsingDELETE1Params) SetHTTPClient(client *http.Client
 }
 
 // WithCustomerID adds the customerID to the delete segment group using d e l e t e 1 params
-func (o *DeleteSegmentGroupUsingDELETE1Params) WithCustomerID(customerID int64) *DeleteSegmentGroupUsingDELETE1Params {
+func (o *DeleteSegmentGroupUsingDELETE1Params) WithCustomerID(customerID string) *DeleteSegmentGroupUsingDELETE1Params {
 	o.SetCustomerID(customerID)
 	return o
 }
 
 // SetCustomerID adds the customerId to the delete segment group using d e l e t e 1 params
-func (o *DeleteSegmentGroupUsingDELETE1Params) SetCustomerID(customerID int64) {
+func (o *DeleteSegmentGroupUsingDELETE1Params) SetCustomerID(customerID string) {
 	o.CustomerID = customerID
 }
 
 // WithSegmentGroupID adds the segmentGroupID to the delete segment group using d e l e t e 1 params
-func (o *DeleteSegmentGroupUsingDELETE1Params) WithSegmentGroupID(segmentGroupID int64) *DeleteSegmentGroupUsingDELETE1Params {
+func (o *DeleteSegmentGroupUsingDELETE1Params) WithSegmentGroupID(segmentGroupID string) *DeleteSegmentGroupUsingDELETE1Params {
 	o.SetSegmentGroupID(segmentGroupID)
 	return o
 }
 
 // SetSegmentGroupID adds the segmentGroupId to the delete segment group using d e l e t e 1 params
-func (o *DeleteSegmentGroupUsingDELETE1Params) SetSegmentGroupID(segmentGroupID int64) {
+func (o *DeleteSegmentGroupUsingDELETE1Params) SetSegmentGroupID(segmentGroupID string) {
 	o.SegmentGroupID = segmentGroupID
 }
 
@@ -160,12 +155,12 @@ func (o *DeleteSegmentGroupUsingDELETE1Params) WriteToRequest(r runtime.ClientRe
 	var res []error
 
 	// path param customerId
-	if err := r.SetPathParam("customerId", swag.FormatInt64(o.CustomerID)); err != nil {
+	if err := r.SetPathParam("customerId", o.CustomerID); err != nil {
 		return err
 	}
 
 	// path param segmentGroupId
-	if err := r.SetPathParam("segmentGroupId", swag.FormatInt64(o.SegmentGroupID)); err != nil {
+	if err := r.SetPathParam("segmentGroupId", o.SegmentGroupID); err != nil {
 		return err
 	}
 

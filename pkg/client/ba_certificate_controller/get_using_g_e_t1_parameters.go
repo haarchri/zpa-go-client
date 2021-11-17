@@ -14,7 +14,6 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
-	"github.com/go-openapi/swag"
 )
 
 // NewGetUsingGET1Params creates a new GetUsingGET1Params object,
@@ -63,18 +62,14 @@ type GetUsingGET1Params struct {
 	/* CertificateID.
 
 	   The unique identifier of the Browser Access certificate.
-
-	   Format: int64
 	*/
-	CertificateID int64
+	CertificateID string
 
 	/* CustomerID.
 
 	   The unique identifier of the ZPA tenant.
-
-	   Format: int64
 	*/
-	CustomerID int64
+	CustomerID string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -130,24 +125,24 @@ func (o *GetUsingGET1Params) SetHTTPClient(client *http.Client) {
 }
 
 // WithCertificateID adds the certificateID to the get using g e t 1 params
-func (o *GetUsingGET1Params) WithCertificateID(certificateID int64) *GetUsingGET1Params {
+func (o *GetUsingGET1Params) WithCertificateID(certificateID string) *GetUsingGET1Params {
 	o.SetCertificateID(certificateID)
 	return o
 }
 
 // SetCertificateID adds the certificateId to the get using g e t 1 params
-func (o *GetUsingGET1Params) SetCertificateID(certificateID int64) {
+func (o *GetUsingGET1Params) SetCertificateID(certificateID string) {
 	o.CertificateID = certificateID
 }
 
 // WithCustomerID adds the customerID to the get using g e t 1 params
-func (o *GetUsingGET1Params) WithCustomerID(customerID int64) *GetUsingGET1Params {
+func (o *GetUsingGET1Params) WithCustomerID(customerID string) *GetUsingGET1Params {
 	o.SetCustomerID(customerID)
 	return o
 }
 
 // SetCustomerID adds the customerId to the get using g e t 1 params
-func (o *GetUsingGET1Params) SetCustomerID(customerID int64) {
+func (o *GetUsingGET1Params) SetCustomerID(customerID string) {
 	o.CustomerID = customerID
 }
 
@@ -160,12 +155,12 @@ func (o *GetUsingGET1Params) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 	var res []error
 
 	// path param certificateId
-	if err := r.SetPathParam("certificateId", swag.FormatInt64(o.CertificateID)); err != nil {
+	if err := r.SetPathParam("certificateId", o.CertificateID); err != nil {
 		return err
 	}
 
 	// path param customerId
-	if err := r.SetPathParam("customerId", swag.FormatInt64(o.CustomerID)); err != nil {
+	if err := r.SetPathParam("customerId", o.CustomerID); err != nil {
 		return err
 	}
 

@@ -62,15 +62,13 @@
           "in" : "path",
           "description" : "The unique identifier of the ZPA tenant.",
           "required" : true,
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         }, {
           "name" : "id",
           "in" : "path",
           "description" : "The unique identifier of the posture profile.",
           "required" : true,
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         } ],
         "responses" : {
           "200" : {
@@ -106,8 +104,7 @@
           "in" : "path",
           "description" : "The unique identifier of the ZPA tenant.",
           "required" : true,
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         } ],
         "responses" : {
           "200" : {
@@ -143,8 +140,7 @@
           "in" : "path",
           "description" : "The unique identifier of the ZPA tenant.",
           "required" : true,
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         } ],
         "responses" : {
           "200" : {
@@ -180,8 +176,7 @@
           "in" : "path",
           "description" : "The unique identifier of the ZPA tenant.",
           "required" : true,
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         } ],
         "responses" : {
           "200" : {
@@ -223,15 +218,13 @@
           "in" : "path",
           "description" : "The unique identifier of the Segment Group.",
           "required" : true,
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         }, {
           "name" : "customerId",
           "in" : "path",
           "description" : "The unique identifier of the ZPA tenant.",
           "required" : true,
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         } ],
         "responses" : {
           "200" : {
@@ -277,15 +270,13 @@
           "in" : "path",
           "description" : "The unique identifier of the Segment Group.",
           "required" : true,
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         }, {
           "name" : "customerId",
           "in" : "path",
           "description" : "The unique identifier of the ZPA tenant.",
           "required" : true,
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         } ],
         "responses" : {
           "201" : {
@@ -316,15 +307,13 @@
           "in" : "path",
           "description" : "The unique identifier of the Segment Group.",
           "required" : true,
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         }, {
           "name" : "customerId",
           "in" : "path",
           "description" : "The unique identifier of the ZPA tenant.",
           "required" : true,
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         } ],
         "responses" : {
           "204" : {
@@ -351,8 +340,7 @@
           "in" : "path",
           "description" : "The unique identifier of the ZPA tenant.",
           "required" : true,
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         }, {
           "name" : "page",
           "in" : "query",
@@ -420,8 +408,7 @@
           "in" : "path",
           "description" : "The unique identifier of the ZPA tenant.",
           "required" : true,
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         } ],
         "responses" : {
           "201" : {
@@ -457,15 +444,13 @@
           "in" : "path",
           "description" : "The unique identifier of the SAML attribute.",
           "required" : true,
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         }, {
           "name" : "customerId",
           "in" : "path",
           "description" : "The unique identifier of the ZPA tenant.",
           "required" : true,
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         } ],
         "responses" : {
           "200" : {
@@ -501,8 +486,7 @@
           "in" : "path",
           "description" : "The unique identifier of the ZPA tenant.",
           "required" : true,
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         } ],
         "responses" : {
           "200" : {
@@ -544,15 +528,13 @@
           "in" : "path",
           "description" : "The unique identifier of the ZPA tenant.",
           "required" : true,
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         }, {
           "name" : "idpId",
           "in" : "path",
           "description" : "The unique identifier of the IdP.",
           "required" : true,
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         } ],
         "responses" : {
           "200" : {
@@ -588,22 +570,19 @@
           "in" : "path",
           "description" : "The unique identifier of the ZPA tenant.",
           "required" : true,
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         }, {
           "name" : "policySetId",
           "in" : "path",
           "description" : "The unique identifier of the policy.",
           "required" : true,
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         }, {
           "name" : "ruleId",
           "in" : "path",
           "description" : "The unique identifier of a rule in a policy.",
           "required" : true,
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         } ],
         "responses" : {
           "200" : {
@@ -638,15 +617,13 @@
           "in" : "path",
           "description" : "The unique identifier of the ZPA tenant.",
           "required" : true,
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         }, {
           "name" : "policySetId",
           "in" : "path",
           "description" : "The unique identifier of the policy.",
           "required" : true,
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         }, {
           "in" : "body",
           "name" : "rule",
@@ -660,8 +637,7 @@
           "in" : "path",
           "description" : "The unique identifier of a rule in a policy.",
           "required" : true,
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         } ],
         "responses" : {
           "201" : {
@@ -692,22 +668,19 @@
           "in" : "path",
           "description" : "The unique identifier of the ZPA tenant.",
           "required" : true,
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         }, {
           "name" : "policySetId",
           "in" : "path",
           "description" : "The unique identifier of the policy.",
           "required" : true,
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         }, {
           "name" : "ruleId",
           "in" : "path",
           "description" : "The unique identifier of a rule in a policy.",
           "required" : true,
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         } ],
         "responses" : {
           "204" : {
@@ -734,8 +707,7 @@
           "in" : "path",
           "description" : "The unique identifier of the ZPA tenant.",
           "required" : true,
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         }, {
           "name" : "page",
           "in" : "query",
@@ -795,8 +767,7 @@
           "in" : "path",
           "description" : "The unique identifier of the ZPA tenant.",
           "required" : true,
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         }, {
           "in" : "body",
           "name" : "server",
@@ -840,8 +811,7 @@
           "in" : "path",
           "description" : "The unique identifier of the ZPA tenant.",
           "required" : true,
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         }, {
           "name" : "page",
           "in" : "query",
@@ -909,8 +879,7 @@
           "in" : "path",
           "description" : "The unique identifier of the ZPA tenant.",
           "required" : true,
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         } ],
         "responses" : {
           "201" : {
@@ -949,15 +918,13 @@
           "in" : "path",
           "description" : "The unique identifier of the ZPA tenant.",
           "required" : true,
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         }, {
           "name" : "idpId",
           "in" : "path",
           "description" : "The unique identifier of the IdP.",
           "required" : true,
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         }, {
           "name" : "page",
           "in" : "query",
@@ -1018,8 +985,7 @@
           "in" : "path",
           "description" : "The unique identifier of the ZPA tenant.",
           "required" : true,
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         }, {
           "name" : "page",
           "in" : "query",
@@ -1079,8 +1045,7 @@
           "in" : "path",
           "description" : "The unique identifier of the ZPA tenant.",
           "required" : true,
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         }, {
           "in" : "body",
           "name" : "group",
@@ -1124,15 +1089,13 @@
           "in" : "path",
           "description" : "The unique identifier of the App Connector Group.",
           "required" : true,
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         }, {
           "name" : "customerId",
           "in" : "path",
           "description" : "The unique identifier of the ZPA tenant.",
           "required" : true,
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         } ],
         "responses" : {
           "200" : {
@@ -1169,15 +1132,13 @@
           "in" : "path",
           "description" : "The unique identifier of the ZPA tenant.",
           "required" : true,
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         }, {
           "name" : "policySetId",
           "in" : "path",
           "description" : "The unique identifier of the policy.",
           "required" : true,
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         }, {
           "in" : "body",
           "name" : "rule",
@@ -1221,22 +1182,19 @@
           "in" : "path",
           "description" : "The unique identifier of the ZPA tenant.",
           "required" : true,
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         }, {
           "name" : "idpId",
           "in" : "path",
           "description" : "The unique identifier of the IdP.",
           "required" : true,
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         }, {
           "name" : "scimAttributeId",
           "in" : "path",
           "description" : "The unique identifier of the SCIM attribute.",
           "required" : true,
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         } ],
         "responses" : {
           "200" : {
@@ -1272,8 +1230,7 @@
           "in" : "path",
           "description" : "The unique identifier of the ZPA tenant.",
           "required" : true,
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         } ],
         "responses" : {
           "200" : {
@@ -1315,15 +1272,13 @@
           "in" : "path",
           "description" : "The unique identifier of the ZPA tenant.",
           "required" : true,
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         }, {
           "name" : "id",
           "in" : "path",
           "description" : "The unique identifier of the Trusted Network.",
           "required" : true,
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         } ],
         "responses" : {
           "200" : {
@@ -1359,15 +1314,13 @@
           "in" : "path",
           "description" : "The unique identifier of the Browser Access certificate.",
           "required" : true,
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         }, {
           "name" : "customerId",
           "in" : "path",
           "description" : "The unique identifier of the ZPA tenant.",
           "required" : true,
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         } ],
         "responses" : {
           "200" : {
@@ -1403,8 +1356,7 @@
           "in" : "path",
           "description" : "The unique identifier of the ZPA tenant.",
           "required" : true,
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         }, {
           "name" : "page",
           "in" : "query",
@@ -1465,15 +1417,13 @@
           "in" : "path",
           "description" : "The unique identifier of the Machine Group.",
           "required" : true,
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         }, {
           "name" : "customerId",
           "in" : "path",
           "description" : "The unique identifier of the ZPA tenant.",
           "required" : true,
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         } ],
         "responses" : {
           "200" : {
@@ -1509,15 +1459,13 @@
           "in" : "path",
           "description" : "The unique identifier of the ZPA tenant.",
           "required" : true,
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         }, {
           "name" : "groupId",
           "in" : "path",
           "description" : "The unique identifier of the Segment Group.",
           "required" : true,
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         } ],
         "responses" : {
           "200" : {
@@ -1552,8 +1500,7 @@
           "in" : "path",
           "description" : "The unique identifier of the ZPA tenant.",
           "required" : true,
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         }, {
           "in" : "body",
           "name" : "group",
@@ -1567,8 +1514,7 @@
           "in" : "path",
           "description" : "The unique identifier of the Server Group.",
           "required" : true,
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         } ],
         "responses" : {
           "201" : {
@@ -1599,15 +1545,13 @@
           "in" : "path",
           "description" : "The unique identifier of the ZPA tenant.",
           "required" : true,
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         }, {
           "name" : "groupId",
           "in" : "path",
           "description" : "The unique identifier of the Server Group.",
           "required" : true,
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         } ],
         "responses" : {
           "204" : {
@@ -1634,8 +1578,7 @@
           "in" : "path",
           "description" : "The unique identifier of the ZPA tenant.",
           "required" : true,
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         } ],
         "responses" : {
           "200" : {
@@ -1677,8 +1620,7 @@
           "in" : "path",
           "description" : "The unique identifier of the ZPA tenant.",
           "required" : true,
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         }, {
           "name" : "scimEnabled",
           "in" : "query",
@@ -1727,8 +1669,7 @@
           "in" : "path",
           "description" : "The unique identifier of the ZPA tenant.",
           "required" : true,
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         }, {
           "name" : "serverId",
           "in" : "path",
@@ -1769,8 +1710,7 @@
           "in" : "path",
           "description" : "The unique identifier of the ZPA tenant.",
           "required" : true,
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         }, {
           "in" : "body",
           "name" : "server",
@@ -1818,8 +1758,7 @@
           "in" : "path",
           "description" : "The unique identifier of the ZPA tenant.",
           "required" : true,
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         }, {
           "name" : "serverId",
           "in" : "path",
@@ -1852,8 +1791,7 @@
           "in" : "path",
           "description" : "The unique identifier of the ZPA tenant.",
           "required" : true,
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         }, {
           "name" : "page",
           "in" : "query",
@@ -1914,15 +1852,13 @@
           "in" : "path",
           "description" : "The unique identifier of the ZPA tenant.",
           "required" : true,
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         }, {
           "name" : "id",
           "in" : "path",
           "description" : "The unique identifier of the Cloud Connector Group.",
           "required" : true,
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         } ],
         "responses" : {
           "200" : {
@@ -1958,8 +1894,7 @@
           "in" : "path",
           "description" : "The unique identifier of the ZPA tenant.",
           "required" : true,
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         }, {
           "name" : "page",
           "in" : "query",
@@ -2026,8 +1961,7 @@
           "in" : "path",
           "description" : "The unique identifier of the ZPA tenant.",
           "required" : true,
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         }, {
           "name" : "page",
           "in" : "query",
@@ -2088,15 +2022,13 @@
           "in" : "path",
           "description" : "The unique identifier of the Application Segment.",
           "required" : true,
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         }, {
           "name" : "customerId",
           "in" : "path",
           "description" : "The unique identifier of the ZPA tenant.",
           "required" : true,
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         } ],
         "responses" : {
           "200" : {
@@ -2142,15 +2074,13 @@
           "in" : "path",
           "description" : "The unique identifier of the Application Segment.",
           "required" : true,
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         }, {
           "name" : "customerId",
           "in" : "path",
           "description" : "The unique identifier of the ZPA tenant.",
           "required" : true,
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         } ],
         "responses" : {
           "201" : {
@@ -2181,15 +2111,13 @@
           "in" : "path",
           "description" : "The unique identifier of the Application Segment.",
           "required" : true,
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         }, {
           "name" : "customerId",
           "in" : "path",
           "description" : "The unique identifier of the ZPA tenant.",
           "required" : true,
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         }, {
           "name" : "forceDelete",
           "in" : "query",
@@ -2224,8 +2152,7 @@
           "in" : "path",
           "description" : "The unique identifier of the ZPA tenant.",
           "required" : true,
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         } ],
         "responses" : {
           "200" : {
@@ -2281,12 +2208,10 @@
           "type" : "boolean"
         },
         "geoLocationId" : {
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         },
         "id" : {
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         },
         "latitude" : {
           "type" : "string"
@@ -2298,8 +2223,7 @@
           "type" : "string"
         },
         "modifiedBy" : {
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         },
         "modifiedTime" : {
           "type" : "string"
@@ -2326,8 +2250,7 @@
           "type" : "string"
         },
         "versionProfileId" : {
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         },
         "versionProfileName" : {
           "type" : "string",
@@ -2363,8 +2286,7 @@
           "type" : "boolean"
         },
         "modifiedBy" : {
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         },
         "modifiedTime" : {
           "type" : "string"
@@ -2421,8 +2343,7 @@
           "enum" : [ "PING_TRACEROUTING", "PING", "NONE" ]
         },
         "id" : {
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         },
         "ipAnchored" : {
           "type" : "boolean"
@@ -2435,8 +2356,7 @@
           }
         },
         "modifiedBy" : {
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         },
         "modifiedTime" : {
           "type" : "string"
@@ -2620,8 +2540,7 @@
           "type" : "string"
         },
         "modifiedBy" : {
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         },
         "modifiedTime" : {
           "type" : "string"
@@ -2637,8 +2556,7 @@
           "type" : "boolean"
         },
         "appId" : {
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         },
         "applicationPort" : {
           "type" : "string"
@@ -2648,8 +2566,7 @@
           "enum" : [ "HTTP", "HTTPS", "FTP", "RDP" ]
         },
         "certificateId" : {
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         },
         "certificateName" : {
           "type" : "string"
@@ -2670,8 +2587,7 @@
           "type" : "boolean"
         },
         "id" : {
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         },
         "localDomain" : {
           "type" : "string"
@@ -2710,8 +2626,7 @@
           "type" : "string"
         },
         "id" : {
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         },
         "issuedBy" : {
           "type" : "string"
@@ -2720,8 +2635,7 @@
           "type" : "string"
         },
         "modifiedBy" : {
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         },
         "modifiedTime" : {
           "type" : "string"
@@ -2745,12 +2659,10 @@
           "type" : "string"
         },
         "validFromInEpochSec" : {
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         },
         "validToInEpochSec" : {
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         }
       }
     },
@@ -2773,8 +2685,7 @@
           "type" : "boolean"
         },
         "geoLocationId" : {
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         },
         "id" : {
           "type" : "string",
@@ -2795,8 +2706,7 @@
           "type" : "string"
         },
         "ziaOrgId" : {
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         }
       }
     },
@@ -2806,8 +2716,7 @@
           "type" : "boolean"
         },
         "appId" : {
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         },
         "appTypes" : {
           "type" : "array",
@@ -2825,12 +2734,10 @@
           "enum" : [ "HTTP", "HTTPS", "FTP", "RDP" ]
         },
         "baAppId" : {
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         },
         "certificateId" : {
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         },
         "certificateName" : {
           "type" : "string"
@@ -2851,8 +2758,7 @@
           "type" : "boolean"
         },
         "inspectAppId" : {
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         },
         "localDomain" : {
           "type" : "string"
@@ -2899,16 +2805,13 @@
           "type" : "string"
         },
         "id" : {
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         },
         "modifiedBy" : {
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         },
         "modifiedTime" : {
-          "type" : "integer",
-          "format" : "int32"
+          "type" : "string"
         },
         "negated" : {
           "type" : "boolean"
@@ -2929,8 +2832,7 @@
       "required" : [ "name" ],
       "properties" : {
         "applicationStartTime" : {
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         },
         "appConnectorGroupId" : {
           "type" : "string"
@@ -2961,8 +2863,7 @@
           "type" : "boolean"
         },
         "expectedUpgradeTime" : {
-          "type" : "integer",
-          "format" : "int64",
+          "type" : "string",
           "description" : "Read only. Ignored in PUT/POST calls."
         },
         "expectedVersion" : {
@@ -2973,8 +2874,7 @@
           "type" : "string"
         },
         "id" : {
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         },
         "ipAcl" : {
           "type" : "array",
@@ -2983,22 +2883,18 @@
           }
         },
         "issuedCertId" : {
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         },
         "lastBrokerConnectTime" : {
-          "type" : "integer",
-          "format" : "int64",
+          "type" : "string",
           "description" : "Read only. Ignored in PUT/POST calls."
         },
         "lastBrokerDisconnectTime" : {
-          "type" : "integer",
-          "format" : "int64",
+          "type" : "string",
           "description" : "Read only. Ignored in PUT/POST calls."
         },
         "lastUpgradeTime" : {
-          "type" : "integer",
-          "format" : "int64",
+          "type" : "string",
           "description" : "Read only. Ignored in PUT/POST calls."
         },
         "latitude" : {
@@ -3013,12 +2909,10 @@
           "format" : "double"
         },
         "modifiedBy" : {
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         },
         "modifiedTime" : {
-          "type" : "integer",
-          "format" : "int32"
+          "type" : "string"
         },
         "name" : {
           "type" : "string"
@@ -3063,8 +2957,7 @@
           "$ref" : "#/definitions/ServiceProvider"
         },
         "adminSpSigningCertId" : {
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         },
         "autoProvision" : {
           "type" : "string",
@@ -3099,8 +2992,7 @@
           "description" : "Default value if null is True."
         },
         "id" : {
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         },
         "idpEntityId" : {
           "type" : "string"
@@ -3112,12 +3004,10 @@
           "type" : "string"
         },
         "modifiedBy" : {
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         },
         "modifiedTime" : {
-          "type" : "integer",
-          "format" : "int32"
+          "type" : "string"
         },
         "name" : {
           "type" : "string"
@@ -3157,8 +3047,7 @@
           "$ref" : "#/definitions/ServiceProvider"
         },
         "userSpSigningCertId" : {
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         }
       }
     },
@@ -3174,20 +3063,17 @@
           "type" : "string"
         },
         "validFromInSec" : {
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         },
         "validToInSec" : {
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         }
       }
     },
     "InspectAppDto" : {
       "properties" : {
         "appId" : {
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         },
         "applicationPort" : {
           "type" : "integer",
@@ -3198,8 +3084,7 @@
           "enum" : [ "HTTP", "HTTPS", "FTP", "RDP" ]
         },
         "certificateId" : {
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         },
         "certificateName" : {
           "type" : "string"
@@ -3214,8 +3099,7 @@
           "type" : "boolean"
         },
         "id" : {
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         },
         "name" : {
           "type" : "string"
@@ -3235,12 +3119,10 @@
           "type" : "string"
         },
         "id" : {
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         },
         "issuedCertId" : {
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         },
         "machineGroupId" : {
           "type" : "string"
@@ -3249,16 +3131,13 @@
           "type" : "string"
         },
         "machineTokenId" : {
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         },
         "modifiedBy" : {
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         },
         "modifiedTime" : {
-          "type" : "integer",
-          "format" : "int32"
+          "type" : "string"
         },
         "name" : {
           "type" : "string"
@@ -3284,8 +3163,7 @@
           "type" : "boolean"
         },
         "id" : {
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         },
         "machines" : {
           "type" : "array",
@@ -3294,12 +3172,10 @@
           }
         },
         "modifiedBy" : {
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         },
         "modifiedTime" : {
-          "type" : "integer",
-          "format" : "int32"
+          "type" : "string"
         },
         "name" : {
           "type" : "string"
@@ -3309,8 +3185,7 @@
     "NameIdDto" : {
       "properties" : {
         "id" : {
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         },
         "name" : {
           "type" : "string"
@@ -3323,23 +3198,19 @@
           "type" : "string"
         },
         "id" : {
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         },
         "idpId" : {
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         },
         "lhs" : {
           "type" : "string"
         },
         "modifiedBy" : {
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         },
         "modifiedTime" : {
-          "type" : "integer",
-          "format" : "int32"
+          "type" : "string"
         },
         "name" : {
           "type" : "string"
@@ -3487,8 +3358,7 @@
           "enum" : [ "ALLOW", "DENY", "LOG", "RE_AUTH", "NEVER", "BYPASS", "INTERCEPT", "NO_DOWNLOAD", "BYPASS_RE_AUTH", "INTERCEPT_ACCESSIBLE", "ISOLATE", "BYPASS_ISOLATE", "INSPECT", "BYPASS_INSPECT" ]
         },
         "actionId" : {
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         },
         "appServerGroups" : {
           "type" : "array",
@@ -3524,19 +3394,16 @@
           "type" : "string"
         },
         "id" : {
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         },
         "isolationDefaultRule" : {
           "type" : "boolean"
         },
         "modifiedBy" : {
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         },
         "modifiedTime" : {
-          "type" : "integer",
-          "format" : "int32"
+          "type" : "string"
         },
         "name" : {
           "type" : "string"
@@ -3546,8 +3413,7 @@
           "enum" : [ "AND", "OR" ]
         },
         "policySetId" : {
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         },
         "policyType" : {
           "type" : "integer",
@@ -3576,12 +3442,10 @@
           "type" : "boolean"
         },
         "zpnCbiProfileId" : {
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         },
         "zpnInspectionProfileId" : {
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         },
         "zpnInspectionProfileName" : {
           "type" : "string"
@@ -3601,16 +3465,13 @@
           "type" : "boolean"
         },
         "id" : {
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         },
         "modifiedBy" : {
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         },
         "modifiedTime" : {
-          "type" : "integer",
-          "format" : "int32"
+          "type" : "string"
         },
         "name" : {
           "type" : "string"
@@ -3637,19 +3498,16 @@
           "type" : "string"
         },
         "id" : {
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         },
         "masterCustomerId" : {
           "type" : "string"
         },
         "modifiedBy" : {
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         },
         "modifiedTime" : {
-          "type" : "integer",
-          "format" : "int32"
+          "type" : "string"
         },
         "name" : {
           "type" : "string"
@@ -3661,8 +3519,7 @@
           "type" : "string"
         },
         "zscalerCustomerId" : {
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         }
       }
     },
@@ -3688,20 +3545,16 @@
           "type" : "string"
         },
         "id" : {
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         },
         "idpId" : {
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         },
         "modifiedBy" : {
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         },
         "modifiedTime" : {
-          "type" : "integer",
-          "format" : "int32"
+          "type" : "string"
         },
         "multivalued" : {
           "type" : "boolean"
@@ -3733,23 +3586,19 @@
           "type" : "string"
         },
         "id" : {
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         },
         "idpId" : {
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         },
         "idpName" : {
           "type" : "string"
         },
         "modifiedBy" : {
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         },
         "modifiedTime" : {
-          "type" : "integer",
-          "format" : "int32"
+          "type" : "string"
         },
         "name" : {
           "type" : "string"
@@ -3891,19 +3740,16 @@
           "type" : "string"
         },
         "id" : {
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         },
         "masterCustomerId" : {
           "type" : "string"
         },
         "modifiedBy" : {
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         },
         "modifiedTime" : {
-          "type" : "integer",
-          "format" : "int32"
+          "type" : "string"
         },
         "name" : {
           "type" : "string"
@@ -3932,8 +3778,7 @@
           "type" : "string"
         },
         "id" : {
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         },
         "ipAcl" : {
           "type" : "array",
@@ -3942,16 +3787,13 @@
           }
         },
         "issuedCertId" : {
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         },
         "modifiedBy" : {
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
         },
         "modifiedTime" : {
-          "type" : "integer",
-          "format" : "int32"
+          "type" : "string"
         },
         "name" : {
           "type" : "string"

@@ -14,7 +14,6 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
-	"github.com/go-openapi/swag"
 )
 
 // NewDeleteRuleInPolicySetUsingDELETE1Params creates a new DeleteRuleInPolicySetUsingDELETE1Params object,
@@ -63,26 +62,20 @@ type DeleteRuleInPolicySetUsingDELETE1Params struct {
 	/* CustomerID.
 
 	   The unique identifier of the ZPA tenant.
-
-	   Format: int64
 	*/
-	CustomerID int64
+	CustomerID string
 
 	/* PolicySetID.
 
 	   The unique identifier of the policy.
-
-	   Format: int64
 	*/
-	PolicySetID int64
+	PolicySetID string
 
 	/* RuleID.
 
 	   The unique identifier of a rule in a policy.
-
-	   Format: int64
 	*/
-	RuleID int64
+	RuleID string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -138,35 +131,35 @@ func (o *DeleteRuleInPolicySetUsingDELETE1Params) SetHTTPClient(client *http.Cli
 }
 
 // WithCustomerID adds the customerID to the delete rule in policy set using d e l e t e 1 params
-func (o *DeleteRuleInPolicySetUsingDELETE1Params) WithCustomerID(customerID int64) *DeleteRuleInPolicySetUsingDELETE1Params {
+func (o *DeleteRuleInPolicySetUsingDELETE1Params) WithCustomerID(customerID string) *DeleteRuleInPolicySetUsingDELETE1Params {
 	o.SetCustomerID(customerID)
 	return o
 }
 
 // SetCustomerID adds the customerId to the delete rule in policy set using d e l e t e 1 params
-func (o *DeleteRuleInPolicySetUsingDELETE1Params) SetCustomerID(customerID int64) {
+func (o *DeleteRuleInPolicySetUsingDELETE1Params) SetCustomerID(customerID string) {
 	o.CustomerID = customerID
 }
 
 // WithPolicySetID adds the policySetID to the delete rule in policy set using d e l e t e 1 params
-func (o *DeleteRuleInPolicySetUsingDELETE1Params) WithPolicySetID(policySetID int64) *DeleteRuleInPolicySetUsingDELETE1Params {
+func (o *DeleteRuleInPolicySetUsingDELETE1Params) WithPolicySetID(policySetID string) *DeleteRuleInPolicySetUsingDELETE1Params {
 	o.SetPolicySetID(policySetID)
 	return o
 }
 
 // SetPolicySetID adds the policySetId to the delete rule in policy set using d e l e t e 1 params
-func (o *DeleteRuleInPolicySetUsingDELETE1Params) SetPolicySetID(policySetID int64) {
+func (o *DeleteRuleInPolicySetUsingDELETE1Params) SetPolicySetID(policySetID string) {
 	o.PolicySetID = policySetID
 }
 
 // WithRuleID adds the ruleID to the delete rule in policy set using d e l e t e 1 params
-func (o *DeleteRuleInPolicySetUsingDELETE1Params) WithRuleID(ruleID int64) *DeleteRuleInPolicySetUsingDELETE1Params {
+func (o *DeleteRuleInPolicySetUsingDELETE1Params) WithRuleID(ruleID string) *DeleteRuleInPolicySetUsingDELETE1Params {
 	o.SetRuleID(ruleID)
 	return o
 }
 
 // SetRuleID adds the ruleId to the delete rule in policy set using d e l e t e 1 params
-func (o *DeleteRuleInPolicySetUsingDELETE1Params) SetRuleID(ruleID int64) {
+func (o *DeleteRuleInPolicySetUsingDELETE1Params) SetRuleID(ruleID string) {
 	o.RuleID = ruleID
 }
 
@@ -179,17 +172,17 @@ func (o *DeleteRuleInPolicySetUsingDELETE1Params) WriteToRequest(r runtime.Clien
 	var res []error
 
 	// path param customerId
-	if err := r.SetPathParam("customerId", swag.FormatInt64(o.CustomerID)); err != nil {
+	if err := r.SetPathParam("customerId", o.CustomerID); err != nil {
 		return err
 	}
 
 	// path param policySetId
-	if err := r.SetPathParam("policySetId", swag.FormatInt64(o.PolicySetID)); err != nil {
+	if err := r.SetPathParam("policySetId", o.PolicySetID); err != nil {
 		return err
 	}
 
 	// path param ruleId
-	if err := r.SetPathParam("ruleId", swag.FormatInt64(o.RuleID)); err != nil {
+	if err := r.SetPathParam("ruleId", o.RuleID); err != nil {
 		return err
 	}
 

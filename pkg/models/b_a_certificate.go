@@ -36,7 +36,7 @@ type BACertificate struct {
 	Description string `json:"description,omitempty"`
 
 	// id
-	ID int64 `json:"id,omitempty"`
+	ID string `json:"id,omitempty"`
 
 	// issued by
 	IssuedBy string `json:"issuedBy,omitempty"`
@@ -45,7 +45,7 @@ type BACertificate struct {
 	IssuedTo string `json:"issuedTo,omitempty"`
 
 	// modified by
-	ModifiedBy int64 `json:"modifiedBy,omitempty"`
+	ModifiedBy string `json:"modifiedBy,omitempty"`
 
 	// modified time
 	ModifiedTime string `json:"modifiedTime,omitempty"`
@@ -67,10 +67,10 @@ type BACertificate struct {
 	Status string `json:"status,omitempty"`
 
 	// valid from in epoch sec
-	ValidFromInEpochSec int64 `json:"validFromInEpochSec,omitempty"`
+	ValidFromInEpochSec string `json:"validFromInEpochSec,omitempty"`
 
 	// valid to in epoch sec
-	ValidToInEpochSec int64 `json:"validToInEpochSec,omitempty"`
+	ValidToInEpochSec string `json:"validToInEpochSec,omitempty"`
 }
 
 // Validate validates this b a certificate

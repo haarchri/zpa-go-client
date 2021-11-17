@@ -14,7 +14,6 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
-	"github.com/go-openapi/swag"
 )
 
 // NewGetSamlAttributeUsingGET1Params creates a new GetSamlAttributeUsingGET1Params object,
@@ -63,18 +62,14 @@ type GetSamlAttributeUsingGET1Params struct {
 	/* AttrID.
 
 	   The unique identifier of the SAML attribute.
-
-	   Format: int64
 	*/
-	AttrID int64
+	AttrID string
 
 	/* CustomerID.
 
 	   The unique identifier of the ZPA tenant.
-
-	   Format: int64
 	*/
-	CustomerID int64
+	CustomerID string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -130,24 +125,24 @@ func (o *GetSamlAttributeUsingGET1Params) SetHTTPClient(client *http.Client) {
 }
 
 // WithAttrID adds the attrID to the get saml attribute using g e t 1 params
-func (o *GetSamlAttributeUsingGET1Params) WithAttrID(attrID int64) *GetSamlAttributeUsingGET1Params {
+func (o *GetSamlAttributeUsingGET1Params) WithAttrID(attrID string) *GetSamlAttributeUsingGET1Params {
 	o.SetAttrID(attrID)
 	return o
 }
 
 // SetAttrID adds the attrId to the get saml attribute using g e t 1 params
-func (o *GetSamlAttributeUsingGET1Params) SetAttrID(attrID int64) {
+func (o *GetSamlAttributeUsingGET1Params) SetAttrID(attrID string) {
 	o.AttrID = attrID
 }
 
 // WithCustomerID adds the customerID to the get saml attribute using g e t 1 params
-func (o *GetSamlAttributeUsingGET1Params) WithCustomerID(customerID int64) *GetSamlAttributeUsingGET1Params {
+func (o *GetSamlAttributeUsingGET1Params) WithCustomerID(customerID string) *GetSamlAttributeUsingGET1Params {
 	o.SetCustomerID(customerID)
 	return o
 }
 
 // SetCustomerID adds the customerId to the get saml attribute using g e t 1 params
-func (o *GetSamlAttributeUsingGET1Params) SetCustomerID(customerID int64) {
+func (o *GetSamlAttributeUsingGET1Params) SetCustomerID(customerID string) {
 	o.CustomerID = customerID
 }
 
@@ -160,12 +155,12 @@ func (o *GetSamlAttributeUsingGET1Params) WriteToRequest(r runtime.ClientRequest
 	var res []error
 
 	// path param attrId
-	if err := r.SetPathParam("attrId", swag.FormatInt64(o.AttrID)); err != nil {
+	if err := r.SetPathParam("attrId", o.AttrID); err != nil {
 		return err
 	}
 
 	// path param customerId
-	if err := r.SetPathParam("customerId", swag.FormatInt64(o.CustomerID)); err != nil {
+	if err := r.SetPathParam("customerId", o.CustomerID); err != nil {
 		return err
 	}
 

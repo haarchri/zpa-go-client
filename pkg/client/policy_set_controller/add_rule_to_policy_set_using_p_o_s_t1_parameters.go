@@ -14,7 +14,6 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
-	"github.com/go-openapi/swag"
 
 	"github.com/haarchri/zpa-go-client/pkg/models"
 )
@@ -65,18 +64,14 @@ type AddRuleToPolicySetUsingPOST1Params struct {
 	/* CustomerID.
 
 	   The unique identifier of the ZPA tenant.
-
-	   Format: int64
 	*/
-	CustomerID int64
+	CustomerID string
 
 	/* PolicySetID.
 
 	   The unique identifier of the policy.
-
-	   Format: int64
 	*/
-	PolicySetID int64
+	PolicySetID string
 
 	/* Rule.
 
@@ -138,24 +133,24 @@ func (o *AddRuleToPolicySetUsingPOST1Params) SetHTTPClient(client *http.Client) 
 }
 
 // WithCustomerID adds the customerID to the add rule to policy set using p o s t 1 params
-func (o *AddRuleToPolicySetUsingPOST1Params) WithCustomerID(customerID int64) *AddRuleToPolicySetUsingPOST1Params {
+func (o *AddRuleToPolicySetUsingPOST1Params) WithCustomerID(customerID string) *AddRuleToPolicySetUsingPOST1Params {
 	o.SetCustomerID(customerID)
 	return o
 }
 
 // SetCustomerID adds the customerId to the add rule to policy set using p o s t 1 params
-func (o *AddRuleToPolicySetUsingPOST1Params) SetCustomerID(customerID int64) {
+func (o *AddRuleToPolicySetUsingPOST1Params) SetCustomerID(customerID string) {
 	o.CustomerID = customerID
 }
 
 // WithPolicySetID adds the policySetID to the add rule to policy set using p o s t 1 params
-func (o *AddRuleToPolicySetUsingPOST1Params) WithPolicySetID(policySetID int64) *AddRuleToPolicySetUsingPOST1Params {
+func (o *AddRuleToPolicySetUsingPOST1Params) WithPolicySetID(policySetID string) *AddRuleToPolicySetUsingPOST1Params {
 	o.SetPolicySetID(policySetID)
 	return o
 }
 
 // SetPolicySetID adds the policySetId to the add rule to policy set using p o s t 1 params
-func (o *AddRuleToPolicySetUsingPOST1Params) SetPolicySetID(policySetID int64) {
+func (o *AddRuleToPolicySetUsingPOST1Params) SetPolicySetID(policySetID string) {
 	o.PolicySetID = policySetID
 }
 
@@ -179,12 +174,12 @@ func (o *AddRuleToPolicySetUsingPOST1Params) WriteToRequest(r runtime.ClientRequ
 	var res []error
 
 	// path param customerId
-	if err := r.SetPathParam("customerId", swag.FormatInt64(o.CustomerID)); err != nil {
+	if err := r.SetPathParam("customerId", o.CustomerID); err != nil {
 		return err
 	}
 
 	// path param policySetId
-	if err := r.SetPathParam("policySetId", swag.FormatInt64(o.PolicySetID)); err != nil {
+	if err := r.SetPathParam("policySetId", o.PolicySetID); err != nil {
 		return err
 	}
 	if o.Rule != nil {

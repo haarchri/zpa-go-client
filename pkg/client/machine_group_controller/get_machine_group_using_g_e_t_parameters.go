@@ -14,7 +14,6 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
-	"github.com/go-openapi/swag"
 )
 
 // NewGetMachineGroupUsingGETParams creates a new GetMachineGroupUsingGETParams object,
@@ -63,18 +62,14 @@ type GetMachineGroupUsingGETParams struct {
 	/* ID.
 
 	   The unique identifier of the Machine Group.
-
-	   Format: int64
 	*/
-	ID int64
+	ID string
 
 	/* CustomerID.
 
 	   The unique identifier of the ZPA tenant.
-
-	   Format: int64
 	*/
-	CustomerID int64
+	CustomerID string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -130,24 +125,24 @@ func (o *GetMachineGroupUsingGETParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithID adds the id to the get machine group using g e t params
-func (o *GetMachineGroupUsingGETParams) WithID(id int64) *GetMachineGroupUsingGETParams {
+func (o *GetMachineGroupUsingGETParams) WithID(id string) *GetMachineGroupUsingGETParams {
 	o.SetID(id)
 	return o
 }
 
 // SetID adds the id to the get machine group using g e t params
-func (o *GetMachineGroupUsingGETParams) SetID(id int64) {
+func (o *GetMachineGroupUsingGETParams) SetID(id string) {
 	o.ID = id
 }
 
 // WithCustomerID adds the customerID to the get machine group using g e t params
-func (o *GetMachineGroupUsingGETParams) WithCustomerID(customerID int64) *GetMachineGroupUsingGETParams {
+func (o *GetMachineGroupUsingGETParams) WithCustomerID(customerID string) *GetMachineGroupUsingGETParams {
 	o.SetCustomerID(customerID)
 	return o
 }
 
 // SetCustomerID adds the customerId to the get machine group using g e t params
-func (o *GetMachineGroupUsingGETParams) SetCustomerID(customerID int64) {
+func (o *GetMachineGroupUsingGETParams) SetCustomerID(customerID string) {
 	o.CustomerID = customerID
 }
 
@@ -160,12 +155,12 @@ func (o *GetMachineGroupUsingGETParams) WriteToRequest(r runtime.ClientRequest, 
 	var res []error
 
 	// path param Id
-	if err := r.SetPathParam("Id", swag.FormatInt64(o.ID)); err != nil {
+	if err := r.SetPathParam("Id", o.ID); err != nil {
 		return err
 	}
 
 	// path param customerId
-	if err := r.SetPathParam("customerId", swag.FormatInt64(o.CustomerID)); err != nil {
+	if err := r.SetPathParam("customerId", o.CustomerID); err != nil {
 		return err
 	}
 

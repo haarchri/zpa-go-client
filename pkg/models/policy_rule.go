@@ -26,7 +26,7 @@ type PolicyRule struct {
 	Action string `json:"action,omitempty"`
 
 	// action Id
-	ActionID int64 `json:"actionId,omitempty"`
+	ActionID string `json:"actionId,omitempty"`
 
 	// app connector groups
 	AppConnectorGroups []*AppConnectorGroup `json:"appConnectorGroups"`
@@ -53,16 +53,16 @@ type PolicyRule struct {
 	Description string `json:"description,omitempty"`
 
 	// id
-	ID int64 `json:"id,omitempty"`
+	ID string `json:"id,omitempty"`
 
 	// isolation default rule
 	IsolationDefaultRule bool `json:"isolationDefaultRule,omitempty"`
 
 	// modified by
-	ModifiedBy int64 `json:"modifiedBy,omitempty"`
+	ModifiedBy string `json:"modifiedBy,omitempty"`
 
 	// modified time
-	ModifiedTime int32 `json:"modifiedTime,omitempty"`
+	ModifiedTime string `json:"modifiedTime,omitempty"`
 
 	// name
 	// Required: true
@@ -73,7 +73,7 @@ type PolicyRule struct {
 	Operator string `json:"operator,omitempty"`
 
 	// policy set Id
-	PolicySetID int64 `json:"policySetId,omitempty"`
+	PolicySetID string `json:"policySetId,omitempty"`
 
 	// policy type
 	PolicyType int32 `json:"policyType,omitempty"`
@@ -97,10 +97,10 @@ type PolicyRule struct {
 	SiemDefaultRule bool `json:"siemDefaultRule,omitempty"`
 
 	// zpn cbi profile Id
-	ZpnCbiProfileID int64 `json:"zpnCbiProfileId,omitempty"`
+	ZpnCbiProfileID string `json:"zpnCbiProfileId,omitempty"`
 
 	// zpn inspection profile Id
-	ZpnInspectionProfileID int64 `json:"zpnInspectionProfileId,omitempty"`
+	ZpnInspectionProfileID string `json:"zpnInspectionProfileId,omitempty"`
 
 	// zpn inspection profile name
 	ZpnInspectionProfileName string `json:"zpnInspectionProfileName,omitempty"`

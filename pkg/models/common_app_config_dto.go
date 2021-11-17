@@ -25,7 +25,7 @@ type CommonAppConfigDto struct {
 	AllowOptions bool `json:"allowOptions,omitempty"`
 
 	// app Id
-	AppID int64 `json:"appId,omitempty"`
+	AppID string `json:"appId,omitempty"`
 
 	// app types
 	AppTypes []string `json:"appTypes"`
@@ -38,10 +38,10 @@ type CommonAppConfigDto struct {
 	ApplicationProtocol string `json:"applicationProtocol,omitempty"`
 
 	// ba app Id
-	BaAppID int64 `json:"baAppId,omitempty"`
+	BaAppID string `json:"baAppId,omitempty"`
 
 	// certificate Id
-	CertificateID int64 `json:"certificateId,omitempty"`
+	CertificateID string `json:"certificateId,omitempty"`
 
 	// certificate name
 	CertificateName string `json:"certificateName,omitempty"`
@@ -62,7 +62,7 @@ type CommonAppConfigDto struct {
 	Hidden bool `json:"hidden,omitempty"`
 
 	// inspect app Id
-	InspectAppID int64 `json:"inspectAppId,omitempty"`
+	InspectAppID string `json:"inspectAppId,omitempty"`
 
 	// local domain
 	LocalDomain string `json:"localDomain,omitempty"`

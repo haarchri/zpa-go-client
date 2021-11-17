@@ -27,10 +27,10 @@ type IdpCertDto struct {
 	SerialNo string `json:"serialNo,omitempty"`
 
 	// valid from in sec
-	ValidFromInSec int64 `json:"validFromInSec,omitempty"`
+	ValidFromInSec string `json:"validFromInSec,omitempty"`
 
 	// valid to in sec
-	ValidToInSec int64 `json:"validToInSec,omitempty"`
+	ValidToInSec string `json:"validToInSec,omitempty"`
 }
 
 // Validate validates this idp cert dto

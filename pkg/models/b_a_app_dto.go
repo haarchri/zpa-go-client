@@ -24,7 +24,7 @@ type BAAppDto struct {
 	AllowOptions bool `json:"allowOptions,omitempty"`
 
 	// app Id
-	AppID int64 `json:"appId,omitempty"`
+	AppID string `json:"appId,omitempty"`
 
 	// application port
 	ApplicationPort string `json:"applicationPort,omitempty"`
@@ -34,7 +34,7 @@ type BAAppDto struct {
 	ApplicationProtocol string `json:"applicationProtocol,omitempty"`
 
 	// certificate Id
-	CertificateID int64 `json:"certificateId,omitempty"`
+	CertificateID string `json:"certificateId,omitempty"`
 
 	// certificate name
 	CertificateName string `json:"certificateName,omitempty"`
@@ -55,7 +55,7 @@ type BAAppDto struct {
 	Hidden bool `json:"hidden,omitempty"`
 
 	// id
-	ID int64 `json:"id,omitempty"`
+	ID string `json:"id,omitempty"`
 
 	// local domain
 	LocalDomain string `json:"localDomain,omitempty"`

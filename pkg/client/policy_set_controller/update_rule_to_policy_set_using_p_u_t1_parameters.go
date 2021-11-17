@@ -14,7 +14,6 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
-	"github.com/go-openapi/swag"
 
 	"github.com/haarchri/zpa-go-client/pkg/models"
 )
@@ -65,18 +64,14 @@ type UpdateRuleToPolicySetUsingPUT1Params struct {
 	/* CustomerID.
 
 	   The unique identifier of the ZPA tenant.
-
-	   Format: int64
 	*/
-	CustomerID int64
+	CustomerID string
 
 	/* PolicySetID.
 
 	   The unique identifier of the policy.
-
-	   Format: int64
 	*/
-	PolicySetID int64
+	PolicySetID string
 
 	/* Rule.
 
@@ -87,10 +82,8 @@ type UpdateRuleToPolicySetUsingPUT1Params struct {
 	/* RuleID.
 
 	   The unique identifier of a rule in a policy.
-
-	   Format: int64
 	*/
-	RuleID int64
+	RuleID string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -146,24 +139,24 @@ func (o *UpdateRuleToPolicySetUsingPUT1Params) SetHTTPClient(client *http.Client
 }
 
 // WithCustomerID adds the customerID to the update rule to policy set using p u t 1 params
-func (o *UpdateRuleToPolicySetUsingPUT1Params) WithCustomerID(customerID int64) *UpdateRuleToPolicySetUsingPUT1Params {
+func (o *UpdateRuleToPolicySetUsingPUT1Params) WithCustomerID(customerID string) *UpdateRuleToPolicySetUsingPUT1Params {
 	o.SetCustomerID(customerID)
 	return o
 }
 
 // SetCustomerID adds the customerId to the update rule to policy set using p u t 1 params
-func (o *UpdateRuleToPolicySetUsingPUT1Params) SetCustomerID(customerID int64) {
+func (o *UpdateRuleToPolicySetUsingPUT1Params) SetCustomerID(customerID string) {
 	o.CustomerID = customerID
 }
 
 // WithPolicySetID adds the policySetID to the update rule to policy set using p u t 1 params
-func (o *UpdateRuleToPolicySetUsingPUT1Params) WithPolicySetID(policySetID int64) *UpdateRuleToPolicySetUsingPUT1Params {
+func (o *UpdateRuleToPolicySetUsingPUT1Params) WithPolicySetID(policySetID string) *UpdateRuleToPolicySetUsingPUT1Params {
 	o.SetPolicySetID(policySetID)
 	return o
 }
 
 // SetPolicySetID adds the policySetId to the update rule to policy set using p u t 1 params
-func (o *UpdateRuleToPolicySetUsingPUT1Params) SetPolicySetID(policySetID int64) {
+func (o *UpdateRuleToPolicySetUsingPUT1Params) SetPolicySetID(policySetID string) {
 	o.PolicySetID = policySetID
 }
 
@@ -179,13 +172,13 @@ func (o *UpdateRuleToPolicySetUsingPUT1Params) SetRule(rule *models.PolicyRule) 
 }
 
 // WithRuleID adds the ruleID to the update rule to policy set using p u t 1 params
-func (o *UpdateRuleToPolicySetUsingPUT1Params) WithRuleID(ruleID int64) *UpdateRuleToPolicySetUsingPUT1Params {
+func (o *UpdateRuleToPolicySetUsingPUT1Params) WithRuleID(ruleID string) *UpdateRuleToPolicySetUsingPUT1Params {
 	o.SetRuleID(ruleID)
 	return o
 }
 
 // SetRuleID adds the ruleId to the update rule to policy set using p u t 1 params
-func (o *UpdateRuleToPolicySetUsingPUT1Params) SetRuleID(ruleID int64) {
+func (o *UpdateRuleToPolicySetUsingPUT1Params) SetRuleID(ruleID string) {
 	o.RuleID = ruleID
 }
 
@@ -198,12 +191,12 @@ func (o *UpdateRuleToPolicySetUsingPUT1Params) WriteToRequest(r runtime.ClientRe
 	var res []error
 
 	// path param customerId
-	if err := r.SetPathParam("customerId", swag.FormatInt64(o.CustomerID)); err != nil {
+	if err := r.SetPathParam("customerId", o.CustomerID); err != nil {
 		return err
 	}
 
 	// path param policySetId
-	if err := r.SetPathParam("policySetId", swag.FormatInt64(o.PolicySetID)); err != nil {
+	if err := r.SetPathParam("policySetId", o.PolicySetID); err != nil {
 		return err
 	}
 	if o.Rule != nil {
@@ -213,7 +206,7 @@ func (o *UpdateRuleToPolicySetUsingPUT1Params) WriteToRequest(r runtime.ClientRe
 	}
 
 	// path param ruleId
-	if err := r.SetPathParam("ruleId", swag.FormatInt64(o.RuleID)); err != nil {
+	if err := r.SetPathParam("ruleId", o.RuleID); err != nil {
 		return err
 	}
 

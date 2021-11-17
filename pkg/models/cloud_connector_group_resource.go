@@ -32,7 +32,7 @@ type CloudConnectorGroupResource struct {
 	Enabled bool `json:"enabled,omitempty"`
 
 	// geo location Id
-	GeoLocationID int64 `json:"geoLocationId,omitempty"`
+	GeoLocationID string `json:"geoLocationId,omitempty"`
 
 	// Only applicable for a GET request. Ignored in PUT/POST/DELETE requests.
 	ID string `json:"id,omitempty"`
@@ -50,7 +50,7 @@ type CloudConnectorGroupResource struct {
 	ZiaCloud string `json:"ziaCloud,omitempty"`
 
 	// zia org Id
-	ZiaOrgID int64 `json:"ziaOrgId,omitempty"`
+	ZiaOrgID string `json:"ziaOrgId,omitempty"`
 }
 
 // Validate validates this cloud connector group resource

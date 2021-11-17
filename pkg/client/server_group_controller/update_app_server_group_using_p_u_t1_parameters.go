@@ -14,7 +14,6 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
-	"github.com/go-openapi/swag"
 
 	"github.com/haarchri/zpa-go-client/pkg/models"
 )
@@ -65,10 +64,8 @@ type UpdateAppServerGroupUsingPUT1Params struct {
 	/* CustomerID.
 
 	   The unique identifier of the ZPA tenant.
-
-	   Format: int64
 	*/
-	CustomerID int64
+	CustomerID string
 
 	/* Group.
 
@@ -79,10 +76,8 @@ type UpdateAppServerGroupUsingPUT1Params struct {
 	/* GroupID.
 
 	   The unique identifier of the Server Group.
-
-	   Format: int64
 	*/
-	GroupID int64
+	GroupID string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -138,13 +133,13 @@ func (o *UpdateAppServerGroupUsingPUT1Params) SetHTTPClient(client *http.Client)
 }
 
 // WithCustomerID adds the customerID to the update app server group using p u t 1 params
-func (o *UpdateAppServerGroupUsingPUT1Params) WithCustomerID(customerID int64) *UpdateAppServerGroupUsingPUT1Params {
+func (o *UpdateAppServerGroupUsingPUT1Params) WithCustomerID(customerID string) *UpdateAppServerGroupUsingPUT1Params {
 	o.SetCustomerID(customerID)
 	return o
 }
 
 // SetCustomerID adds the customerId to the update app server group using p u t 1 params
-func (o *UpdateAppServerGroupUsingPUT1Params) SetCustomerID(customerID int64) {
+func (o *UpdateAppServerGroupUsingPUT1Params) SetCustomerID(customerID string) {
 	o.CustomerID = customerID
 }
 
@@ -160,13 +155,13 @@ func (o *UpdateAppServerGroupUsingPUT1Params) SetGroup(group *models.ServerGroup
 }
 
 // WithGroupID adds the groupID to the update app server group using p u t 1 params
-func (o *UpdateAppServerGroupUsingPUT1Params) WithGroupID(groupID int64) *UpdateAppServerGroupUsingPUT1Params {
+func (o *UpdateAppServerGroupUsingPUT1Params) WithGroupID(groupID string) *UpdateAppServerGroupUsingPUT1Params {
 	o.SetGroupID(groupID)
 	return o
 }
 
 // SetGroupID adds the groupId to the update app server group using p u t 1 params
-func (o *UpdateAppServerGroupUsingPUT1Params) SetGroupID(groupID int64) {
+func (o *UpdateAppServerGroupUsingPUT1Params) SetGroupID(groupID string) {
 	o.GroupID = groupID
 }
 
@@ -179,7 +174,7 @@ func (o *UpdateAppServerGroupUsingPUT1Params) WriteToRequest(r runtime.ClientReq
 	var res []error
 
 	// path param customerId
-	if err := r.SetPathParam("customerId", swag.FormatInt64(o.CustomerID)); err != nil {
+	if err := r.SetPathParam("customerId", o.CustomerID); err != nil {
 		return err
 	}
 	if o.Group != nil {
@@ -189,7 +184,7 @@ func (o *UpdateAppServerGroupUsingPUT1Params) WriteToRequest(r runtime.ClientReq
 	}
 
 	// path param groupId
-	if err := r.SetPathParam("groupId", swag.FormatInt64(o.GroupID)); err != nil {
+	if err := r.SetPathParam("groupId", o.GroupID); err != nil {
 		return err
 	}
 

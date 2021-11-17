@@ -14,7 +14,6 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
-	"github.com/go-openapi/swag"
 )
 
 // NewGetSegmentGroupUsingGET1Params creates a new GetSegmentGroupUsingGET1Params object,
@@ -63,18 +62,14 @@ type GetSegmentGroupUsingGET1Params struct {
 	/* CustomerID.
 
 	   The unique identifier of the ZPA tenant.
-
-	   Format: int64
 	*/
-	CustomerID int64
+	CustomerID string
 
 	/* SegmentGroupID.
 
 	   The unique identifier of the Segment Group.
-
-	   Format: int64
 	*/
-	SegmentGroupID int64
+	SegmentGroupID string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -130,24 +125,24 @@ func (o *GetSegmentGroupUsingGET1Params) SetHTTPClient(client *http.Client) {
 }
 
 // WithCustomerID adds the customerID to the get segment group using g e t 1 params
-func (o *GetSegmentGroupUsingGET1Params) WithCustomerID(customerID int64) *GetSegmentGroupUsingGET1Params {
+func (o *GetSegmentGroupUsingGET1Params) WithCustomerID(customerID string) *GetSegmentGroupUsingGET1Params {
 	o.SetCustomerID(customerID)
 	return o
 }
 
 // SetCustomerID adds the customerId to the get segment group using g e t 1 params
-func (o *GetSegmentGroupUsingGET1Params) SetCustomerID(customerID int64) {
+func (o *GetSegmentGroupUsingGET1Params) SetCustomerID(customerID string) {
 	o.CustomerID = customerID
 }
 
 // WithSegmentGroupID adds the segmentGroupID to the get segment group using g e t 1 params
-func (o *GetSegmentGroupUsingGET1Params) WithSegmentGroupID(segmentGroupID int64) *GetSegmentGroupUsingGET1Params {
+func (o *GetSegmentGroupUsingGET1Params) WithSegmentGroupID(segmentGroupID string) *GetSegmentGroupUsingGET1Params {
 	o.SetSegmentGroupID(segmentGroupID)
 	return o
 }
 
 // SetSegmentGroupID adds the segmentGroupId to the get segment group using g e t 1 params
-func (o *GetSegmentGroupUsingGET1Params) SetSegmentGroupID(segmentGroupID int64) {
+func (o *GetSegmentGroupUsingGET1Params) SetSegmentGroupID(segmentGroupID string) {
 	o.SegmentGroupID = segmentGroupID
 }
 
@@ -160,12 +155,12 @@ func (o *GetSegmentGroupUsingGET1Params) WriteToRequest(r runtime.ClientRequest,
 	var res []error
 
 	// path param customerId
-	if err := r.SetPathParam("customerId", swag.FormatInt64(o.CustomerID)); err != nil {
+	if err := r.SetPathParam("customerId", o.CustomerID); err != nil {
 		return err
 	}
 
 	// path param segmentGroupId
-	if err := r.SetPathParam("segmentGroupId", swag.FormatInt64(o.SegmentGroupID)); err != nil {
+	if err := r.SetPathParam("segmentGroupId", o.SegmentGroupID); err != nil {
 		return err
 	}
 

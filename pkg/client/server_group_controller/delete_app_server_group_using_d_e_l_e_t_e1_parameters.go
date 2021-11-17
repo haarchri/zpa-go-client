@@ -14,7 +14,6 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
-	"github.com/go-openapi/swag"
 )
 
 // NewDeleteAppServerGroupUsingDELETE1Params creates a new DeleteAppServerGroupUsingDELETE1Params object,
@@ -63,18 +62,14 @@ type DeleteAppServerGroupUsingDELETE1Params struct {
 	/* CustomerID.
 
 	   The unique identifier of the ZPA tenant.
-
-	   Format: int64
 	*/
-	CustomerID int64
+	CustomerID string
 
 	/* GroupID.
 
 	   The unique identifier of the Server Group.
-
-	   Format: int64
 	*/
-	GroupID int64
+	GroupID string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -130,24 +125,24 @@ func (o *DeleteAppServerGroupUsingDELETE1Params) SetHTTPClient(client *http.Clie
 }
 
 // WithCustomerID adds the customerID to the delete app server group using d e l e t e 1 params
-func (o *DeleteAppServerGroupUsingDELETE1Params) WithCustomerID(customerID int64) *DeleteAppServerGroupUsingDELETE1Params {
+func (o *DeleteAppServerGroupUsingDELETE1Params) WithCustomerID(customerID string) *DeleteAppServerGroupUsingDELETE1Params {
 	o.SetCustomerID(customerID)
 	return o
 }
 
 // SetCustomerID adds the customerId to the delete app server group using d e l e t e 1 params
-func (o *DeleteAppServerGroupUsingDELETE1Params) SetCustomerID(customerID int64) {
+func (o *DeleteAppServerGroupUsingDELETE1Params) SetCustomerID(customerID string) {
 	o.CustomerID = customerID
 }
 
 // WithGroupID adds the groupID to the delete app server group using d e l e t e 1 params
-func (o *DeleteAppServerGroupUsingDELETE1Params) WithGroupID(groupID int64) *DeleteAppServerGroupUsingDELETE1Params {
+func (o *DeleteAppServerGroupUsingDELETE1Params) WithGroupID(groupID string) *DeleteAppServerGroupUsingDELETE1Params {
 	o.SetGroupID(groupID)
 	return o
 }
 
 // SetGroupID adds the groupId to the delete app server group using d e l e t e 1 params
-func (o *DeleteAppServerGroupUsingDELETE1Params) SetGroupID(groupID int64) {
+func (o *DeleteAppServerGroupUsingDELETE1Params) SetGroupID(groupID string) {
 	o.GroupID = groupID
 }
 
@@ -160,12 +155,12 @@ func (o *DeleteAppServerGroupUsingDELETE1Params) WriteToRequest(r runtime.Client
 	var res []error
 
 	// path param customerId
-	if err := r.SetPathParam("customerId", swag.FormatInt64(o.CustomerID)); err != nil {
+	if err := r.SetPathParam("customerId", o.CustomerID); err != nil {
 		return err
 	}
 
 	// path param groupId
-	if err := r.SetPathParam("groupId", swag.FormatInt64(o.GroupID)); err != nil {
+	if err := r.SetPathParam("groupId", o.GroupID); err != nil {
 		return err
 	}
 

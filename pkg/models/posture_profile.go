@@ -26,16 +26,16 @@ type PostureProfile struct {
 	Domain string `json:"domain,omitempty"`
 
 	// id
-	ID int64 `json:"id,omitempty"`
+	ID string `json:"id,omitempty"`
 
 	// master customer Id
 	MasterCustomerID string `json:"masterCustomerId,omitempty"`
 
 	// modified by
-	ModifiedBy int64 `json:"modifiedBy,omitempty"`
+	ModifiedBy string `json:"modifiedBy,omitempty"`
 
 	// modified time
-	ModifiedTime int32 `json:"modifiedTime,omitempty"`
+	ModifiedTime string `json:"modifiedTime,omitempty"`
 
 	// name
 	// Required: true
@@ -48,7 +48,7 @@ type PostureProfile struct {
 	ZscalerCloud string `json:"zscalerCloud,omitempty"`
 
 	// zscaler customer Id
-	ZscalerCustomerID int64 `json:"zscalerCustomerId,omitempty"`
+	ZscalerCustomerID string `json:"zscalerCustomerId,omitempty"`
 }
 
 // Validate validates this posture profile

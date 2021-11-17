@@ -14,7 +14,6 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
-	"github.com/go-openapi/swag"
 )
 
 // NewGetAllTrustedNetworksUsingGET1Params creates a new GetAllTrustedNetworksUsingGET1Params object,
@@ -63,10 +62,8 @@ type GetAllTrustedNetworksUsingGET1Params struct {
 	/* CustomerID.
 
 	   The unique identifier of the ZPA tenant.
-
-	   Format: int64
 	*/
-	CustomerID int64
+	CustomerID string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -122,13 +119,13 @@ func (o *GetAllTrustedNetworksUsingGET1Params) SetHTTPClient(client *http.Client
 }
 
 // WithCustomerID adds the customerID to the get all trusted networks using g e t 1 params
-func (o *GetAllTrustedNetworksUsingGET1Params) WithCustomerID(customerID int64) *GetAllTrustedNetworksUsingGET1Params {
+func (o *GetAllTrustedNetworksUsingGET1Params) WithCustomerID(customerID string) *GetAllTrustedNetworksUsingGET1Params {
 	o.SetCustomerID(customerID)
 	return o
 }
 
 // SetCustomerID adds the customerId to the get all trusted networks using g e t 1 params
-func (o *GetAllTrustedNetworksUsingGET1Params) SetCustomerID(customerID int64) {
+func (o *GetAllTrustedNetworksUsingGET1Params) SetCustomerID(customerID string) {
 	o.CustomerID = customerID
 }
 
@@ -141,7 +138,7 @@ func (o *GetAllTrustedNetworksUsingGET1Params) WriteToRequest(r runtime.ClientRe
 	var res []error
 
 	// path param customerId
-	if err := r.SetPathParam("customerId", swag.FormatInt64(o.CustomerID)); err != nil {
+	if err := r.SetPathParam("customerId", o.CustomerID); err != nil {
 		return err
 	}
 

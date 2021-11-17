@@ -14,7 +14,6 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
-	"github.com/go-openapi/swag"
 )
 
 // NewGetAllAttributesUsingGET1Params creates a new GetAllAttributesUsingGET1Params object,
@@ -63,10 +62,8 @@ type GetAllAttributesUsingGET1Params struct {
 	/* CustomerID.
 
 	   The unique identifier of the ZPA tenant.
-
-	   Format: int64
 	*/
-	CustomerID int64
+	CustomerID string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -122,13 +119,13 @@ func (o *GetAllAttributesUsingGET1Params) SetHTTPClient(client *http.Client) {
 }
 
 // WithCustomerID adds the customerID to the get all attributes using g e t 1 params
-func (o *GetAllAttributesUsingGET1Params) WithCustomerID(customerID int64) *GetAllAttributesUsingGET1Params {
+func (o *GetAllAttributesUsingGET1Params) WithCustomerID(customerID string) *GetAllAttributesUsingGET1Params {
 	o.SetCustomerID(customerID)
 	return o
 }
 
 // SetCustomerID adds the customerId to the get all attributes using g e t 1 params
-func (o *GetAllAttributesUsingGET1Params) SetCustomerID(customerID int64) {
+func (o *GetAllAttributesUsingGET1Params) SetCustomerID(customerID string) {
 	o.CustomerID = customerID
 }
 
@@ -141,7 +138,7 @@ func (o *GetAllAttributesUsingGET1Params) WriteToRequest(r runtime.ClientRequest
 	var res []error
 
 	// path param customerId
-	if err := r.SetPathParam("customerId", swag.FormatInt64(o.CustomerID)); err != nil {
+	if err := r.SetPathParam("customerId", o.CustomerID); err != nil {
 		return err
 	}
 

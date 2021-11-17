@@ -14,7 +14,6 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
-	"github.com/go-openapi/swag"
 )
 
 // NewGetAppServerUsingGET1Params creates a new GetAppServerUsingGET1Params object,
@@ -63,10 +62,8 @@ type GetAppServerUsingGET1Params struct {
 	/* CustomerID.
 
 	   The unique identifier of the ZPA tenant.
-
-	   Format: int64
 	*/
-	CustomerID int64
+	CustomerID string
 
 	/* ServerID.
 
@@ -128,13 +125,13 @@ func (o *GetAppServerUsingGET1Params) SetHTTPClient(client *http.Client) {
 }
 
 // WithCustomerID adds the customerID to the get app server using g e t 1 params
-func (o *GetAppServerUsingGET1Params) WithCustomerID(customerID int64) *GetAppServerUsingGET1Params {
+func (o *GetAppServerUsingGET1Params) WithCustomerID(customerID string) *GetAppServerUsingGET1Params {
 	o.SetCustomerID(customerID)
 	return o
 }
 
 // SetCustomerID adds the customerId to the get app server using g e t 1 params
-func (o *GetAppServerUsingGET1Params) SetCustomerID(customerID int64) {
+func (o *GetAppServerUsingGET1Params) SetCustomerID(customerID string) {
 	o.CustomerID = customerID
 }
 
@@ -158,7 +155,7 @@ func (o *GetAppServerUsingGET1Params) WriteToRequest(r runtime.ClientRequest, re
 	var res []error
 
 	// path param customerId
-	if err := r.SetPathParam("customerId", swag.FormatInt64(o.CustomerID)); err != nil {
+	if err := r.SetPathParam("customerId", o.CustomerID); err != nil {
 		return err
 	}
 

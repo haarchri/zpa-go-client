@@ -44,10 +44,10 @@ type AppConnectorGroup struct {
 	Enabled bool `json:"enabled,omitempty"`
 
 	// geo location Id
-	GeoLocationID int64 `json:"geoLocationId,omitempty"`
+	GeoLocationID string `json:"geoLocationId,omitempty"`
 
 	// id
-	ID int64 `json:"id,omitempty"`
+	ID string `json:"id,omitempty"`
 
 	// latitude
 	Latitude string `json:"latitude,omitempty"`
@@ -59,7 +59,7 @@ type AppConnectorGroup struct {
 	Longitude string `json:"longitude,omitempty"`
 
 	// modified by
-	ModifiedBy int64 `json:"modifiedBy,omitempty"`
+	ModifiedBy string `json:"modifiedBy,omitempty"`
 
 	// modified time
 	ModifiedTime string `json:"modifiedTime,omitempty"`
@@ -84,7 +84,7 @@ type AppConnectorGroup struct {
 	UpgradeTimeInSecs string `json:"upgradeTimeInSecs,omitempty"`
 
 	// version profile Id
-	VersionProfileID int64 `json:"versionProfileId,omitempty"`
+	VersionProfileID string `json:"versionProfileId,omitempty"`
 
 	// Only applicable for a GET request. Ignored in PUT/POST/DELETE requests.
 	VersionProfileName string `json:"versionProfileName,omitempty"`

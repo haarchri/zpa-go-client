@@ -63,10 +63,8 @@ type GetIdpUsingGET1Params struct {
 	/* CustomerID.
 
 	   The unique identifier of the ZPA tenant.
-
-	   Format: int64
 	*/
-	CustomerID int64
+	CustomerID string
 
 	/* ScimEnabled.
 
@@ -128,13 +126,13 @@ func (o *GetIdpUsingGET1Params) SetHTTPClient(client *http.Client) {
 }
 
 // WithCustomerID adds the customerID to the get idp using g e t 1 params
-func (o *GetIdpUsingGET1Params) WithCustomerID(customerID int64) *GetIdpUsingGET1Params {
+func (o *GetIdpUsingGET1Params) WithCustomerID(customerID string) *GetIdpUsingGET1Params {
 	o.SetCustomerID(customerID)
 	return o
 }
 
 // SetCustomerID adds the customerId to the get idp using g e t 1 params
-func (o *GetIdpUsingGET1Params) SetCustomerID(customerID int64) {
+func (o *GetIdpUsingGET1Params) SetCustomerID(customerID string) {
 	o.CustomerID = customerID
 }
 
@@ -158,7 +156,7 @@ func (o *GetIdpUsingGET1Params) WriteToRequest(r runtime.ClientRequest, reg strf
 	var res []error
 
 	// path param customerId
-	if err := r.SetPathParam("customerId", swag.FormatInt64(o.CustomerID)); err != nil {
+	if err := r.SetPathParam("customerId", o.CustomerID); err != nil {
 		return err
 	}
 

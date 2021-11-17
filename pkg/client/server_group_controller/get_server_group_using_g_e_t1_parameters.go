@@ -14,7 +14,6 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
-	"github.com/go-openapi/swag"
 )
 
 // NewGetServerGroupUsingGET1Params creates a new GetServerGroupUsingGET1Params object,
@@ -63,18 +62,14 @@ type GetServerGroupUsingGET1Params struct {
 	/* CustomerID.
 
 	   The unique identifier of the ZPA tenant.
-
-	   Format: int64
 	*/
-	CustomerID int64
+	CustomerID string
 
 	/* GroupID.
 
 	   The unique identifier of the Segment Group.
-
-	   Format: int64
 	*/
-	GroupID int64
+	GroupID string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -130,24 +125,24 @@ func (o *GetServerGroupUsingGET1Params) SetHTTPClient(client *http.Client) {
 }
 
 // WithCustomerID adds the customerID to the get server group using g e t 1 params
-func (o *GetServerGroupUsingGET1Params) WithCustomerID(customerID int64) *GetServerGroupUsingGET1Params {
+func (o *GetServerGroupUsingGET1Params) WithCustomerID(customerID string) *GetServerGroupUsingGET1Params {
 	o.SetCustomerID(customerID)
 	return o
 }
 
 // SetCustomerID adds the customerId to the get server group using g e t 1 params
-func (o *GetServerGroupUsingGET1Params) SetCustomerID(customerID int64) {
+func (o *GetServerGroupUsingGET1Params) SetCustomerID(customerID string) {
 	o.CustomerID = customerID
 }
 
 // WithGroupID adds the groupID to the get server group using g e t 1 params
-func (o *GetServerGroupUsingGET1Params) WithGroupID(groupID int64) *GetServerGroupUsingGET1Params {
+func (o *GetServerGroupUsingGET1Params) WithGroupID(groupID string) *GetServerGroupUsingGET1Params {
 	o.SetGroupID(groupID)
 	return o
 }
 
 // SetGroupID adds the groupId to the get server group using g e t 1 params
-func (o *GetServerGroupUsingGET1Params) SetGroupID(groupID int64) {
+func (o *GetServerGroupUsingGET1Params) SetGroupID(groupID string) {
 	o.GroupID = groupID
 }
 
@@ -160,12 +155,12 @@ func (o *GetServerGroupUsingGET1Params) WriteToRequest(r runtime.ClientRequest, 
 	var res []error
 
 	// path param customerId
-	if err := r.SetPathParam("customerId", swag.FormatInt64(o.CustomerID)); err != nil {
+	if err := r.SetPathParam("customerId", o.CustomerID); err != nil {
 		return err
 	}
 
 	// path param groupId
-	if err := r.SetPathParam("groupId", swag.FormatInt64(o.GroupID)); err != nil {
+	if err := r.SetPathParam("groupId", o.GroupID); err != nil {
 		return err
 	}
 

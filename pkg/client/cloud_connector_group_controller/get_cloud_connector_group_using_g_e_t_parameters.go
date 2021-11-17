@@ -14,7 +14,6 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
-	"github.com/go-openapi/swag"
 )
 
 // NewGetCloudConnectorGroupUsingGETParams creates a new GetCloudConnectorGroupUsingGETParams object,
@@ -63,18 +62,14 @@ type GetCloudConnectorGroupUsingGETParams struct {
 	/* CustomerID.
 
 	   The unique identifier of the ZPA tenant.
-
-	   Format: int64
 	*/
-	CustomerID int64
+	CustomerID string
 
 	/* ID.
 
 	   The unique identifier of the Cloud Connector Group.
-
-	   Format: int64
 	*/
-	ID int64
+	ID string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -130,24 +125,24 @@ func (o *GetCloudConnectorGroupUsingGETParams) SetHTTPClient(client *http.Client
 }
 
 // WithCustomerID adds the customerID to the get cloud connector group using g e t params
-func (o *GetCloudConnectorGroupUsingGETParams) WithCustomerID(customerID int64) *GetCloudConnectorGroupUsingGETParams {
+func (o *GetCloudConnectorGroupUsingGETParams) WithCustomerID(customerID string) *GetCloudConnectorGroupUsingGETParams {
 	o.SetCustomerID(customerID)
 	return o
 }
 
 // SetCustomerID adds the customerId to the get cloud connector group using g e t params
-func (o *GetCloudConnectorGroupUsingGETParams) SetCustomerID(customerID int64) {
+func (o *GetCloudConnectorGroupUsingGETParams) SetCustomerID(customerID string) {
 	o.CustomerID = customerID
 }
 
 // WithID adds the id to the get cloud connector group using g e t params
-func (o *GetCloudConnectorGroupUsingGETParams) WithID(id int64) *GetCloudConnectorGroupUsingGETParams {
+func (o *GetCloudConnectorGroupUsingGETParams) WithID(id string) *GetCloudConnectorGroupUsingGETParams {
 	o.SetID(id)
 	return o
 }
 
 // SetID adds the id to the get cloud connector group using g e t params
-func (o *GetCloudConnectorGroupUsingGETParams) SetID(id int64) {
+func (o *GetCloudConnectorGroupUsingGETParams) SetID(id string) {
 	o.ID = id
 }
 
@@ -160,12 +155,12 @@ func (o *GetCloudConnectorGroupUsingGETParams) WriteToRequest(r runtime.ClientRe
 	var res []error
 
 	// path param customerId
-	if err := r.SetPathParam("customerId", swag.FormatInt64(o.CustomerID)); err != nil {
+	if err := r.SetPathParam("customerId", o.CustomerID); err != nil {
 		return err
 	}
 
 	// path param id
-	if err := r.SetPathParam("id", swag.FormatInt64(o.ID)); err != nil {
+	if err := r.SetPathParam("id", o.ID); err != nil {
 		return err
 	}
 

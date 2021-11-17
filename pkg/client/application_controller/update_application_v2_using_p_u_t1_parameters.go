@@ -14,7 +14,6 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
-	"github.com/go-openapi/swag"
 
 	"github.com/haarchri/zpa-go-client/pkg/models"
 )
@@ -71,18 +70,14 @@ type UpdateApplicationV2UsingPUT1Params struct {
 	/* ApplicationID.
 
 	   The unique identifier of the Application Segment.
-
-	   Format: int64
 	*/
-	ApplicationID int64
+	ApplicationID string
 
 	/* CustomerID.
 
 	   The unique identifier of the ZPA tenant.
-
-	   Format: int64
 	*/
-	CustomerID int64
+	CustomerID string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -149,24 +144,24 @@ func (o *UpdateApplicationV2UsingPUT1Params) SetApplication(application *models.
 }
 
 // WithApplicationID adds the applicationID to the update application v2 using p u t 1 params
-func (o *UpdateApplicationV2UsingPUT1Params) WithApplicationID(applicationID int64) *UpdateApplicationV2UsingPUT1Params {
+func (o *UpdateApplicationV2UsingPUT1Params) WithApplicationID(applicationID string) *UpdateApplicationV2UsingPUT1Params {
 	o.SetApplicationID(applicationID)
 	return o
 }
 
 // SetApplicationID adds the applicationId to the update application v2 using p u t 1 params
-func (o *UpdateApplicationV2UsingPUT1Params) SetApplicationID(applicationID int64) {
+func (o *UpdateApplicationV2UsingPUT1Params) SetApplicationID(applicationID string) {
 	o.ApplicationID = applicationID
 }
 
 // WithCustomerID adds the customerID to the update application v2 using p u t 1 params
-func (o *UpdateApplicationV2UsingPUT1Params) WithCustomerID(customerID int64) *UpdateApplicationV2UsingPUT1Params {
+func (o *UpdateApplicationV2UsingPUT1Params) WithCustomerID(customerID string) *UpdateApplicationV2UsingPUT1Params {
 	o.SetCustomerID(customerID)
 	return o
 }
 
 // SetCustomerID adds the customerId to the update application v2 using p u t 1 params
-func (o *UpdateApplicationV2UsingPUT1Params) SetCustomerID(customerID int64) {
+func (o *UpdateApplicationV2UsingPUT1Params) SetCustomerID(customerID string) {
 	o.CustomerID = customerID
 }
 
@@ -184,12 +179,12 @@ func (o *UpdateApplicationV2UsingPUT1Params) WriteToRequest(r runtime.ClientRequ
 	}
 
 	// path param applicationId
-	if err := r.SetPathParam("applicationId", swag.FormatInt64(o.ApplicationID)); err != nil {
+	if err := r.SetPathParam("applicationId", o.ApplicationID); err != nil {
 		return err
 	}
 
 	// path param customerId
-	if err := r.SetPathParam("customerId", swag.FormatInt64(o.CustomerID)); err != nil {
+	if err := r.SetPathParam("customerId", o.CustomerID); err != nil {
 		return err
 	}
 

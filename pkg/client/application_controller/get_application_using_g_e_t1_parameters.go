@@ -14,7 +14,6 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
-	"github.com/go-openapi/swag"
 )
 
 // NewGetApplicationUsingGET1Params creates a new GetApplicationUsingGET1Params object,
@@ -63,18 +62,14 @@ type GetApplicationUsingGET1Params struct {
 	/* ApplicationID.
 
 	   The unique identifier of the Application Segment.
-
-	   Format: int64
 	*/
-	ApplicationID int64
+	ApplicationID string
 
 	/* CustomerID.
 
 	   The unique identifier of the ZPA tenant.
-
-	   Format: int64
 	*/
-	CustomerID int64
+	CustomerID string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -130,24 +125,24 @@ func (o *GetApplicationUsingGET1Params) SetHTTPClient(client *http.Client) {
 }
 
 // WithApplicationID adds the applicationID to the get application using g e t 1 params
-func (o *GetApplicationUsingGET1Params) WithApplicationID(applicationID int64) *GetApplicationUsingGET1Params {
+func (o *GetApplicationUsingGET1Params) WithApplicationID(applicationID string) *GetApplicationUsingGET1Params {
 	o.SetApplicationID(applicationID)
 	return o
 }
 
 // SetApplicationID adds the applicationId to the get application using g e t 1 params
-func (o *GetApplicationUsingGET1Params) SetApplicationID(applicationID int64) {
+func (o *GetApplicationUsingGET1Params) SetApplicationID(applicationID string) {
 	o.ApplicationID = applicationID
 }
 
 // WithCustomerID adds the customerID to the get application using g e t 1 params
-func (o *GetApplicationUsingGET1Params) WithCustomerID(customerID int64) *GetApplicationUsingGET1Params {
+func (o *GetApplicationUsingGET1Params) WithCustomerID(customerID string) *GetApplicationUsingGET1Params {
 	o.SetCustomerID(customerID)
 	return o
 }
 
 // SetCustomerID adds the customerId to the get application using g e t 1 params
-func (o *GetApplicationUsingGET1Params) SetCustomerID(customerID int64) {
+func (o *GetApplicationUsingGET1Params) SetCustomerID(customerID string) {
 	o.CustomerID = customerID
 }
 
@@ -160,12 +155,12 @@ func (o *GetApplicationUsingGET1Params) WriteToRequest(r runtime.ClientRequest, 
 	var res []error
 
 	// path param applicationId
-	if err := r.SetPathParam("applicationId", swag.FormatInt64(o.ApplicationID)); err != nil {
+	if err := r.SetPathParam("applicationId", o.ApplicationID); err != nil {
 		return err
 	}
 
 	// path param customerId
-	if err := r.SetPathParam("customerId", swag.FormatInt64(o.CustomerID)); err != nil {
+	if err := r.SetPathParam("customerId", o.CustomerID); err != nil {
 		return err
 	}
 

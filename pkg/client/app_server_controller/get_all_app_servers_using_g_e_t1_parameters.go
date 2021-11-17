@@ -63,10 +63,8 @@ type GetAllAppServersUsingGET1Params struct {
 	/* CustomerID.
 
 	   The unique identifier of the ZPA tenant.
-
-	   Format: int64
 	*/
-	CustomerID int64
+	CustomerID string
 
 	/* Page.
 
@@ -144,13 +142,13 @@ func (o *GetAllAppServersUsingGET1Params) SetHTTPClient(client *http.Client) {
 }
 
 // WithCustomerID adds the customerID to the get all app servers using g e t 1 params
-func (o *GetAllAppServersUsingGET1Params) WithCustomerID(customerID int64) *GetAllAppServersUsingGET1Params {
+func (o *GetAllAppServersUsingGET1Params) WithCustomerID(customerID string) *GetAllAppServersUsingGET1Params {
 	o.SetCustomerID(customerID)
 	return o
 }
 
 // SetCustomerID adds the customerId to the get all app servers using g e t 1 params
-func (o *GetAllAppServersUsingGET1Params) SetCustomerID(customerID int64) {
+func (o *GetAllAppServersUsingGET1Params) SetCustomerID(customerID string) {
 	o.CustomerID = customerID
 }
 
@@ -196,7 +194,7 @@ func (o *GetAllAppServersUsingGET1Params) WriteToRequest(r runtime.ClientRequest
 	var res []error
 
 	// path param customerId
-	if err := r.SetPathParam("customerId", swag.FormatInt64(o.CustomerID)); err != nil {
+	if err := r.SetPathParam("customerId", o.CustomerID); err != nil {
 		return err
 	}
 

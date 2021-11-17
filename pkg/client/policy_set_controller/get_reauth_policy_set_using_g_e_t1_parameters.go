@@ -14,7 +14,6 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
-	"github.com/go-openapi/swag"
 )
 
 // NewGetReauthPolicySetUsingGET1Params creates a new GetReauthPolicySetUsingGET1Params object,
@@ -63,10 +62,8 @@ type GetReauthPolicySetUsingGET1Params struct {
 	/* CustomerID.
 
 	   The unique identifier of the ZPA tenant.
-
-	   Format: int64
 	*/
-	CustomerID int64
+	CustomerID string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -122,13 +119,13 @@ func (o *GetReauthPolicySetUsingGET1Params) SetHTTPClient(client *http.Client) {
 }
 
 // WithCustomerID adds the customerID to the get reauth policy set using g e t 1 params
-func (o *GetReauthPolicySetUsingGET1Params) WithCustomerID(customerID int64) *GetReauthPolicySetUsingGET1Params {
+func (o *GetReauthPolicySetUsingGET1Params) WithCustomerID(customerID string) *GetReauthPolicySetUsingGET1Params {
 	o.SetCustomerID(customerID)
 	return o
 }
 
 // SetCustomerID adds the customerId to the get reauth policy set using g e t 1 params
-func (o *GetReauthPolicySetUsingGET1Params) SetCustomerID(customerID int64) {
+func (o *GetReauthPolicySetUsingGET1Params) SetCustomerID(customerID string) {
 	o.CustomerID = customerID
 }
 
@@ -141,7 +138,7 @@ func (o *GetReauthPolicySetUsingGET1Params) WriteToRequest(r runtime.ClientReque
 	var res []error
 
 	// path param customerId
-	if err := r.SetPathParam("customerId", swag.FormatInt64(o.CustomerID)); err != nil {
+	if err := r.SetPathParam("customerId", o.CustomerID); err != nil {
 		return err
 	}
 

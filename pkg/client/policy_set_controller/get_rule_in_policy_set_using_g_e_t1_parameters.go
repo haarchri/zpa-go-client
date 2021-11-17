@@ -14,7 +14,6 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
-	"github.com/go-openapi/swag"
 )
 
 // NewGetRuleInPolicySetUsingGET1Params creates a new GetRuleInPolicySetUsingGET1Params object,
@@ -63,26 +62,20 @@ type GetRuleInPolicySetUsingGET1Params struct {
 	/* CustomerID.
 
 	   The unique identifier of the ZPA tenant.
-
-	   Format: int64
 	*/
-	CustomerID int64
+	CustomerID string
 
 	/* PolicySetID.
 
 	   The unique identifier of the policy.
-
-	   Format: int64
 	*/
-	PolicySetID int64
+	PolicySetID string
 
 	/* RuleID.
 
 	   The unique identifier of a rule in a policy.
-
-	   Format: int64
 	*/
-	RuleID int64
+	RuleID string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -138,35 +131,35 @@ func (o *GetRuleInPolicySetUsingGET1Params) SetHTTPClient(client *http.Client) {
 }
 
 // WithCustomerID adds the customerID to the get rule in policy set using g e t 1 params
-func (o *GetRuleInPolicySetUsingGET1Params) WithCustomerID(customerID int64) *GetRuleInPolicySetUsingGET1Params {
+func (o *GetRuleInPolicySetUsingGET1Params) WithCustomerID(customerID string) *GetRuleInPolicySetUsingGET1Params {
 	o.SetCustomerID(customerID)
 	return o
 }
 
 // SetCustomerID adds the customerId to the get rule in policy set using g e t 1 params
-func (o *GetRuleInPolicySetUsingGET1Params) SetCustomerID(customerID int64) {
+func (o *GetRuleInPolicySetUsingGET1Params) SetCustomerID(customerID string) {
 	o.CustomerID = customerID
 }
 
 // WithPolicySetID adds the policySetID to the get rule in policy set using g e t 1 params
-func (o *GetRuleInPolicySetUsingGET1Params) WithPolicySetID(policySetID int64) *GetRuleInPolicySetUsingGET1Params {
+func (o *GetRuleInPolicySetUsingGET1Params) WithPolicySetID(policySetID string) *GetRuleInPolicySetUsingGET1Params {
 	o.SetPolicySetID(policySetID)
 	return o
 }
 
 // SetPolicySetID adds the policySetId to the get rule in policy set using g e t 1 params
-func (o *GetRuleInPolicySetUsingGET1Params) SetPolicySetID(policySetID int64) {
+func (o *GetRuleInPolicySetUsingGET1Params) SetPolicySetID(policySetID string) {
 	o.PolicySetID = policySetID
 }
 
 // WithRuleID adds the ruleID to the get rule in policy set using g e t 1 params
-func (o *GetRuleInPolicySetUsingGET1Params) WithRuleID(ruleID int64) *GetRuleInPolicySetUsingGET1Params {
+func (o *GetRuleInPolicySetUsingGET1Params) WithRuleID(ruleID string) *GetRuleInPolicySetUsingGET1Params {
 	o.SetRuleID(ruleID)
 	return o
 }
 
 // SetRuleID adds the ruleId to the get rule in policy set using g e t 1 params
-func (o *GetRuleInPolicySetUsingGET1Params) SetRuleID(ruleID int64) {
+func (o *GetRuleInPolicySetUsingGET1Params) SetRuleID(ruleID string) {
 	o.RuleID = ruleID
 }
 
@@ -179,17 +172,17 @@ func (o *GetRuleInPolicySetUsingGET1Params) WriteToRequest(r runtime.ClientReque
 	var res []error
 
 	// path param customerId
-	if err := r.SetPathParam("customerId", swag.FormatInt64(o.CustomerID)); err != nil {
+	if err := r.SetPathParam("customerId", o.CustomerID); err != nil {
 		return err
 	}
 
 	// path param policySetId
-	if err := r.SetPathParam("policySetId", swag.FormatInt64(o.PolicySetID)); err != nil {
+	if err := r.SetPathParam("policySetId", o.PolicySetID); err != nil {
 		return err
 	}
 
 	// path param ruleId
-	if err := r.SetPathParam("ruleId", swag.FormatInt64(o.RuleID)); err != nil {
+	if err := r.SetPathParam("ruleId", o.RuleID); err != nil {
 		return err
 	}
 

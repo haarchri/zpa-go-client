@@ -14,7 +14,6 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
-	"github.com/go-openapi/swag"
 
 	"github.com/haarchri/zpa-go-client/pkg/models"
 )
@@ -65,10 +64,8 @@ type AddAppServerGroupUsingPOST1Params struct {
 	/* CustomerID.
 
 	   The unique identifier of the ZPA tenant.
-
-	   Format: int64
 	*/
-	CustomerID int64
+	CustomerID string
 
 	/* Group.
 
@@ -130,13 +127,13 @@ func (o *AddAppServerGroupUsingPOST1Params) SetHTTPClient(client *http.Client) {
 }
 
 // WithCustomerID adds the customerID to the add app server group using p o s t 1 params
-func (o *AddAppServerGroupUsingPOST1Params) WithCustomerID(customerID int64) *AddAppServerGroupUsingPOST1Params {
+func (o *AddAppServerGroupUsingPOST1Params) WithCustomerID(customerID string) *AddAppServerGroupUsingPOST1Params {
 	o.SetCustomerID(customerID)
 	return o
 }
 
 // SetCustomerID adds the customerId to the add app server group using p o s t 1 params
-func (o *AddAppServerGroupUsingPOST1Params) SetCustomerID(customerID int64) {
+func (o *AddAppServerGroupUsingPOST1Params) SetCustomerID(customerID string) {
 	o.CustomerID = customerID
 }
 
@@ -160,7 +157,7 @@ func (o *AddAppServerGroupUsingPOST1Params) WriteToRequest(r runtime.ClientReque
 	var res []error
 
 	// path param customerId
-	if err := r.SetPathParam("customerId", swag.FormatInt64(o.CustomerID)); err != nil {
+	if err := r.SetPathParam("customerId", o.CustomerID); err != nil {
 		return err
 	}
 	if o.Group != nil {

@@ -35,16 +35,16 @@ type SCIMAttributeHeader struct {
 	Description string `json:"description,omitempty"`
 
 	// id
-	ID int64 `json:"id,omitempty"`
+	ID string `json:"id,omitempty"`
 
 	// idp Id
-	IdpID int64 `json:"idpId,omitempty"`
+	IdpID string `json:"idpId,omitempty"`
 
 	// modified by
-	ModifiedBy int64 `json:"modifiedBy,omitempty"`
+	ModifiedBy string `json:"modifiedBy,omitempty"`
 
 	// modified time
-	ModifiedTime int32 `json:"modifiedTime,omitempty"`
+	ModifiedTime string `json:"modifiedTime,omitempty"`
 
 	// multivalued
 	Multivalued bool `json:"multivalued,omitempty"`
