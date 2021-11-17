@@ -29,6 +29,12 @@ func (o *GetAppServerUsingGET1Reader) ReadResponse(response runtime.ClientRespon
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewGetAppServerUsingGET1BadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	case 401:
 		result := NewGetAppServerUsingGET1Unauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -80,6 +86,27 @@ func (o *GetAppServerUsingGET1OK) readResponse(response runtime.ClientResponse, 
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
+
+	return nil
+}
+
+// NewGetAppServerUsingGET1BadRequest creates a GetAppServerUsingGET1BadRequest with default headers values
+func NewGetAppServerUsingGET1BadRequest() *GetAppServerUsingGET1BadRequest {
+	return &GetAppServerUsingGET1BadRequest{}
+}
+
+/* GetAppServerUsingGET1BadRequest describes a response with status code 400, with default header values.
+
+BadRequest
+*/
+type GetAppServerUsingGET1BadRequest struct {
+}
+
+func (o *GetAppServerUsingGET1BadRequest) Error() string {
+	return fmt.Sprintf("[GET /mgmtconfig/v1/admin/customers/{customerId}/server/{serverId}][%d] getAppServerUsingGET1BadRequest ", 400)
+}
+
+func (o *GetAppServerUsingGET1BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }
