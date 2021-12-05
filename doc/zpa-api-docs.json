@@ -2901,15 +2901,13 @@
           "description" : "Read only. Ignored in PUT/POST calls."
         },
         "latitude" : {
-          "type" : "number",
-          "format" : "double"
+          "type" : "string"
         },
         "location" : {
           "type" : "string"
         },
         "longitude" : {
-          "type" : "number",
-          "format" : "double"
+          "type" : "string"
         },
         "modifiedBy" : {
           "type" : "string"

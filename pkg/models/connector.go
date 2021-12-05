@@ -76,13 +76,13 @@ type Connector struct {
 	LastUpgradeTime string `json:"lastUpgradeTime,omitempty"`
 
 	// latitude
-	Latitude float64 `json:"latitude,omitempty"`
+	Latitude string `json:"latitude,omitempty"`
 
 	// location
 	Location string `json:"location,omitempty"`
 
 	// longitude
-	Longitude float64 `json:"longitude,omitempty"`
+	Longitude string `json:"longitude,omitempty"`
 
 	// modified by
 	ModifiedBy string `json:"modifiedBy,omitempty"`
