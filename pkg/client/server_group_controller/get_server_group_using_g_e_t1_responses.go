@@ -29,6 +29,12 @@ func (o *GetServerGroupUsingGET1Reader) ReadResponse(response runtime.ClientResp
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewGetServerGroupUsingGET1BadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	case 401:
 		result := NewGetServerGroupUsingGET1Unauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -80,6 +86,27 @@ func (o *GetServerGroupUsingGET1OK) readResponse(response runtime.ClientResponse
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
+
+	return nil
+}
+
+// NewGetServerGroupUsingGET1BadRequest creates a GetServerGroupUsingGET1BadRequest with default headers values
+func NewGetServerGroupUsingGET1BadRequest() *GetServerGroupUsingGET1BadRequest {
+	return &GetServerGroupUsingGET1BadRequest{}
+}
+
+/* GetServerGroupUsingGET1BadRequest describes a response with status code 400, with default header values.
+
+BadRequest
+*/
+type GetServerGroupUsingGET1BadRequest struct {
+}
+
+func (o *GetServerGroupUsingGET1BadRequest) Error() string {
+	return fmt.Sprintf("[GET /mgmtconfig/v1/admin/customers/{customerId}/serverGroup/{groupId}][%d] getServerGroupUsingGET1BadRequest ", 400)
+}
+
+func (o *GetServerGroupUsingGET1BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }
