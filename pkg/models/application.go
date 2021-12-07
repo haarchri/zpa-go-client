@@ -86,6 +86,9 @@ type Application struct {
 	// server groups
 	ServerGroups []*AppServerGroup `json:"serverGroups"`
 
+	// tcp port range
+	TCPPortRange []*AppPortRange `json:"tcpPortRange"`
+
 	// tcp port ranges
 	TCPPortRanges []string `json:"tcpPortRanges"`
 
@@ -94,6 +97,9 @@ type Application struct {
 
 	// tcp ports out
 	TCPPortsOut []string `json:"tcpPortsOut"`
+
+	// udp port range
+	UDPPortRange []*AppPortRange `json:"udpPortRange"`
 
 	// udp port ranges
 	UDPPortRanges []string `json:"udpPortRanges"`
@@ -128,6 +134,14 @@ func (m *Application) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateServerGroups(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateTCPPortRange(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateUDPPortRange(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -382,11 +396,71 @@ func (m *Application) validateServerGroups(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *Application) validateTCPPortRange(formats strfmt.Registry) error {
+	if swag.IsZero(m.TCPPortRange) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.TCPPortRange); i++ {
+		if swag.IsZero(m.TCPPortRange[i]) { // not required
+			continue
+		}
+
+		if m.TCPPortRange[i] != nil {
+			if err := m.TCPPortRange[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("tcpPortRange" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("tcpPortRange" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *Application) validateUDPPortRange(formats strfmt.Registry) error {
+	if swag.IsZero(m.UDPPortRange) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.UDPPortRange); i++ {
+		if swag.IsZero(m.UDPPortRange[i]) { // not required
+			continue
+		}
+
+		if m.UDPPortRange[i] != nil {
+			if err := m.UDPPortRange[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("udpPortRange" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("udpPortRange" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
 // ContextValidate validate this application based on the context it is used
 func (m *Application) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.contextValidateServerGroups(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateTCPPortRange(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateUDPPortRange(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -406,6 +480,46 @@ func (m *Application) contextValidateServerGroups(ctx context.Context, formats s
 					return ve.ValidateName("serverGroups" + "." + strconv.Itoa(i))
 				} else if ce, ok := err.(*errors.CompositeError); ok {
 					return ce.ValidateName("serverGroups" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *Application) contextValidateTCPPortRange(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.TCPPortRange); i++ {
+
+		if m.TCPPortRange[i] != nil {
+			if err := m.TCPPortRange[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("tcpPortRange" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("tcpPortRange" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *Application) contextValidateUDPPortRange(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.UDPPortRange); i++ {
+
+		if m.UDPPortRange[i] != nil {
+			if err := m.UDPPortRange[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("udpPortRange" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("udpPortRange" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

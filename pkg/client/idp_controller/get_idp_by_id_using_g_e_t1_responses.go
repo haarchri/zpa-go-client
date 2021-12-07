@@ -29,6 +29,12 @@ func (o *GetIdpByIDUsingGET1Reader) ReadResponse(response runtime.ClientResponse
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewGetIdpByIDUsingGET1BadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	case 401:
 		result := NewGetIdpByIDUsingGET1Unauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -43,6 +49,12 @@ func (o *GetIdpByIDUsingGET1Reader) ReadResponse(response runtime.ClientResponse
 		return nil, result
 	case 404:
 		result := NewGetIdpByIDUsingGET1NotFound()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
+	case 429:
+		result := NewGetIdpByIDUsingGET1TooManyRequests()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -80,6 +92,27 @@ func (o *GetIdpByIDUsingGET1OK) readResponse(response runtime.ClientResponse, co
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
+
+	return nil
+}
+
+// NewGetIdpByIDUsingGET1BadRequest creates a GetIdpByIDUsingGET1BadRequest with default headers values
+func NewGetIdpByIDUsingGET1BadRequest() *GetIdpByIDUsingGET1BadRequest {
+	return &GetIdpByIDUsingGET1BadRequest{}
+}
+
+/* GetIdpByIDUsingGET1BadRequest describes a response with status code 400, with default header values.
+
+BadRequest
+*/
+type GetIdpByIDUsingGET1BadRequest struct {
+}
+
+func (o *GetIdpByIDUsingGET1BadRequest) Error() string {
+	return fmt.Sprintf("[GET /mgmtconfig/v1/admin/customers/{customerId}/idp/{idpId}][%d] getIdpByIdUsingGET1BadRequest ", 400)
+}
+
+func (o *GetIdpByIDUsingGET1BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -143,6 +176,27 @@ func (o *GetIdpByIDUsingGET1NotFound) Error() string {
 }
 
 func (o *GetIdpByIDUsingGET1NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	return nil
+}
+
+// NewGetIdpByIDUsingGET1TooManyRequests creates a GetIdpByIDUsingGET1TooManyRequests with default headers values
+func NewGetIdpByIDUsingGET1TooManyRequests() *GetIdpByIDUsingGET1TooManyRequests {
+	return &GetIdpByIDUsingGET1TooManyRequests{}
+}
+
+/* GetIdpByIDUsingGET1TooManyRequests describes a response with status code 429, with default header values.
+
+TooManyRequest
+*/
+type GetIdpByIDUsingGET1TooManyRequests struct {
+}
+
+func (o *GetIdpByIDUsingGET1TooManyRequests) Error() string {
+	return fmt.Sprintf("[GET /mgmtconfig/v1/admin/customers/{customerId}/idp/{idpId}][%d] getIdpByIdUsingGET1TooManyRequests ", 429)
+}
+
+func (o *GetIdpByIDUsingGET1TooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }

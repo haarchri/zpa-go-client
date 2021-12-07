@@ -29,6 +29,12 @@ func (o *GetAllSCIMAttributesUsingGET1Reader) ReadResponse(response runtime.Clie
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewGetAllSCIMAttributesUsingGET1BadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	case 401:
 		result := NewGetAllSCIMAttributesUsingGET1Unauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -43,6 +49,12 @@ func (o *GetAllSCIMAttributesUsingGET1Reader) ReadResponse(response runtime.Clie
 		return nil, result
 	case 404:
 		result := NewGetAllSCIMAttributesUsingGET1NotFound()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
+	case 429:
+		result := NewGetAllSCIMAttributesUsingGET1TooManyRequests()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -80,6 +92,27 @@ func (o *GetAllSCIMAttributesUsingGET1OK) readResponse(response runtime.ClientRe
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
+
+	return nil
+}
+
+// NewGetAllSCIMAttributesUsingGET1BadRequest creates a GetAllSCIMAttributesUsingGET1BadRequest with default headers values
+func NewGetAllSCIMAttributesUsingGET1BadRequest() *GetAllSCIMAttributesUsingGET1BadRequest {
+	return &GetAllSCIMAttributesUsingGET1BadRequest{}
+}
+
+/* GetAllSCIMAttributesUsingGET1BadRequest describes a response with status code 400, with default header values.
+
+BadRequest
+*/
+type GetAllSCIMAttributesUsingGET1BadRequest struct {
+}
+
+func (o *GetAllSCIMAttributesUsingGET1BadRequest) Error() string {
+	return fmt.Sprintf("[GET /mgmtconfig/v1/admin/customers/{customerId}/idp/{idpId}/scimattribute][%d] getAllSCIMAttributesUsingGET1BadRequest ", 400)
+}
+
+func (o *GetAllSCIMAttributesUsingGET1BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -143,6 +176,27 @@ func (o *GetAllSCIMAttributesUsingGET1NotFound) Error() string {
 }
 
 func (o *GetAllSCIMAttributesUsingGET1NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	return nil
+}
+
+// NewGetAllSCIMAttributesUsingGET1TooManyRequests creates a GetAllSCIMAttributesUsingGET1TooManyRequests with default headers values
+func NewGetAllSCIMAttributesUsingGET1TooManyRequests() *GetAllSCIMAttributesUsingGET1TooManyRequests {
+	return &GetAllSCIMAttributesUsingGET1TooManyRequests{}
+}
+
+/* GetAllSCIMAttributesUsingGET1TooManyRequests describes a response with status code 429, with default header values.
+
+TooManyRequest
+*/
+type GetAllSCIMAttributesUsingGET1TooManyRequests struct {
+}
+
+func (o *GetAllSCIMAttributesUsingGET1TooManyRequests) Error() string {
+	return fmt.Sprintf("[GET /mgmtconfig/v1/admin/customers/{customerId}/idp/{idpId}/scimattribute][%d] getAllSCIMAttributesUsingGET1TooManyRequests ", 429)
+}
+
+func (o *GetAllSCIMAttributesUsingGET1TooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }

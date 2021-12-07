@@ -34,9 +34,6 @@ type PolicyRule struct {
 	// app server groups
 	AppServerGroups []*AppServerGroup `json:"appServerGroups"`
 
-	// bypass default rule
-	BypassDefaultRule bool `json:"bypassDefaultRule,omitempty"`
-
 	// conditions
 	Conditions []*ConditionSet `json:"conditions"`
 
@@ -49,14 +46,14 @@ type PolicyRule struct {
 	// default rule
 	DefaultRule bool `json:"defaultRule,omitempty"`
 
+	// default rule name
+	DefaultRuleName string `json:"defaultRuleName,omitempty"`
+
 	// description
 	Description string `json:"description,omitempty"`
 
 	// id
 	ID string `json:"id,omitempty"`
-
-	// isolation default rule
-	IsolationDefaultRule bool `json:"isolationDefaultRule,omitempty"`
 
 	// modified by
 	ModifiedBy string `json:"modifiedBy,omitempty"`
@@ -76,25 +73,19 @@ type PolicyRule struct {
 	PolicySetID string `json:"policySetId,omitempty"`
 
 	// policy type
-	PolicyType int32 `json:"policyType,omitempty"`
+	PolicyType string `json:"policyType,omitempty"`
 
 	// priority
-	Priority int32 `json:"priority,omitempty"`
-
-	// reauth default rule
-	ReauthDefaultRule bool `json:"reauthDefaultRule,omitempty"`
+	Priority string `json:"priority,omitempty"`
 
 	// reauth idle timeout
-	ReauthIdleTimeout int32 `json:"reauthIdleTimeout,omitempty"`
+	ReauthIdleTimeout string `json:"reauthIdleTimeout,omitempty"`
 
 	// reauth timeout
-	ReauthTimeout int32 `json:"reauthTimeout,omitempty"`
+	ReauthTimeout string `json:"reauthTimeout,omitempty"`
 
 	// rule order
-	RuleOrder int32 `json:"ruleOrder,omitempty"`
-
-	// siem default rule
-	SiemDefaultRule bool `json:"siemDefaultRule,omitempty"`
+	RuleOrder string `json:"ruleOrder,omitempty"`
 
 	// zpn cbi profile Id
 	ZpnCbiProfileID string `json:"zpnCbiProfileId,omitempty"`

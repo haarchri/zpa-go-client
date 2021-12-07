@@ -29,6 +29,12 @@ func (o *AddAppServerGroupUsingPOST1Reader) ReadResponse(response runtime.Client
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewAddAppServerGroupUsingPOST1BadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	case 401:
 		result := NewAddAppServerGroupUsingPOST1Unauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -43,6 +49,12 @@ func (o *AddAppServerGroupUsingPOST1Reader) ReadResponse(response runtime.Client
 		return nil, result
 	case 404:
 		result := NewAddAppServerGroupUsingPOST1NotFound()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
+	case 429:
+		result := NewAddAppServerGroupUsingPOST1TooManyRequests()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -80,6 +92,27 @@ func (o *AddAppServerGroupUsingPOST1Created) readResponse(response runtime.Clien
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
+
+	return nil
+}
+
+// NewAddAppServerGroupUsingPOST1BadRequest creates a AddAppServerGroupUsingPOST1BadRequest with default headers values
+func NewAddAppServerGroupUsingPOST1BadRequest() *AddAppServerGroupUsingPOST1BadRequest {
+	return &AddAppServerGroupUsingPOST1BadRequest{}
+}
+
+/* AddAppServerGroupUsingPOST1BadRequest describes a response with status code 400, with default header values.
+
+BadRequest
+*/
+type AddAppServerGroupUsingPOST1BadRequest struct {
+}
+
+func (o *AddAppServerGroupUsingPOST1BadRequest) Error() string {
+	return fmt.Sprintf("[POST /mgmtconfig/v1/admin/customers/{customerId}/serverGroup][%d] addAppServerGroupUsingPOST1BadRequest ", 400)
+}
+
+func (o *AddAppServerGroupUsingPOST1BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -143,6 +176,27 @@ func (o *AddAppServerGroupUsingPOST1NotFound) Error() string {
 }
 
 func (o *AddAppServerGroupUsingPOST1NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	return nil
+}
+
+// NewAddAppServerGroupUsingPOST1TooManyRequests creates a AddAppServerGroupUsingPOST1TooManyRequests with default headers values
+func NewAddAppServerGroupUsingPOST1TooManyRequests() *AddAppServerGroupUsingPOST1TooManyRequests {
+	return &AddAppServerGroupUsingPOST1TooManyRequests{}
+}
+
+/* AddAppServerGroupUsingPOST1TooManyRequests describes a response with status code 429, with default header values.
+
+TooManyRequest
+*/
+type AddAppServerGroupUsingPOST1TooManyRequests struct {
+}
+
+func (o *AddAppServerGroupUsingPOST1TooManyRequests) Error() string {
+	return fmt.Sprintf("[POST /mgmtconfig/v1/admin/customers/{customerId}/serverGroup][%d] addAppServerGroupUsingPOST1TooManyRequests ", 429)
+}
+
+func (o *AddAppServerGroupUsingPOST1TooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }

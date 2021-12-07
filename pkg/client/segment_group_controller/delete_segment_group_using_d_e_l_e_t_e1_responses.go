@@ -26,6 +26,12 @@ func (o *DeleteSegmentGroupUsingDELETE1Reader) ReadResponse(response runtime.Cli
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewDeleteSegmentGroupUsingDELETE1BadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	case 401:
 		result := NewDeleteSegmentGroupUsingDELETE1Unauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -34,6 +40,12 @@ func (o *DeleteSegmentGroupUsingDELETE1Reader) ReadResponse(response runtime.Cli
 		return nil, result
 	case 403:
 		result := NewDeleteSegmentGroupUsingDELETE1Forbidden()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
+	case 429:
+		result := NewDeleteSegmentGroupUsingDELETE1TooManyRequests()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -60,6 +72,27 @@ func (o *DeleteSegmentGroupUsingDELETE1NoContent) Error() string {
 }
 
 func (o *DeleteSegmentGroupUsingDELETE1NoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	return nil
+}
+
+// NewDeleteSegmentGroupUsingDELETE1BadRequest creates a DeleteSegmentGroupUsingDELETE1BadRequest with default headers values
+func NewDeleteSegmentGroupUsingDELETE1BadRequest() *DeleteSegmentGroupUsingDELETE1BadRequest {
+	return &DeleteSegmentGroupUsingDELETE1BadRequest{}
+}
+
+/* DeleteSegmentGroupUsingDELETE1BadRequest describes a response with status code 400, with default header values.
+
+BadRequest
+*/
+type DeleteSegmentGroupUsingDELETE1BadRequest struct {
+}
+
+func (o *DeleteSegmentGroupUsingDELETE1BadRequest) Error() string {
+	return fmt.Sprintf("[DELETE /mgmtconfig/v1/admin/customers/{customerId}/segmentGroup/{segmentGroupId}][%d] deleteSegmentGroupUsingDELETE1BadRequest ", 400)
+}
+
+func (o *DeleteSegmentGroupUsingDELETE1BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -102,6 +135,27 @@ func (o *DeleteSegmentGroupUsingDELETE1Forbidden) Error() string {
 }
 
 func (o *DeleteSegmentGroupUsingDELETE1Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	return nil
+}
+
+// NewDeleteSegmentGroupUsingDELETE1TooManyRequests creates a DeleteSegmentGroupUsingDELETE1TooManyRequests with default headers values
+func NewDeleteSegmentGroupUsingDELETE1TooManyRequests() *DeleteSegmentGroupUsingDELETE1TooManyRequests {
+	return &DeleteSegmentGroupUsingDELETE1TooManyRequests{}
+}
+
+/* DeleteSegmentGroupUsingDELETE1TooManyRequests describes a response with status code 429, with default header values.
+
+TooManyRequest
+*/
+type DeleteSegmentGroupUsingDELETE1TooManyRequests struct {
+}
+
+func (o *DeleteSegmentGroupUsingDELETE1TooManyRequests) Error() string {
+	return fmt.Sprintf("[DELETE /mgmtconfig/v1/admin/customers/{customerId}/segmentGroup/{segmentGroupId}][%d] deleteSegmentGroupUsingDELETE1TooManyRequests ", 429)
+}
+
+func (o *DeleteSegmentGroupUsingDELETE1TooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }

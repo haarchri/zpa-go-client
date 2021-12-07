@@ -86,9 +86,6 @@ type Idp struct {
 	// scim service provider endpoint
 	ScimServiceProviderEndpoint string `json:"scimServiceProviderEndpoint,omitempty"`
 
-	// scim shared secret
-	ScimSharedSecret string `json:"scimSharedSecret,omitempty"`
-
 	// scim shared secret exists
 	ScimSharedSecretExists bool `json:"scimSharedSecretExists,omitempty"`
 

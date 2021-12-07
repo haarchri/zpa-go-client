@@ -43,10 +43,13 @@ type PolicySet struct {
 	Name *string `json:"name"`
 
 	// policy type
-	PolicyType int32 `json:"policyType,omitempty"`
+	PolicyType string `json:"policyType,omitempty"`
 
 	// rules
 	Rules []*PolicyRule `json:"rules"`
+
+	// sorted
+	Sorted bool `json:"sorted,omitempty"`
 }
 
 // Validate validates this policy set

@@ -29,6 +29,12 @@ func (o *GetSamlAttributeUsingGET1Reader) ReadResponse(response runtime.ClientRe
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewGetSamlAttributeUsingGET1BadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	case 401:
 		result := NewGetSamlAttributeUsingGET1Unauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -43,6 +49,12 @@ func (o *GetSamlAttributeUsingGET1Reader) ReadResponse(response runtime.ClientRe
 		return nil, result
 	case 404:
 		result := NewGetSamlAttributeUsingGET1NotFound()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
+	case 429:
+		result := NewGetSamlAttributeUsingGET1TooManyRequests()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -80,6 +92,27 @@ func (o *GetSamlAttributeUsingGET1OK) readResponse(response runtime.ClientRespon
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
+
+	return nil
+}
+
+// NewGetSamlAttributeUsingGET1BadRequest creates a GetSamlAttributeUsingGET1BadRequest with default headers values
+func NewGetSamlAttributeUsingGET1BadRequest() *GetSamlAttributeUsingGET1BadRequest {
+	return &GetSamlAttributeUsingGET1BadRequest{}
+}
+
+/* GetSamlAttributeUsingGET1BadRequest describes a response with status code 400, with default header values.
+
+BadRequest
+*/
+type GetSamlAttributeUsingGET1BadRequest struct {
+}
+
+func (o *GetSamlAttributeUsingGET1BadRequest) Error() string {
+	return fmt.Sprintf("[GET /mgmtconfig/v1/admin/customers/{customerId}/samlAttribute/{attrId}][%d] getSamlAttributeUsingGET1BadRequest ", 400)
+}
+
+func (o *GetSamlAttributeUsingGET1BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -143,6 +176,27 @@ func (o *GetSamlAttributeUsingGET1NotFound) Error() string {
 }
 
 func (o *GetSamlAttributeUsingGET1NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	return nil
+}
+
+// NewGetSamlAttributeUsingGET1TooManyRequests creates a GetSamlAttributeUsingGET1TooManyRequests with default headers values
+func NewGetSamlAttributeUsingGET1TooManyRequests() *GetSamlAttributeUsingGET1TooManyRequests {
+	return &GetSamlAttributeUsingGET1TooManyRequests{}
+}
+
+/* GetSamlAttributeUsingGET1TooManyRequests describes a response with status code 429, with default header values.
+
+TooManyRequest
+*/
+type GetSamlAttributeUsingGET1TooManyRequests struct {
+}
+
+func (o *GetSamlAttributeUsingGET1TooManyRequests) Error() string {
+	return fmt.Sprintf("[GET /mgmtconfig/v1/admin/customers/{customerId}/samlAttribute/{attrId}][%d] getSamlAttributeUsingGET1TooManyRequests ", 429)
+}
+
+func (o *GetSamlAttributeUsingGET1TooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }

@@ -13,17 +13,30 @@ import (
 	"github.com/haarchri/zpa-go-client/pkg/client/app_server_controller"
 	"github.com/haarchri/zpa-go-client/pkg/client/application_controller"
 	"github.com/haarchri/zpa-go-client/pkg/client/ba_certificate_controller"
+	"github.com/haarchri/zpa-go-client/pkg/client/ba_certificate_controller_v_2"
 	"github.com/haarchri/zpa-go-client/pkg/client/cloud_connector_group_controller"
+	"github.com/haarchri/zpa-go-client/pkg/client/connector_controller"
 	"github.com/haarchri/zpa-go-client/pkg/client/connector_group_controller"
+	"github.com/haarchri/zpa-go-client/pkg/client/customer_version_profile_controller"
+	"github.com/haarchri/zpa-go-client/pkg/client/enrollment_cert_controller"
+	"github.com/haarchri/zpa-go-client/pkg/client/enrollment_cert_controller_v_2"
 	"github.com/haarchri/zpa-go-client/pkg/client/idp_controller"
+	"github.com/haarchri/zpa-go-client/pkg/client/idp_controller_v_2"
+	"github.com/haarchri/zpa-go-client/pkg/client/lss_config_controller_v_2"
 	"github.com/haarchri/zpa-go-client/pkg/client/machine_group_controller"
 	"github.com/haarchri/zpa-go-client/pkg/client/policy_set_controller"
 	"github.com/haarchri/zpa-go-client/pkg/client/posture_profile_controller"
+	"github.com/haarchri/zpa-go-client/pkg/client/posture_profile_controller_v_2"
+	"github.com/haarchri/zpa-go-client/pkg/client/provisioning_key_controller"
 	"github.com/haarchri/zpa-go-client/pkg/client/saml_attr_controller"
+	"github.com/haarchri/zpa-go-client/pkg/client/saml_attr_controller_v_2"
 	"github.com/haarchri/zpa-go-client/pkg/client/scim_attribute_header_controller"
 	"github.com/haarchri/zpa-go-client/pkg/client/segment_group_controller"
 	"github.com/haarchri/zpa-go-client/pkg/client/server_group_controller"
+	"github.com/haarchri/zpa-go-client/pkg/client/service_edge_controller"
+	"github.com/haarchri/zpa-go-client/pkg/client/service_edge_group_controller"
 	"github.com/haarchri/zpa-go-client/pkg/client/trusted_network_controller"
+	"github.com/haarchri/zpa-go-client/pkg/client/trusted_network_controller_v_2"
 )
 
 // Default zscaler private access API portal HTTP client.
@@ -71,17 +84,30 @@ func New(transport runtime.ClientTransport, formats strfmt.Registry) *ZscalerPri
 	cli.AppServerController = app_server_controller.New(transport, formats)
 	cli.ApplicationController = application_controller.New(transport, formats)
 	cli.BaCertificateController = ba_certificate_controller.New(transport, formats)
+	cli.BaCertificateControllerv2 = ba_certificate_controller_v_2.New(transport, formats)
 	cli.CloudConnectorGroupController = cloud_connector_group_controller.New(transport, formats)
+	cli.ConnectorController = connector_controller.New(transport, formats)
 	cli.ConnectorGroupController = connector_group_controller.New(transport, formats)
+	cli.CustomerVersionProfileController = customer_version_profile_controller.New(transport, formats)
+	cli.EnrollmentCertController = enrollment_cert_controller.New(transport, formats)
+	cli.EnrollmentCertControllerv2 = enrollment_cert_controller_v_2.New(transport, formats)
 	cli.IdpController = idp_controller.New(transport, formats)
+	cli.IdpControllerv2 = idp_controller_v_2.New(transport, formats)
+	cli.LssConfigControllerv2 = lss_config_controller_v_2.New(transport, formats)
 	cli.MachineGroupController = machine_group_controller.New(transport, formats)
 	cli.PolicySetController = policy_set_controller.New(transport, formats)
 	cli.PostureProfileController = posture_profile_controller.New(transport, formats)
+	cli.PostureProfileControllerv2 = posture_profile_controller_v_2.New(transport, formats)
+	cli.ProvisioningKeyController = provisioning_key_controller.New(transport, formats)
 	cli.SamlAttrController = saml_attr_controller.New(transport, formats)
+	cli.SamlAttrControllerv2 = saml_attr_controller_v_2.New(transport, formats)
 	cli.ScimAttributeHeaderController = scim_attribute_header_controller.New(transport, formats)
 	cli.SegmentGroupController = segment_group_controller.New(transport, formats)
 	cli.ServerGroupController = server_group_controller.New(transport, formats)
+	cli.ServiceEdgeController = service_edge_controller.New(transport, formats)
+	cli.ServiceEdgeGroupController = service_edge_group_controller.New(transport, formats)
 	cli.TrustedNetworkController = trusted_network_controller.New(transport, formats)
+	cli.TrustedNetworkControllerv2 = trusted_network_controller_v_2.New(transport, formats)
 	return cli
 }
 
@@ -132,11 +158,25 @@ type ZscalerPrivateAccessAPIPortal struct {
 
 	BaCertificateController ba_certificate_controller.ClientService
 
+	BaCertificateControllerv2 ba_certificate_controller_v_2.ClientService
+
 	CloudConnectorGroupController cloud_connector_group_controller.ClientService
+
+	ConnectorController connector_controller.ClientService
 
 	ConnectorGroupController connector_group_controller.ClientService
 
+	CustomerVersionProfileController customer_version_profile_controller.ClientService
+
+	EnrollmentCertController enrollment_cert_controller.ClientService
+
+	EnrollmentCertControllerv2 enrollment_cert_controller_v_2.ClientService
+
 	IdpController idp_controller.ClientService
+
+	IdpControllerv2 idp_controller_v_2.ClientService
+
+	LssConfigControllerv2 lss_config_controller_v_2.ClientService
 
 	MachineGroupController machine_group_controller.ClientService
 
@@ -144,7 +184,13 @@ type ZscalerPrivateAccessAPIPortal struct {
 
 	PostureProfileController posture_profile_controller.ClientService
 
+	PostureProfileControllerv2 posture_profile_controller_v_2.ClientService
+
+	ProvisioningKeyController provisioning_key_controller.ClientService
+
 	SamlAttrController saml_attr_controller.ClientService
+
+	SamlAttrControllerv2 saml_attr_controller_v_2.ClientService
 
 	ScimAttributeHeaderController scim_attribute_header_controller.ClientService
 
@@ -152,7 +198,13 @@ type ZscalerPrivateAccessAPIPortal struct {
 
 	ServerGroupController server_group_controller.ClientService
 
+	ServiceEdgeController service_edge_controller.ClientService
+
+	ServiceEdgeGroupController service_edge_group_controller.ClientService
+
 	TrustedNetworkController trusted_network_controller.ClientService
+
+	TrustedNetworkControllerv2 trusted_network_controller_v_2.ClientService
 
 	Transport runtime.ClientTransport
 }
@@ -163,15 +215,28 @@ func (c *ZscalerPrivateAccessAPIPortal) SetTransport(transport runtime.ClientTra
 	c.AppServerController.SetTransport(transport)
 	c.ApplicationController.SetTransport(transport)
 	c.BaCertificateController.SetTransport(transport)
+	c.BaCertificateControllerv2.SetTransport(transport)
 	c.CloudConnectorGroupController.SetTransport(transport)
+	c.ConnectorController.SetTransport(transport)
 	c.ConnectorGroupController.SetTransport(transport)
+	c.CustomerVersionProfileController.SetTransport(transport)
+	c.EnrollmentCertController.SetTransport(transport)
+	c.EnrollmentCertControllerv2.SetTransport(transport)
 	c.IdpController.SetTransport(transport)
+	c.IdpControllerv2.SetTransport(transport)
+	c.LssConfigControllerv2.SetTransport(transport)
 	c.MachineGroupController.SetTransport(transport)
 	c.PolicySetController.SetTransport(transport)
 	c.PostureProfileController.SetTransport(transport)
+	c.PostureProfileControllerv2.SetTransport(transport)
+	c.ProvisioningKeyController.SetTransport(transport)
 	c.SamlAttrController.SetTransport(transport)
+	c.SamlAttrControllerv2.SetTransport(transport)
 	c.ScimAttributeHeaderController.SetTransport(transport)
 	c.SegmentGroupController.SetTransport(transport)
 	c.ServerGroupController.SetTransport(transport)
+	c.ServiceEdgeController.SetTransport(transport)
+	c.ServiceEdgeGroupController.SetTransport(transport)
 	c.TrustedNetworkController.SetTransport(transport)
+	c.TrustedNetworkControllerv2.SetTransport(transport)
 }

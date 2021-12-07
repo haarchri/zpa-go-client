@@ -14,7 +14,6 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
-	"github.com/go-openapi/swag"
 )
 
 // NewGetPolicyRulesByPageUsingGET1Params creates a new GetPolicyRulesByPageUsingGET1Params object,
@@ -69,22 +68,18 @@ type GetPolicyRulesByPageUsingGET1Params struct {
 	/* Page.
 
 	   Specifies the page number.
-
-	   Format: int32
 	*/
-	Page int32
+	Page string
 
 	/* Pagesize.
 
 	   Specifies the page size. If not provided, the default page size is 20. The max page size is 500.
-
-	   Format: int32
 	*/
-	Pagesize int32
+	Pagesize string
 
 	/* PolicyType.
 
-	   The type of policy.
+	   Type for differentiating policy types. Supported values : ACCESS_POLICY/GLOBAL_POLICY, TIMEOUT_POLICY/REAUTH_POLICY, SIEM_POLICY, CLIENT_FORWARDING_POLICY/BYPASS_POLICY
 	*/
 	PolicyType string
 
@@ -159,24 +154,24 @@ func (o *GetPolicyRulesByPageUsingGET1Params) SetCustomerID(customerID string) {
 }
 
 // WithPage adds the page to the get policy rules by page using g e t 1 params
-func (o *GetPolicyRulesByPageUsingGET1Params) WithPage(page int32) *GetPolicyRulesByPageUsingGET1Params {
+func (o *GetPolicyRulesByPageUsingGET1Params) WithPage(page string) *GetPolicyRulesByPageUsingGET1Params {
 	o.SetPage(page)
 	return o
 }
 
 // SetPage adds the page to the get policy rules by page using g e t 1 params
-func (o *GetPolicyRulesByPageUsingGET1Params) SetPage(page int32) {
+func (o *GetPolicyRulesByPageUsingGET1Params) SetPage(page string) {
 	o.Page = page
 }
 
 // WithPagesize adds the pagesize to the get policy rules by page using g e t 1 params
-func (o *GetPolicyRulesByPageUsingGET1Params) WithPagesize(pagesize int32) *GetPolicyRulesByPageUsingGET1Params {
+func (o *GetPolicyRulesByPageUsingGET1Params) WithPagesize(pagesize string) *GetPolicyRulesByPageUsingGET1Params {
 	o.SetPagesize(pagesize)
 	return o
 }
 
 // SetPagesize adds the pagesize to the get policy rules by page using g e t 1 params
-func (o *GetPolicyRulesByPageUsingGET1Params) SetPagesize(pagesize int32) {
+func (o *GetPolicyRulesByPageUsingGET1Params) SetPagesize(pagesize string) {
 	o.Pagesize = pagesize
 }
 
@@ -217,7 +212,7 @@ func (o *GetPolicyRulesByPageUsingGET1Params) WriteToRequest(r runtime.ClientReq
 
 	// query param page
 	qrPage := o.Page
-	qPage := swag.FormatInt32(qrPage)
+	qPage := qrPage
 
 	if err := r.SetQueryParam("page", qPage); err != nil {
 		return err
@@ -225,7 +220,7 @@ func (o *GetPolicyRulesByPageUsingGET1Params) WriteToRequest(r runtime.ClientReq
 
 	// query param pagesize
 	qrPagesize := o.Pagesize
-	qPagesize := swag.FormatInt32(qrPagesize)
+	qPagesize := qrPagesize
 
 	if err := r.SetQueryParam("pagesize", qPagesize); err != nil {
 		return err

@@ -29,6 +29,12 @@ func (o *GetPostureProfileUsingGET1Reader) ReadResponse(response runtime.ClientR
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewGetPostureProfileUsingGET1BadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	case 401:
 		result := NewGetPostureProfileUsingGET1Unauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -43,6 +49,12 @@ func (o *GetPostureProfileUsingGET1Reader) ReadResponse(response runtime.ClientR
 		return nil, result
 	case 404:
 		result := NewGetPostureProfileUsingGET1NotFound()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
+	case 429:
+		result := NewGetPostureProfileUsingGET1TooManyRequests()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -80,6 +92,27 @@ func (o *GetPostureProfileUsingGET1OK) readResponse(response runtime.ClientRespo
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
+
+	return nil
+}
+
+// NewGetPostureProfileUsingGET1BadRequest creates a GetPostureProfileUsingGET1BadRequest with default headers values
+func NewGetPostureProfileUsingGET1BadRequest() *GetPostureProfileUsingGET1BadRequest {
+	return &GetPostureProfileUsingGET1BadRequest{}
+}
+
+/* GetPostureProfileUsingGET1BadRequest describes a response with status code 400, with default header values.
+
+BadRequest
+*/
+type GetPostureProfileUsingGET1BadRequest struct {
+}
+
+func (o *GetPostureProfileUsingGET1BadRequest) Error() string {
+	return fmt.Sprintf("[GET /mgmtconfig/v1/admin/customers/{customerId}/posture/{id}][%d] getPostureProfileUsingGET1BadRequest ", 400)
+}
+
+func (o *GetPostureProfileUsingGET1BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -143,6 +176,27 @@ func (o *GetPostureProfileUsingGET1NotFound) Error() string {
 }
 
 func (o *GetPostureProfileUsingGET1NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	return nil
+}
+
+// NewGetPostureProfileUsingGET1TooManyRequests creates a GetPostureProfileUsingGET1TooManyRequests with default headers values
+func NewGetPostureProfileUsingGET1TooManyRequests() *GetPostureProfileUsingGET1TooManyRequests {
+	return &GetPostureProfileUsingGET1TooManyRequests{}
+}
+
+/* GetPostureProfileUsingGET1TooManyRequests describes a response with status code 429, with default header values.
+
+TooManyRequest
+*/
+type GetPostureProfileUsingGET1TooManyRequests struct {
+}
+
+func (o *GetPostureProfileUsingGET1TooManyRequests) Error() string {
+	return fmt.Sprintf("[GET /mgmtconfig/v1/admin/customers/{customerId}/posture/{id}][%d] getPostureProfileUsingGET1TooManyRequests ", 429)
+}
+
+func (o *GetPostureProfileUsingGET1TooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }

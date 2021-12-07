@@ -29,6 +29,12 @@ func (o *GetAllApplicationsUsingGET3Reader) ReadResponse(response runtime.Client
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewGetAllApplicationsUsingGET3BadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	case 401:
 		result := NewGetAllApplicationsUsingGET3Unauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -43,6 +49,12 @@ func (o *GetAllApplicationsUsingGET3Reader) ReadResponse(response runtime.Client
 		return nil, result
 	case 404:
 		result := NewGetAllApplicationsUsingGET3NotFound()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
+	case 429:
+		result := NewGetAllApplicationsUsingGET3TooManyRequests()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -80,6 +92,27 @@ func (o *GetAllApplicationsUsingGET3OK) readResponse(response runtime.ClientResp
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
+
+	return nil
+}
+
+// NewGetAllApplicationsUsingGET3BadRequest creates a GetAllApplicationsUsingGET3BadRequest with default headers values
+func NewGetAllApplicationsUsingGET3BadRequest() *GetAllApplicationsUsingGET3BadRequest {
+	return &GetAllApplicationsUsingGET3BadRequest{}
+}
+
+/* GetAllApplicationsUsingGET3BadRequest describes a response with status code 400, with default header values.
+
+BadRequest
+*/
+type GetAllApplicationsUsingGET3BadRequest struct {
+}
+
+func (o *GetAllApplicationsUsingGET3BadRequest) Error() string {
+	return fmt.Sprintf("[GET /mgmtconfig/v1/admin/customers/{customerId}/application][%d] getAllApplicationsUsingGET3BadRequest ", 400)
+}
+
+func (o *GetAllApplicationsUsingGET3BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -143,6 +176,27 @@ func (o *GetAllApplicationsUsingGET3NotFound) Error() string {
 }
 
 func (o *GetAllApplicationsUsingGET3NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	return nil
+}
+
+// NewGetAllApplicationsUsingGET3TooManyRequests creates a GetAllApplicationsUsingGET3TooManyRequests with default headers values
+func NewGetAllApplicationsUsingGET3TooManyRequests() *GetAllApplicationsUsingGET3TooManyRequests {
+	return &GetAllApplicationsUsingGET3TooManyRequests{}
+}
+
+/* GetAllApplicationsUsingGET3TooManyRequests describes a response with status code 429, with default header values.
+
+TooManyRequest
+*/
+type GetAllApplicationsUsingGET3TooManyRequests struct {
+}
+
+func (o *GetAllApplicationsUsingGET3TooManyRequests) Error() string {
+	return fmt.Sprintf("[GET /mgmtconfig/v1/admin/customers/{customerId}/application][%d] getAllApplicationsUsingGET3TooManyRequests ", 429)
+}
+
+func (o *GetAllApplicationsUsingGET3TooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }

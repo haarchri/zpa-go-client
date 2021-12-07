@@ -29,6 +29,12 @@ func (o *AddAppServerUsingPOST1Reader) ReadResponse(response runtime.ClientRespo
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewAddAppServerUsingPOST1BadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	case 401:
 		result := NewAddAppServerUsingPOST1Unauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -43,6 +49,12 @@ func (o *AddAppServerUsingPOST1Reader) ReadResponse(response runtime.ClientRespo
 		return nil, result
 	case 404:
 		result := NewAddAppServerUsingPOST1NotFound()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
+	case 429:
+		result := NewAddAppServerUsingPOST1TooManyRequests()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -80,6 +92,27 @@ func (o *AddAppServerUsingPOST1Created) readResponse(response runtime.ClientResp
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
+
+	return nil
+}
+
+// NewAddAppServerUsingPOST1BadRequest creates a AddAppServerUsingPOST1BadRequest with default headers values
+func NewAddAppServerUsingPOST1BadRequest() *AddAppServerUsingPOST1BadRequest {
+	return &AddAppServerUsingPOST1BadRequest{}
+}
+
+/* AddAppServerUsingPOST1BadRequest describes a response with status code 400, with default header values.
+
+BadRequest
+*/
+type AddAppServerUsingPOST1BadRequest struct {
+}
+
+func (o *AddAppServerUsingPOST1BadRequest) Error() string {
+	return fmt.Sprintf("[POST /mgmtconfig/v1/admin/customers/{customerId}/server][%d] addAppServerUsingPOST1BadRequest ", 400)
+}
+
+func (o *AddAppServerUsingPOST1BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -143,6 +176,27 @@ func (o *AddAppServerUsingPOST1NotFound) Error() string {
 }
 
 func (o *AddAppServerUsingPOST1NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	return nil
+}
+
+// NewAddAppServerUsingPOST1TooManyRequests creates a AddAppServerUsingPOST1TooManyRequests with default headers values
+func NewAddAppServerUsingPOST1TooManyRequests() *AddAppServerUsingPOST1TooManyRequests {
+	return &AddAppServerUsingPOST1TooManyRequests{}
+}
+
+/* AddAppServerUsingPOST1TooManyRequests describes a response with status code 429, with default header values.
+
+TooManyRequest
+*/
+type AddAppServerUsingPOST1TooManyRequests struct {
+}
+
+func (o *AddAppServerUsingPOST1TooManyRequests) Error() string {
+	return fmt.Sprintf("[POST /mgmtconfig/v1/admin/customers/{customerId}/server][%d] addAppServerUsingPOST1TooManyRequests ", 429)
+}
+
+func (o *AddAppServerUsingPOST1TooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }

@@ -56,6 +56,12 @@ func (o *UpdateAppServerUsingPUT1Reader) ReadResponse(response runtime.ClientRes
 			return nil, err
 		}
 		return nil, result
+	case 429:
+		result := NewUpdateAppServerUsingPUT1TooManyRequests()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -183,6 +189,27 @@ func (o *UpdateAppServerUsingPUT1NotFound) Error() string {
 }
 
 func (o *UpdateAppServerUsingPUT1NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	return nil
+}
+
+// NewUpdateAppServerUsingPUT1TooManyRequests creates a UpdateAppServerUsingPUT1TooManyRequests with default headers values
+func NewUpdateAppServerUsingPUT1TooManyRequests() *UpdateAppServerUsingPUT1TooManyRequests {
+	return &UpdateAppServerUsingPUT1TooManyRequests{}
+}
+
+/* UpdateAppServerUsingPUT1TooManyRequests describes a response with status code 429, with default header values.
+
+TooManyRequest
+*/
+type UpdateAppServerUsingPUT1TooManyRequests struct {
+}
+
+func (o *UpdateAppServerUsingPUT1TooManyRequests) Error() string {
+	return fmt.Sprintf("[PUT /mgmtconfig/v1/admin/customers/{customerId}/server/{serverId}][%d] updateAppServerUsingPUT1TooManyRequests ", 429)
+}
+
+func (o *UpdateAppServerUsingPUT1TooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }

@@ -38,7 +38,7 @@ type ClientService interface {
 }
 
 /*
-  GetAllTrustedNetworksUsingGET1 gets all the trusted networks
+  GetAllTrustedNetworksUsingGET1 gets all the trusted networks this API will be deprecated in a future release
 */
 func (a *Client) GetAllTrustedNetworksUsingGET1(params *GetAllTrustedNetworksUsingGET1Params, opts ...ClientOption) (*GetAllTrustedNetworksUsingGET1OK, error) {
 	// TODO: Validate the params before sending

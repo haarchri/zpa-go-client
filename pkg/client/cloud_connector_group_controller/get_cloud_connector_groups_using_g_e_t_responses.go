@@ -29,6 +29,12 @@ func (o *GetCloudConnectorGroupsUsingGETReader) ReadResponse(response runtime.Cl
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewGetCloudConnectorGroupsUsingGETBadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	case 401:
 		result := NewGetCloudConnectorGroupsUsingGETUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -43,6 +49,12 @@ func (o *GetCloudConnectorGroupsUsingGETReader) ReadResponse(response runtime.Cl
 		return nil, result
 	case 404:
 		result := NewGetCloudConnectorGroupsUsingGETNotFound()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
+	case 429:
+		result := NewGetCloudConnectorGroupsUsingGETTooManyRequests()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -80,6 +92,27 @@ func (o *GetCloudConnectorGroupsUsingGETOK) readResponse(response runtime.Client
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
+
+	return nil
+}
+
+// NewGetCloudConnectorGroupsUsingGETBadRequest creates a GetCloudConnectorGroupsUsingGETBadRequest with default headers values
+func NewGetCloudConnectorGroupsUsingGETBadRequest() *GetCloudConnectorGroupsUsingGETBadRequest {
+	return &GetCloudConnectorGroupsUsingGETBadRequest{}
+}
+
+/* GetCloudConnectorGroupsUsingGETBadRequest describes a response with status code 400, with default header values.
+
+BadRequest
+*/
+type GetCloudConnectorGroupsUsingGETBadRequest struct {
+}
+
+func (o *GetCloudConnectorGroupsUsingGETBadRequest) Error() string {
+	return fmt.Sprintf("[GET /mgmtconfig/v1/admin/customers/{customerId}/cloudConnectorGroup][%d] getCloudConnectorGroupsUsingGETBadRequest ", 400)
+}
+
+func (o *GetCloudConnectorGroupsUsingGETBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -143,6 +176,27 @@ func (o *GetCloudConnectorGroupsUsingGETNotFound) Error() string {
 }
 
 func (o *GetCloudConnectorGroupsUsingGETNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	return nil
+}
+
+// NewGetCloudConnectorGroupsUsingGETTooManyRequests creates a GetCloudConnectorGroupsUsingGETTooManyRequests with default headers values
+func NewGetCloudConnectorGroupsUsingGETTooManyRequests() *GetCloudConnectorGroupsUsingGETTooManyRequests {
+	return &GetCloudConnectorGroupsUsingGETTooManyRequests{}
+}
+
+/* GetCloudConnectorGroupsUsingGETTooManyRequests describes a response with status code 429, with default header values.
+
+TooManyRequest
+*/
+type GetCloudConnectorGroupsUsingGETTooManyRequests struct {
+}
+
+func (o *GetCloudConnectorGroupsUsingGETTooManyRequests) Error() string {
+	return fmt.Sprintf("[GET /mgmtconfig/v1/admin/customers/{customerId}/cloudConnectorGroup][%d] getCloudConnectorGroupsUsingGETTooManyRequests ", 429)
+}
+
+func (o *GetCloudConnectorGroupsUsingGETTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }

@@ -23,7 +23,7 @@ type PageListOfServerGroupDTO struct {
 	List []*ServerGroupDTO `json:"list"`
 
 	// total pages
-	TotalPages int32 `json:"totalPages,omitempty"`
+	TotalPages string `json:"totalPages,omitempty"`
 }
 
 // Validate validates this page list of server group d t o

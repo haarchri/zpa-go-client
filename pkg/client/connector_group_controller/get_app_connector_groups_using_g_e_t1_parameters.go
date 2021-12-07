@@ -14,7 +14,6 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
-	"github.com/go-openapi/swag"
 )
 
 // NewGetAppConnectorGroupsUsingGET1Params creates a new GetAppConnectorGroupsUsingGET1Params object,
@@ -69,18 +68,14 @@ type GetAppConnectorGroupsUsingGET1Params struct {
 	/* Page.
 
 	   Specifies the page number.
-
-	   Format: int32
 	*/
-	Page int32
+	Page string
 
 	/* Pagesize.
 
 	   Specifies the page size. If not provided, the default page size is 20. The max page size is 500.
-
-	   Format: int32
 	*/
-	Pagesize int32
+	Pagesize string
 
 	/* Search.
 
@@ -153,24 +148,24 @@ func (o *GetAppConnectorGroupsUsingGET1Params) SetCustomerID(customerID string) 
 }
 
 // WithPage adds the page to the get app connector groups using g e t 1 params
-func (o *GetAppConnectorGroupsUsingGET1Params) WithPage(page int32) *GetAppConnectorGroupsUsingGET1Params {
+func (o *GetAppConnectorGroupsUsingGET1Params) WithPage(page string) *GetAppConnectorGroupsUsingGET1Params {
 	o.SetPage(page)
 	return o
 }
 
 // SetPage adds the page to the get app connector groups using g e t 1 params
-func (o *GetAppConnectorGroupsUsingGET1Params) SetPage(page int32) {
+func (o *GetAppConnectorGroupsUsingGET1Params) SetPage(page string) {
 	o.Page = page
 }
 
 // WithPagesize adds the pagesize to the get app connector groups using g e t 1 params
-func (o *GetAppConnectorGroupsUsingGET1Params) WithPagesize(pagesize int32) *GetAppConnectorGroupsUsingGET1Params {
+func (o *GetAppConnectorGroupsUsingGET1Params) WithPagesize(pagesize string) *GetAppConnectorGroupsUsingGET1Params {
 	o.SetPagesize(pagesize)
 	return o
 }
 
 // SetPagesize adds the pagesize to the get app connector groups using g e t 1 params
-func (o *GetAppConnectorGroupsUsingGET1Params) SetPagesize(pagesize int32) {
+func (o *GetAppConnectorGroupsUsingGET1Params) SetPagesize(pagesize string) {
 	o.Pagesize = pagesize
 }
 
@@ -200,7 +195,7 @@ func (o *GetAppConnectorGroupsUsingGET1Params) WriteToRequest(r runtime.ClientRe
 
 	// query param page
 	qrPage := o.Page
-	qPage := swag.FormatInt32(qrPage)
+	qPage := qrPage
 
 	if err := r.SetQueryParam("page", qPage); err != nil {
 		return err
@@ -208,7 +203,7 @@ func (o *GetAppConnectorGroupsUsingGET1Params) WriteToRequest(r runtime.ClientRe
 
 	// query param pagesize
 	qrPagesize := o.Pagesize
-	qPagesize := swag.FormatInt32(qrPagesize)
+	qPagesize := qrPagesize
 
 	if err := r.SetQueryParam("pagesize", qPagesize); err != nil {
 		return err

@@ -32,6 +32,12 @@ func (o *UpdateAppServerGroupUsingPUT1Reader) ReadResponse(response runtime.Clie
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewUpdateAppServerGroupUsingPUT1BadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	case 401:
 		result := NewUpdateAppServerGroupUsingPUT1Unauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -46,6 +52,12 @@ func (o *UpdateAppServerGroupUsingPUT1Reader) ReadResponse(response runtime.Clie
 		return nil, result
 	case 404:
 		result := NewUpdateAppServerGroupUsingPUT1NotFound()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
+	case 429:
+		result := NewUpdateAppServerGroupUsingPUT1TooManyRequests()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -93,6 +105,27 @@ func (o *UpdateAppServerGroupUsingPUT1NoContent) Error() string {
 }
 
 func (o *UpdateAppServerGroupUsingPUT1NoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	return nil
+}
+
+// NewUpdateAppServerGroupUsingPUT1BadRequest creates a UpdateAppServerGroupUsingPUT1BadRequest with default headers values
+func NewUpdateAppServerGroupUsingPUT1BadRequest() *UpdateAppServerGroupUsingPUT1BadRequest {
+	return &UpdateAppServerGroupUsingPUT1BadRequest{}
+}
+
+/* UpdateAppServerGroupUsingPUT1BadRequest describes a response with status code 400, with default header values.
+
+BadRequest
+*/
+type UpdateAppServerGroupUsingPUT1BadRequest struct {
+}
+
+func (o *UpdateAppServerGroupUsingPUT1BadRequest) Error() string {
+	return fmt.Sprintf("[PUT /mgmtconfig/v1/admin/customers/{customerId}/serverGroup/{groupId}][%d] updateAppServerGroupUsingPUT1BadRequest ", 400)
+}
+
+func (o *UpdateAppServerGroupUsingPUT1BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -156,6 +189,27 @@ func (o *UpdateAppServerGroupUsingPUT1NotFound) Error() string {
 }
 
 func (o *UpdateAppServerGroupUsingPUT1NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	return nil
+}
+
+// NewUpdateAppServerGroupUsingPUT1TooManyRequests creates a UpdateAppServerGroupUsingPUT1TooManyRequests with default headers values
+func NewUpdateAppServerGroupUsingPUT1TooManyRequests() *UpdateAppServerGroupUsingPUT1TooManyRequests {
+	return &UpdateAppServerGroupUsingPUT1TooManyRequests{}
+}
+
+/* UpdateAppServerGroupUsingPUT1TooManyRequests describes a response with status code 429, with default header values.
+
+TooManyRequest
+*/
+type UpdateAppServerGroupUsingPUT1TooManyRequests struct {
+}
+
+func (o *UpdateAppServerGroupUsingPUT1TooManyRequests) Error() string {
+	return fmt.Sprintf("[PUT /mgmtconfig/v1/admin/customers/{customerId}/serverGroup/{groupId}][%d] updateAppServerGroupUsingPUT1TooManyRequests ", 429)
+}
+
+func (o *UpdateAppServerGroupUsingPUT1TooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }

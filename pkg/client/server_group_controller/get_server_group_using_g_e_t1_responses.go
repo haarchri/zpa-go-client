@@ -53,6 +53,12 @@ func (o *GetServerGroupUsingGET1Reader) ReadResponse(response runtime.ClientResp
 			return nil, err
 		}
 		return nil, result
+	case 429:
+		result := NewGetServerGroupUsingGET1TooManyRequests()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -170,6 +176,27 @@ func (o *GetServerGroupUsingGET1NotFound) Error() string {
 }
 
 func (o *GetServerGroupUsingGET1NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	return nil
+}
+
+// NewGetServerGroupUsingGET1TooManyRequests creates a GetServerGroupUsingGET1TooManyRequests with default headers values
+func NewGetServerGroupUsingGET1TooManyRequests() *GetServerGroupUsingGET1TooManyRequests {
+	return &GetServerGroupUsingGET1TooManyRequests{}
+}
+
+/* GetServerGroupUsingGET1TooManyRequests describes a response with status code 429, with default header values.
+
+TooManyRequest
+*/
+type GetServerGroupUsingGET1TooManyRequests struct {
+}
+
+func (o *GetServerGroupUsingGET1TooManyRequests) Error() string {
+	return fmt.Sprintf("[GET /mgmtconfig/v1/admin/customers/{customerId}/serverGroup/{groupId}][%d] getServerGroupUsingGET1TooManyRequests ", 429)
+}
+
+func (o *GetServerGroupUsingGET1TooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }

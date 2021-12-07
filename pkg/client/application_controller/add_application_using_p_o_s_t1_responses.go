@@ -53,6 +53,12 @@ func (o *AddApplicationUsingPOST1Reader) ReadResponse(response runtime.ClientRes
 			return nil, err
 		}
 		return nil, result
+	case 429:
+		result := NewAddApplicationUsingPOST1TooManyRequests()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -170,6 +176,27 @@ func (o *AddApplicationUsingPOST1NotFound) Error() string {
 }
 
 func (o *AddApplicationUsingPOST1NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	return nil
+}
+
+// NewAddApplicationUsingPOST1TooManyRequests creates a AddApplicationUsingPOST1TooManyRequests with default headers values
+func NewAddApplicationUsingPOST1TooManyRequests() *AddApplicationUsingPOST1TooManyRequests {
+	return &AddApplicationUsingPOST1TooManyRequests{}
+}
+
+/* AddApplicationUsingPOST1TooManyRequests describes a response with status code 429, with default header values.
+
+TooManyRequest
+*/
+type AddApplicationUsingPOST1TooManyRequests struct {
+}
+
+func (o *AddApplicationUsingPOST1TooManyRequests) Error() string {
+	return fmt.Sprintf("[POST /mgmtconfig/v1/admin/customers/{customerId}/application][%d] addApplicationUsingPOST1TooManyRequests ", 429)
+}
+
+func (o *AddApplicationUsingPOST1TooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }

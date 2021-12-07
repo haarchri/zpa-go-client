@@ -76,7 +76,7 @@ func (a *Client) GetIdpByIDUsingGET1(params *GetIdpByIDUsingGET1Params, opts ...
 }
 
 /*
-  GetIdpUsingGET1 gets the configured Id p details
+  GetIdpUsingGET1 gets the configured Id p details this API will be deprecated in a future release
 */
 func (a *Client) GetIdpUsingGET1(params *GetIdpUsingGET1Params, opts ...ClientOption) (*GetIdpUsingGET1OK, error) {
 	// TODO: Validate the params before sending

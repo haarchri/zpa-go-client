@@ -14,7 +14,6 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
-	"github.com/go-openapi/swag"
 )
 
 // NewGetAllApplicationsUsingGET3Params creates a new GetAllApplicationsUsingGET3Params object,
@@ -69,18 +68,14 @@ type GetAllApplicationsUsingGET3Params struct {
 	/* Page.
 
 	   Specifies the page number.
-
-	   Format: int32
 	*/
-	Page int32
+	Page string
 
 	/* Pagesize.
 
 	   Specifies the page size. If not provided, the default page size is 20. The max page size is 500.
-
-	   Format: int32
 	*/
-	Pagesize int32
+	Pagesize string
 
 	/* Search.
 
@@ -153,24 +148,24 @@ func (o *GetAllApplicationsUsingGET3Params) SetCustomerID(customerID string) {
 }
 
 // WithPage adds the page to the get all applications using g e t 3 params
-func (o *GetAllApplicationsUsingGET3Params) WithPage(page int32) *GetAllApplicationsUsingGET3Params {
+func (o *GetAllApplicationsUsingGET3Params) WithPage(page string) *GetAllApplicationsUsingGET3Params {
 	o.SetPage(page)
 	return o
 }
 
 // SetPage adds the page to the get all applications using g e t 3 params
-func (o *GetAllApplicationsUsingGET3Params) SetPage(page int32) {
+func (o *GetAllApplicationsUsingGET3Params) SetPage(page string) {
 	o.Page = page
 }
 
 // WithPagesize adds the pagesize to the get all applications using g e t 3 params
-func (o *GetAllApplicationsUsingGET3Params) WithPagesize(pagesize int32) *GetAllApplicationsUsingGET3Params {
+func (o *GetAllApplicationsUsingGET3Params) WithPagesize(pagesize string) *GetAllApplicationsUsingGET3Params {
 	o.SetPagesize(pagesize)
 	return o
 }
 
 // SetPagesize adds the pagesize to the get all applications using g e t 3 params
-func (o *GetAllApplicationsUsingGET3Params) SetPagesize(pagesize int32) {
+func (o *GetAllApplicationsUsingGET3Params) SetPagesize(pagesize string) {
 	o.Pagesize = pagesize
 }
 
@@ -200,7 +195,7 @@ func (o *GetAllApplicationsUsingGET3Params) WriteToRequest(r runtime.ClientReque
 
 	// query param page
 	qrPage := o.Page
-	qPage := swag.FormatInt32(qrPage)
+	qPage := qrPage
 
 	if err := r.SetQueryParam("page", qPage); err != nil {
 		return err
@@ -208,7 +203,7 @@ func (o *GetAllApplicationsUsingGET3Params) WriteToRequest(r runtime.ClientReque
 
 	// query param pagesize
 	qrPagesize := o.Pagesize
-	qPagesize := swag.FormatInt32(qrPagesize)
+	qPagesize := qrPagesize
 
 	if err := r.SetQueryParam("pagesize", qPagesize); err != nil {
 		return err
