@@ -26,6 +26,12 @@ func (o *DeleteAppServerGroupUsingDELETE1Reader) ReadResponse(response runtime.C
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewDeleteAppServerGroupUsingDELETE1BadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	case 401:
 		result := NewDeleteAppServerGroupUsingDELETE1Unauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -34,6 +40,12 @@ func (o *DeleteAppServerGroupUsingDELETE1Reader) ReadResponse(response runtime.C
 		return nil, result
 	case 403:
 		result := NewDeleteAppServerGroupUsingDELETE1Forbidden()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
+	case 429:
+		result := NewDeleteAppServerGroupUsingDELETE1TooManyRequests()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -60,6 +72,27 @@ func (o *DeleteAppServerGroupUsingDELETE1NoContent) Error() string {
 }
 
 func (o *DeleteAppServerGroupUsingDELETE1NoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	return nil
+}
+
+// NewDeleteAppServerGroupUsingDELETE1BadRequest creates a DeleteAppServerGroupUsingDELETE1BadRequest with default headers values
+func NewDeleteAppServerGroupUsingDELETE1BadRequest() *DeleteAppServerGroupUsingDELETE1BadRequest {
+	return &DeleteAppServerGroupUsingDELETE1BadRequest{}
+}
+
+/* DeleteAppServerGroupUsingDELETE1BadRequest describes a response with status code 400, with default header values.
+
+BadRequest
+*/
+type DeleteAppServerGroupUsingDELETE1BadRequest struct {
+}
+
+func (o *DeleteAppServerGroupUsingDELETE1BadRequest) Error() string {
+	return fmt.Sprintf("[DELETE /mgmtconfig/v1/admin/customers/{customerId}/serverGroup/{groupId}][%d] deleteAppServerGroupUsingDELETE1BadRequest ", 400)
+}
+
+func (o *DeleteAppServerGroupUsingDELETE1BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -102,6 +135,27 @@ func (o *DeleteAppServerGroupUsingDELETE1Forbidden) Error() string {
 }
 
 func (o *DeleteAppServerGroupUsingDELETE1Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	return nil
+}
+
+// NewDeleteAppServerGroupUsingDELETE1TooManyRequests creates a DeleteAppServerGroupUsingDELETE1TooManyRequests with default headers values
+func NewDeleteAppServerGroupUsingDELETE1TooManyRequests() *DeleteAppServerGroupUsingDELETE1TooManyRequests {
+	return &DeleteAppServerGroupUsingDELETE1TooManyRequests{}
+}
+
+/* DeleteAppServerGroupUsingDELETE1TooManyRequests describes a response with status code 429, with default header values.
+
+TooManyRequest
+*/
+type DeleteAppServerGroupUsingDELETE1TooManyRequests struct {
+}
+
+func (o *DeleteAppServerGroupUsingDELETE1TooManyRequests) Error() string {
+	return fmt.Sprintf("[DELETE /mgmtconfig/v1/admin/customers/{customerId}/serverGroup/{groupId}][%d] deleteAppServerGroupUsingDELETE1TooManyRequests ", 429)
+}
+
+func (o *DeleteAppServerGroupUsingDELETE1TooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }

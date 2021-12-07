@@ -38,7 +38,7 @@ type ClientService interface {
 }
 
 /*
-  GetAllAttributesUsingGET1 gets all posture profiles
+  GetAllAttributesUsingGET1 gets all posture profiles this API will be deprecated in a future release
 */
 func (a *Client) GetAllAttributesUsingGET1(params *GetAllAttributesUsingGET1Params, opts ...ClientOption) (*GetAllAttributesUsingGET1OK, error) {
 	// TODO: Validate the params before sending

@@ -48,6 +48,9 @@ type Connector struct {
 	// enabled
 	Enabled bool `json:"enabled,omitempty"`
 
+	// enrollment cert
+	EnrollmentCert map[string]string `json:"enrollmentCert,omitempty"`
+
 	// Read only. Ignored in PUT/POST calls.
 	ExpectedUpgradeTime string `json:"expectedUpgradeTime,omitempty"`
 
@@ -70,19 +73,25 @@ type Connector struct {
 	LastBrokerConnectTime string `json:"lastBrokerConnectTime,omitempty"`
 
 	// Read only. Ignored in PUT/POST calls.
+	LastBrokerConnectTimeDuration string `json:"lastBrokerConnectTimeDuration,omitempty"`
+
+	// Read only. Ignored in PUT/POST calls.
 	LastBrokerDisconnectTime string `json:"lastBrokerDisconnectTime,omitempty"`
+
+	// Read only. Ignored in PUT/POST calls.
+	LastBrokerDisconnectTimeDuration string `json:"lastBrokerDisconnectTimeDuration,omitempty"`
 
 	// Read only. Ignored in PUT/POST calls.
 	LastUpgradeTime string `json:"lastUpgradeTime,omitempty"`
 
 	// latitude
-	Latitude string `json:"latitude,omitempty"`
+	Latitude float64 `json:"latitude,omitempty"`
 
 	// location
 	Location string `json:"location,omitempty"`
 
 	// longitude
-	Longitude string `json:"longitude,omitempty"`
+	Longitude float64 `json:"longitude,omitempty"`
 
 	// modified by
 	ModifiedBy string `json:"modifiedBy,omitempty"`
@@ -103,14 +112,17 @@ type Connector struct {
 	// private Ip
 	PrivateIP string `json:"privateIp,omitempty"`
 
+	// provisioning key Id
+	ProvisioningKeyID string `json:"provisioningKeyId,omitempty"`
+
+	// provisioning key name
+	ProvisioningKeyName string `json:"provisioningKeyName,omitempty"`
+
 	// public Ip
 	PublicIP string `json:"publicIp,omitempty"`
 
 	// sarge version
 	SargeVersion string `json:"sargeVersion,omitempty"`
-
-	// signing cert
-	SigningCert map[string]string `json:"signingCert,omitempty"`
 
 	// Read only. Ignored in PUT/POST calls.
 	UpgradeAttempt string `json:"upgradeAttempt,omitempty"`

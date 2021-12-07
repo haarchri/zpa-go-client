@@ -25,6 +25,9 @@ type Machine struct {
 	// description
 	Description string `json:"description,omitempty"`
 
+	// enrollment cert
+	EnrollmentCert map[string]string `json:"enrollmentCert,omitempty"`
+
 	// fingerprint
 	Fingerprint string `json:"fingerprint,omitempty"`
 
@@ -52,9 +55,6 @@ type Machine struct {
 	// name
 	// Required: true
 	Name *string `json:"name"`
-
-	// signing cert
-	SigningCert map[string]string `json:"signingCert,omitempty"`
 }
 
 // Validate validates this machine

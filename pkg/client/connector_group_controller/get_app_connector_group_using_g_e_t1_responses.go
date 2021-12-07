@@ -29,6 +29,12 @@ func (o *GetAppConnectorGroupUsingGET1Reader) ReadResponse(response runtime.Clie
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewGetAppConnectorGroupUsingGET1BadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	case 401:
 		result := NewGetAppConnectorGroupUsingGET1Unauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -43,6 +49,12 @@ func (o *GetAppConnectorGroupUsingGET1Reader) ReadResponse(response runtime.Clie
 		return nil, result
 	case 404:
 		result := NewGetAppConnectorGroupUsingGET1NotFound()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
+	case 429:
+		result := NewGetAppConnectorGroupUsingGET1TooManyRequests()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -80,6 +92,27 @@ func (o *GetAppConnectorGroupUsingGET1OK) readResponse(response runtime.ClientRe
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
+
+	return nil
+}
+
+// NewGetAppConnectorGroupUsingGET1BadRequest creates a GetAppConnectorGroupUsingGET1BadRequest with default headers values
+func NewGetAppConnectorGroupUsingGET1BadRequest() *GetAppConnectorGroupUsingGET1BadRequest {
+	return &GetAppConnectorGroupUsingGET1BadRequest{}
+}
+
+/* GetAppConnectorGroupUsingGET1BadRequest describes a response with status code 400, with default header values.
+
+BadRequest
+*/
+type GetAppConnectorGroupUsingGET1BadRequest struct {
+}
+
+func (o *GetAppConnectorGroupUsingGET1BadRequest) Error() string {
+	return fmt.Sprintf("[GET /mgmtconfig/v1/admin/customers/{customerId}/appConnectorGroup/{appConnectorGroupId}][%d] getAppConnectorGroupUsingGET1BadRequest ", 400)
+}
+
+func (o *GetAppConnectorGroupUsingGET1BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -143,6 +176,27 @@ func (o *GetAppConnectorGroupUsingGET1NotFound) Error() string {
 }
 
 func (o *GetAppConnectorGroupUsingGET1NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	return nil
+}
+
+// NewGetAppConnectorGroupUsingGET1TooManyRequests creates a GetAppConnectorGroupUsingGET1TooManyRequests with default headers values
+func NewGetAppConnectorGroupUsingGET1TooManyRequests() *GetAppConnectorGroupUsingGET1TooManyRequests {
+	return &GetAppConnectorGroupUsingGET1TooManyRequests{}
+}
+
+/* GetAppConnectorGroupUsingGET1TooManyRequests describes a response with status code 429, with default header values.
+
+TooManyRequest
+*/
+type GetAppConnectorGroupUsingGET1TooManyRequests struct {
+}
+
+func (o *GetAppConnectorGroupUsingGET1TooManyRequests) Error() string {
+	return fmt.Sprintf("[GET /mgmtconfig/v1/admin/customers/{customerId}/appConnectorGroup/{appConnectorGroupId}][%d] getAppConnectorGroupUsingGET1TooManyRequests ", 429)
+}
+
+func (o *GetAppConnectorGroupUsingGET1TooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }

@@ -29,6 +29,12 @@ func (o *GetGlobalPolicySetUsingGET1Reader) ReadResponse(response runtime.Client
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewGetGlobalPolicySetUsingGET1BadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	case 401:
 		result := NewGetGlobalPolicySetUsingGET1Unauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -43,6 +49,12 @@ func (o *GetGlobalPolicySetUsingGET1Reader) ReadResponse(response runtime.Client
 		return nil, result
 	case 404:
 		result := NewGetGlobalPolicySetUsingGET1NotFound()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
+	case 429:
+		result := NewGetGlobalPolicySetUsingGET1TooManyRequests()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -80,6 +92,27 @@ func (o *GetGlobalPolicySetUsingGET1OK) readResponse(response runtime.ClientResp
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
+
+	return nil
+}
+
+// NewGetGlobalPolicySetUsingGET1BadRequest creates a GetGlobalPolicySetUsingGET1BadRequest with default headers values
+func NewGetGlobalPolicySetUsingGET1BadRequest() *GetGlobalPolicySetUsingGET1BadRequest {
+	return &GetGlobalPolicySetUsingGET1BadRequest{}
+}
+
+/* GetGlobalPolicySetUsingGET1BadRequest describes a response with status code 400, with default header values.
+
+BadRequest
+*/
+type GetGlobalPolicySetUsingGET1BadRequest struct {
+}
+
+func (o *GetGlobalPolicySetUsingGET1BadRequest) Error() string {
+	return fmt.Sprintf("[GET /mgmtconfig/v1/admin/customers/{customerId}/policySet/global][%d] getGlobalPolicySetUsingGET1BadRequest ", 400)
+}
+
+func (o *GetGlobalPolicySetUsingGET1BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -143,6 +176,27 @@ func (o *GetGlobalPolicySetUsingGET1NotFound) Error() string {
 }
 
 func (o *GetGlobalPolicySetUsingGET1NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	return nil
+}
+
+// NewGetGlobalPolicySetUsingGET1TooManyRequests creates a GetGlobalPolicySetUsingGET1TooManyRequests with default headers values
+func NewGetGlobalPolicySetUsingGET1TooManyRequests() *GetGlobalPolicySetUsingGET1TooManyRequests {
+	return &GetGlobalPolicySetUsingGET1TooManyRequests{}
+}
+
+/* GetGlobalPolicySetUsingGET1TooManyRequests describes a response with status code 429, with default header values.
+
+TooManyRequest
+*/
+type GetGlobalPolicySetUsingGET1TooManyRequests struct {
+}
+
+func (o *GetGlobalPolicySetUsingGET1TooManyRequests) Error() string {
+	return fmt.Sprintf("[GET /mgmtconfig/v1/admin/customers/{customerId}/policySet/global][%d] getGlobalPolicySetUsingGET1TooManyRequests ", 429)
+}
+
+func (o *GetGlobalPolicySetUsingGET1TooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }

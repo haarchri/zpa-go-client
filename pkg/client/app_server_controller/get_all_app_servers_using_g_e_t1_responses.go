@@ -29,6 +29,12 @@ func (o *GetAllAppServersUsingGET1Reader) ReadResponse(response runtime.ClientRe
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewGetAllAppServersUsingGET1BadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	case 401:
 		result := NewGetAllAppServersUsingGET1Unauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -43,6 +49,12 @@ func (o *GetAllAppServersUsingGET1Reader) ReadResponse(response runtime.ClientRe
 		return nil, result
 	case 404:
 		result := NewGetAllAppServersUsingGET1NotFound()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
+	case 429:
+		result := NewGetAllAppServersUsingGET1TooManyRequests()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -80,6 +92,27 @@ func (o *GetAllAppServersUsingGET1OK) readResponse(response runtime.ClientRespon
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
+
+	return nil
+}
+
+// NewGetAllAppServersUsingGET1BadRequest creates a GetAllAppServersUsingGET1BadRequest with default headers values
+func NewGetAllAppServersUsingGET1BadRequest() *GetAllAppServersUsingGET1BadRequest {
+	return &GetAllAppServersUsingGET1BadRequest{}
+}
+
+/* GetAllAppServersUsingGET1BadRequest describes a response with status code 400, with default header values.
+
+BadRequest
+*/
+type GetAllAppServersUsingGET1BadRequest struct {
+}
+
+func (o *GetAllAppServersUsingGET1BadRequest) Error() string {
+	return fmt.Sprintf("[GET /mgmtconfig/v1/admin/customers/{customerId}/server][%d] getAllAppServersUsingGET1BadRequest ", 400)
+}
+
+func (o *GetAllAppServersUsingGET1BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -143,6 +176,27 @@ func (o *GetAllAppServersUsingGET1NotFound) Error() string {
 }
 
 func (o *GetAllAppServersUsingGET1NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	return nil
+}
+
+// NewGetAllAppServersUsingGET1TooManyRequests creates a GetAllAppServersUsingGET1TooManyRequests with default headers values
+func NewGetAllAppServersUsingGET1TooManyRequests() *GetAllAppServersUsingGET1TooManyRequests {
+	return &GetAllAppServersUsingGET1TooManyRequests{}
+}
+
+/* GetAllAppServersUsingGET1TooManyRequests describes a response with status code 429, with default header values.
+
+TooManyRequest
+*/
+type GetAllAppServersUsingGET1TooManyRequests struct {
+}
+
+func (o *GetAllAppServersUsingGET1TooManyRequests) Error() string {
+	return fmt.Sprintf("[GET /mgmtconfig/v1/admin/customers/{customerId}/server][%d] getAllAppServersUsingGET1TooManyRequests ", 429)
+}
+
+func (o *GetAllAppServersUsingGET1TooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }

@@ -53,6 +53,12 @@ func (o *GetSegmentGroupUsingGET1Reader) ReadResponse(response runtime.ClientRes
 			return nil, err
 		}
 		return nil, result
+	case 429:
+		result := NewGetSegmentGroupUsingGET1TooManyRequests()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -170,6 +176,27 @@ func (o *GetSegmentGroupUsingGET1NotFound) Error() string {
 }
 
 func (o *GetSegmentGroupUsingGET1NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	return nil
+}
+
+// NewGetSegmentGroupUsingGET1TooManyRequests creates a GetSegmentGroupUsingGET1TooManyRequests with default headers values
+func NewGetSegmentGroupUsingGET1TooManyRequests() *GetSegmentGroupUsingGET1TooManyRequests {
+	return &GetSegmentGroupUsingGET1TooManyRequests{}
+}
+
+/* GetSegmentGroupUsingGET1TooManyRequests describes a response with status code 429, with default header values.
+
+TooManyRequest
+*/
+type GetSegmentGroupUsingGET1TooManyRequests struct {
+}
+
+func (o *GetSegmentGroupUsingGET1TooManyRequests) Error() string {
+	return fmt.Sprintf("[GET /mgmtconfig/v1/admin/customers/{customerId}/segmentGroup/{segmentGroupId}][%d] getSegmentGroupUsingGET1TooManyRequests ", 429)
+}
+
+func (o *GetSegmentGroupUsingGET1TooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }

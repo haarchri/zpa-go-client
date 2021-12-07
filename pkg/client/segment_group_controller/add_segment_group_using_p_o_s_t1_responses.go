@@ -29,6 +29,12 @@ func (o *AddSegmentGroupUsingPOST1Reader) ReadResponse(response runtime.ClientRe
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewAddSegmentGroupUsingPOST1BadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	case 401:
 		result := NewAddSegmentGroupUsingPOST1Unauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -43,6 +49,12 @@ func (o *AddSegmentGroupUsingPOST1Reader) ReadResponse(response runtime.ClientRe
 		return nil, result
 	case 404:
 		result := NewAddSegmentGroupUsingPOST1NotFound()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
+	case 429:
+		result := NewAddSegmentGroupUsingPOST1TooManyRequests()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -80,6 +92,27 @@ func (o *AddSegmentGroupUsingPOST1Created) readResponse(response runtime.ClientR
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
+
+	return nil
+}
+
+// NewAddSegmentGroupUsingPOST1BadRequest creates a AddSegmentGroupUsingPOST1BadRequest with default headers values
+func NewAddSegmentGroupUsingPOST1BadRequest() *AddSegmentGroupUsingPOST1BadRequest {
+	return &AddSegmentGroupUsingPOST1BadRequest{}
+}
+
+/* AddSegmentGroupUsingPOST1BadRequest describes a response with status code 400, with default header values.
+
+BadRequest
+*/
+type AddSegmentGroupUsingPOST1BadRequest struct {
+}
+
+func (o *AddSegmentGroupUsingPOST1BadRequest) Error() string {
+	return fmt.Sprintf("[POST /mgmtconfig/v1/admin/customers/{customerId}/segmentGroup][%d] addSegmentGroupUsingPOST1BadRequest ", 400)
+}
+
+func (o *AddSegmentGroupUsingPOST1BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -143,6 +176,27 @@ func (o *AddSegmentGroupUsingPOST1NotFound) Error() string {
 }
 
 func (o *AddSegmentGroupUsingPOST1NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	return nil
+}
+
+// NewAddSegmentGroupUsingPOST1TooManyRequests creates a AddSegmentGroupUsingPOST1TooManyRequests with default headers values
+func NewAddSegmentGroupUsingPOST1TooManyRequests() *AddSegmentGroupUsingPOST1TooManyRequests {
+	return &AddSegmentGroupUsingPOST1TooManyRequests{}
+}
+
+/* AddSegmentGroupUsingPOST1TooManyRequests describes a response with status code 429, with default header values.
+
+TooManyRequest
+*/
+type AddSegmentGroupUsingPOST1TooManyRequests struct {
+}
+
+func (o *AddSegmentGroupUsingPOST1TooManyRequests) Error() string {
+	return fmt.Sprintf("[POST /mgmtconfig/v1/admin/customers/{customerId}/segmentGroup][%d] addSegmentGroupUsingPOST1TooManyRequests ", 429)
+}
+
+func (o *AddSegmentGroupUsingPOST1TooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }

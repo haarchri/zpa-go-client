@@ -29,6 +29,12 @@ func (o *GetAllSegmentGroupsUsingGET1Reader) ReadResponse(response runtime.Clien
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewGetAllSegmentGroupsUsingGET1BadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	case 401:
 		result := NewGetAllSegmentGroupsUsingGET1Unauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -43,6 +49,12 @@ func (o *GetAllSegmentGroupsUsingGET1Reader) ReadResponse(response runtime.Clien
 		return nil, result
 	case 404:
 		result := NewGetAllSegmentGroupsUsingGET1NotFound()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
+	case 429:
+		result := NewGetAllSegmentGroupsUsingGET1TooManyRequests()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -80,6 +92,27 @@ func (o *GetAllSegmentGroupsUsingGET1OK) readResponse(response runtime.ClientRes
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
+
+	return nil
+}
+
+// NewGetAllSegmentGroupsUsingGET1BadRequest creates a GetAllSegmentGroupsUsingGET1BadRequest with default headers values
+func NewGetAllSegmentGroupsUsingGET1BadRequest() *GetAllSegmentGroupsUsingGET1BadRequest {
+	return &GetAllSegmentGroupsUsingGET1BadRequest{}
+}
+
+/* GetAllSegmentGroupsUsingGET1BadRequest describes a response with status code 400, with default header values.
+
+BadRequest
+*/
+type GetAllSegmentGroupsUsingGET1BadRequest struct {
+}
+
+func (o *GetAllSegmentGroupsUsingGET1BadRequest) Error() string {
+	return fmt.Sprintf("[GET /mgmtconfig/v1/admin/customers/{customerId}/segmentGroup][%d] getAllSegmentGroupsUsingGET1BadRequest ", 400)
+}
+
+func (o *GetAllSegmentGroupsUsingGET1BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -143,6 +176,27 @@ func (o *GetAllSegmentGroupsUsingGET1NotFound) Error() string {
 }
 
 func (o *GetAllSegmentGroupsUsingGET1NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	return nil
+}
+
+// NewGetAllSegmentGroupsUsingGET1TooManyRequests creates a GetAllSegmentGroupsUsingGET1TooManyRequests with default headers values
+func NewGetAllSegmentGroupsUsingGET1TooManyRequests() *GetAllSegmentGroupsUsingGET1TooManyRequests {
+	return &GetAllSegmentGroupsUsingGET1TooManyRequests{}
+}
+
+/* GetAllSegmentGroupsUsingGET1TooManyRequests describes a response with status code 429, with default header values.
+
+TooManyRequest
+*/
+type GetAllSegmentGroupsUsingGET1TooManyRequests struct {
+}
+
+func (o *GetAllSegmentGroupsUsingGET1TooManyRequests) Error() string {
+	return fmt.Sprintf("[GET /mgmtconfig/v1/admin/customers/{customerId}/segmentGroup][%d] getAllSegmentGroupsUsingGET1TooManyRequests ", 429)
+}
+
+func (o *GetAllSegmentGroupsUsingGET1TooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }

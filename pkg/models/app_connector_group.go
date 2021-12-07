@@ -58,6 +58,9 @@ type AppConnectorGroup struct {
 	// longitude
 	Longitude string `json:"longitude,omitempty"`
 
+	// lss app connector group
+	LssAppConnectorGroup bool `json:"lssAppConnectorGroup,omitempty"`
+
 	// modified by
 	ModifiedBy string `json:"modifiedBy,omitempty"`
 
@@ -73,9 +76,6 @@ type AppConnectorGroup struct {
 
 	// server groups
 	ServerGroups []*AppServerGroup `json:"serverGroups"`
-
-	// siem app connector group
-	SiemAppConnectorGroup bool `json:"siemAppConnectorGroup,omitempty"`
 
 	// upgrade day
 	UpgradeDay string `json:"upgradeDay,omitempty"`

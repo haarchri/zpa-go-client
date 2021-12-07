@@ -32,6 +32,12 @@ func (o *UpdateRuleToPolicySetUsingPUT1Reader) ReadResponse(response runtime.Cli
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewUpdateRuleToPolicySetUsingPUT1BadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	case 401:
 		result := NewUpdateRuleToPolicySetUsingPUT1Unauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -46,6 +52,12 @@ func (o *UpdateRuleToPolicySetUsingPUT1Reader) ReadResponse(response runtime.Cli
 		return nil, result
 	case 404:
 		result := NewUpdateRuleToPolicySetUsingPUT1NotFound()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
+	case 429:
+		result := NewUpdateRuleToPolicySetUsingPUT1TooManyRequests()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -93,6 +105,27 @@ func (o *UpdateRuleToPolicySetUsingPUT1NoContent) Error() string {
 }
 
 func (o *UpdateRuleToPolicySetUsingPUT1NoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	return nil
+}
+
+// NewUpdateRuleToPolicySetUsingPUT1BadRequest creates a UpdateRuleToPolicySetUsingPUT1BadRequest with default headers values
+func NewUpdateRuleToPolicySetUsingPUT1BadRequest() *UpdateRuleToPolicySetUsingPUT1BadRequest {
+	return &UpdateRuleToPolicySetUsingPUT1BadRequest{}
+}
+
+/* UpdateRuleToPolicySetUsingPUT1BadRequest describes a response with status code 400, with default header values.
+
+BadRequest
+*/
+type UpdateRuleToPolicySetUsingPUT1BadRequest struct {
+}
+
+func (o *UpdateRuleToPolicySetUsingPUT1BadRequest) Error() string {
+	return fmt.Sprintf("[PUT /mgmtconfig/v1/admin/customers/{customerId}/policySet/{policySetId}/rule/{ruleId}][%d] updateRuleToPolicySetUsingPUT1BadRequest ", 400)
+}
+
+func (o *UpdateRuleToPolicySetUsingPUT1BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -156,6 +189,27 @@ func (o *UpdateRuleToPolicySetUsingPUT1NotFound) Error() string {
 }
 
 func (o *UpdateRuleToPolicySetUsingPUT1NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	return nil
+}
+
+// NewUpdateRuleToPolicySetUsingPUT1TooManyRequests creates a UpdateRuleToPolicySetUsingPUT1TooManyRequests with default headers values
+func NewUpdateRuleToPolicySetUsingPUT1TooManyRequests() *UpdateRuleToPolicySetUsingPUT1TooManyRequests {
+	return &UpdateRuleToPolicySetUsingPUT1TooManyRequests{}
+}
+
+/* UpdateRuleToPolicySetUsingPUT1TooManyRequests describes a response with status code 429, with default header values.
+
+TooManyRequest
+*/
+type UpdateRuleToPolicySetUsingPUT1TooManyRequests struct {
+}
+
+func (o *UpdateRuleToPolicySetUsingPUT1TooManyRequests) Error() string {
+	return fmt.Sprintf("[PUT /mgmtconfig/v1/admin/customers/{customerId}/policySet/{policySetId}/rule/{ruleId}][%d] updateRuleToPolicySetUsingPUT1TooManyRequests ", 429)
+}
+
+func (o *UpdateRuleToPolicySetUsingPUT1TooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }

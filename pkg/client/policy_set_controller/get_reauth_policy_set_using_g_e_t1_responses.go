@@ -29,6 +29,12 @@ func (o *GetReauthPolicySetUsingGET1Reader) ReadResponse(response runtime.Client
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewGetReauthPolicySetUsingGET1BadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	case 401:
 		result := NewGetReauthPolicySetUsingGET1Unauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -43,6 +49,12 @@ func (o *GetReauthPolicySetUsingGET1Reader) ReadResponse(response runtime.Client
 		return nil, result
 	case 404:
 		result := NewGetReauthPolicySetUsingGET1NotFound()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
+	case 429:
+		result := NewGetReauthPolicySetUsingGET1TooManyRequests()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -80,6 +92,27 @@ func (o *GetReauthPolicySetUsingGET1OK) readResponse(response runtime.ClientResp
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
+
+	return nil
+}
+
+// NewGetReauthPolicySetUsingGET1BadRequest creates a GetReauthPolicySetUsingGET1BadRequest with default headers values
+func NewGetReauthPolicySetUsingGET1BadRequest() *GetReauthPolicySetUsingGET1BadRequest {
+	return &GetReauthPolicySetUsingGET1BadRequest{}
+}
+
+/* GetReauthPolicySetUsingGET1BadRequest describes a response with status code 400, with default header values.
+
+BadRequest
+*/
+type GetReauthPolicySetUsingGET1BadRequest struct {
+}
+
+func (o *GetReauthPolicySetUsingGET1BadRequest) Error() string {
+	return fmt.Sprintf("[GET /mgmtconfig/v1/admin/customers/{customerId}/policySet/reauth][%d] getReauthPolicySetUsingGET1BadRequest ", 400)
+}
+
+func (o *GetReauthPolicySetUsingGET1BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -143,6 +176,27 @@ func (o *GetReauthPolicySetUsingGET1NotFound) Error() string {
 }
 
 func (o *GetReauthPolicySetUsingGET1NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	return nil
+}
+
+// NewGetReauthPolicySetUsingGET1TooManyRequests creates a GetReauthPolicySetUsingGET1TooManyRequests with default headers values
+func NewGetReauthPolicySetUsingGET1TooManyRequests() *GetReauthPolicySetUsingGET1TooManyRequests {
+	return &GetReauthPolicySetUsingGET1TooManyRequests{}
+}
+
+/* GetReauthPolicySetUsingGET1TooManyRequests describes a response with status code 429, with default header values.
+
+TooManyRequest
+*/
+type GetReauthPolicySetUsingGET1TooManyRequests struct {
+}
+
+func (o *GetReauthPolicySetUsingGET1TooManyRequests) Error() string {
+	return fmt.Sprintf("[GET /mgmtconfig/v1/admin/customers/{customerId}/policySet/reauth][%d] getReauthPolicySetUsingGET1TooManyRequests ", 429)
+}
+
+func (o *GetReauthPolicySetUsingGET1TooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }

@@ -30,7 +30,7 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	GetAllAttributesUsingGET3(params *GetAllAttributesUsingGET3Params, opts ...ClientOption) (*GetAllAttributesUsingGET3OK, error)
+	GetAllAttributesUsingGET4(params *GetAllAttributesUsingGET4Params, opts ...ClientOption) (*GetAllAttributesUsingGET4OK, error)
 
 	GetSamlAttributeUsingGET1(params *GetSamlAttributeUsingGET1Params, opts ...ClientOption) (*GetSamlAttributeUsingGET1OK, error)
 
@@ -38,22 +38,22 @@ type ClientService interface {
 }
 
 /*
-  GetAllAttributesUsingGET3 gets all s a m l attributes
+  GetAllAttributesUsingGET4 gets all s a m l attributes this API will be deprecated in a future release
 */
-func (a *Client) GetAllAttributesUsingGET3(params *GetAllAttributesUsingGET3Params, opts ...ClientOption) (*GetAllAttributesUsingGET3OK, error) {
+func (a *Client) GetAllAttributesUsingGET4(params *GetAllAttributesUsingGET4Params, opts ...ClientOption) (*GetAllAttributesUsingGET4OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewGetAllAttributesUsingGET3Params()
+		params = NewGetAllAttributesUsingGET4Params()
 	}
 	op := &runtime.ClientOperation{
-		ID:                 "getAllAttributesUsingGET_3",
+		ID:                 "getAllAttributesUsingGET_4",
 		Method:             "GET",
 		PathPattern:        "/mgmtconfig/v1/admin/customers/{customerId}/samlAttribute",
 		ProducesMediaTypes: []string{"*/*"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &GetAllAttributesUsingGET3Reader{formats: a.formats},
+		Reader:             &GetAllAttributesUsingGET4Reader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -65,13 +65,13 @@ func (a *Client) GetAllAttributesUsingGET3(params *GetAllAttributesUsingGET3Para
 	if err != nil {
 		return nil, err
 	}
-	success, ok := result.(*GetAllAttributesUsingGET3OK)
+	success, ok := result.(*GetAllAttributesUsingGET4OK)
 	if ok {
 		return success, nil
 	}
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for getAllAttributesUsingGET_3: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	msg := fmt.Sprintf("unexpected success response for getAllAttributesUsingGET_4: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

@@ -24,7 +24,7 @@ type InspectAppDto struct {
 	AppID string `json:"appId,omitempty"`
 
 	// application port
-	ApplicationPort int32 `json:"applicationPort,omitempty"`
+	ApplicationPort string `json:"applicationPort,omitempty"`
 
 	// application protocol
 	// Enum: [HTTP HTTPS FTP RDP]

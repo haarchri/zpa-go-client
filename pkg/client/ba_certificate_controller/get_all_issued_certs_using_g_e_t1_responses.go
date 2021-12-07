@@ -29,6 +29,12 @@ func (o *GetAllIssuedCertsUsingGET1Reader) ReadResponse(response runtime.ClientR
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewGetAllIssuedCertsUsingGET1BadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	case 401:
 		result := NewGetAllIssuedCertsUsingGET1Unauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -43,6 +49,12 @@ func (o *GetAllIssuedCertsUsingGET1Reader) ReadResponse(response runtime.ClientR
 		return nil, result
 	case 404:
 		result := NewGetAllIssuedCertsUsingGET1NotFound()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
+	case 429:
+		result := NewGetAllIssuedCertsUsingGET1TooManyRequests()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -78,6 +90,27 @@ func (o *GetAllIssuedCertsUsingGET1OK) readResponse(response runtime.ClientRespo
 	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
 		return err
 	}
+
+	return nil
+}
+
+// NewGetAllIssuedCertsUsingGET1BadRequest creates a GetAllIssuedCertsUsingGET1BadRequest with default headers values
+func NewGetAllIssuedCertsUsingGET1BadRequest() *GetAllIssuedCertsUsingGET1BadRequest {
+	return &GetAllIssuedCertsUsingGET1BadRequest{}
+}
+
+/* GetAllIssuedCertsUsingGET1BadRequest describes a response with status code 400, with default header values.
+
+BadRequest
+*/
+type GetAllIssuedCertsUsingGET1BadRequest struct {
+}
+
+func (o *GetAllIssuedCertsUsingGET1BadRequest) Error() string {
+	return fmt.Sprintf("[GET /mgmtconfig/v1/admin/customers/{customerId}/clientlessCertificate/issued][%d] getAllIssuedCertsUsingGET1BadRequest ", 400)
+}
+
+func (o *GetAllIssuedCertsUsingGET1BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -141,6 +174,27 @@ func (o *GetAllIssuedCertsUsingGET1NotFound) Error() string {
 }
 
 func (o *GetAllIssuedCertsUsingGET1NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	return nil
+}
+
+// NewGetAllIssuedCertsUsingGET1TooManyRequests creates a GetAllIssuedCertsUsingGET1TooManyRequests with default headers values
+func NewGetAllIssuedCertsUsingGET1TooManyRequests() *GetAllIssuedCertsUsingGET1TooManyRequests {
+	return &GetAllIssuedCertsUsingGET1TooManyRequests{}
+}
+
+/* GetAllIssuedCertsUsingGET1TooManyRequests describes a response with status code 429, with default header values.
+
+TooManyRequest
+*/
+type GetAllIssuedCertsUsingGET1TooManyRequests struct {
+}
+
+func (o *GetAllIssuedCertsUsingGET1TooManyRequests) Error() string {
+	return fmt.Sprintf("[GET /mgmtconfig/v1/admin/customers/{customerId}/clientlessCertificate/issued][%d] getAllIssuedCertsUsingGET1TooManyRequests ", 429)
+}
+
+func (o *GetAllIssuedCertsUsingGET1TooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }

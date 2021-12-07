@@ -23,7 +23,7 @@ type PageListOfSegmentGroup struct {
 	List []*SegmentGroup `json:"list"`
 
 	// total pages
-	TotalPages int32 `json:"totalPages,omitempty"`
+	TotalPages string `json:"totalPages,omitempty"`
 }
 
 // Validate validates this page list of segment group

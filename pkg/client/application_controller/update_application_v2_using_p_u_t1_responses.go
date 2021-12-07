@@ -32,6 +32,12 @@ func (o *UpdateApplicationV2UsingPUT1Reader) ReadResponse(response runtime.Clien
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewUpdateApplicationV2UsingPUT1BadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	case 401:
 		result := NewUpdateApplicationV2UsingPUT1Unauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -46,6 +52,12 @@ func (o *UpdateApplicationV2UsingPUT1Reader) ReadResponse(response runtime.Clien
 		return nil, result
 	case 404:
 		result := NewUpdateApplicationV2UsingPUT1NotFound()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
+	case 429:
+		result := NewUpdateApplicationV2UsingPUT1TooManyRequests()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -93,6 +105,27 @@ func (o *UpdateApplicationV2UsingPUT1NoContent) Error() string {
 }
 
 func (o *UpdateApplicationV2UsingPUT1NoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	return nil
+}
+
+// NewUpdateApplicationV2UsingPUT1BadRequest creates a UpdateApplicationV2UsingPUT1BadRequest with default headers values
+func NewUpdateApplicationV2UsingPUT1BadRequest() *UpdateApplicationV2UsingPUT1BadRequest {
+	return &UpdateApplicationV2UsingPUT1BadRequest{}
+}
+
+/* UpdateApplicationV2UsingPUT1BadRequest describes a response with status code 400, with default header values.
+
+BadRequest
+*/
+type UpdateApplicationV2UsingPUT1BadRequest struct {
+}
+
+func (o *UpdateApplicationV2UsingPUT1BadRequest) Error() string {
+	return fmt.Sprintf("[PUT /mgmtconfig/v1/admin/customers/{customerId}/application/{applicationId}][%d] updateApplicationV2UsingPUT1BadRequest ", 400)
+}
+
+func (o *UpdateApplicationV2UsingPUT1BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -156,6 +189,27 @@ func (o *UpdateApplicationV2UsingPUT1NotFound) Error() string {
 }
 
 func (o *UpdateApplicationV2UsingPUT1NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	return nil
+}
+
+// NewUpdateApplicationV2UsingPUT1TooManyRequests creates a UpdateApplicationV2UsingPUT1TooManyRequests with default headers values
+func NewUpdateApplicationV2UsingPUT1TooManyRequests() *UpdateApplicationV2UsingPUT1TooManyRequests {
+	return &UpdateApplicationV2UsingPUT1TooManyRequests{}
+}
+
+/* UpdateApplicationV2UsingPUT1TooManyRequests describes a response with status code 429, with default header values.
+
+TooManyRequest
+*/
+type UpdateApplicationV2UsingPUT1TooManyRequests struct {
+}
+
+func (o *UpdateApplicationV2UsingPUT1TooManyRequests) Error() string {
+	return fmt.Sprintf("[PUT /mgmtconfig/v1/admin/customers/{customerId}/application/{applicationId}][%d] updateApplicationV2UsingPUT1TooManyRequests ", 429)
+}
+
+func (o *UpdateApplicationV2UsingPUT1TooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }

@@ -14,7 +14,6 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
-	"github.com/go-openapi/swag"
 )
 
 // NewGetCloudConnectorGroupsUsingGETParams creates a new GetCloudConnectorGroupsUsingGETParams object,
@@ -69,18 +68,14 @@ type GetCloudConnectorGroupsUsingGETParams struct {
 	/* Page.
 
 	   Specifies the page number.
-
-	   Format: int32
 	*/
-	Page int32
+	Page string
 
 	/* Pagesize.
 
 	   Specifies the page size. If not provided, the default page size is 20. The max page size is 500.
-
-	   Format: int32
 	*/
-	Pagesize int32
+	Pagesize string
 
 	/* Search.
 
@@ -153,24 +148,24 @@ func (o *GetCloudConnectorGroupsUsingGETParams) SetCustomerID(customerID string)
 }
 
 // WithPage adds the page to the get cloud connector groups using g e t params
-func (o *GetCloudConnectorGroupsUsingGETParams) WithPage(page int32) *GetCloudConnectorGroupsUsingGETParams {
+func (o *GetCloudConnectorGroupsUsingGETParams) WithPage(page string) *GetCloudConnectorGroupsUsingGETParams {
 	o.SetPage(page)
 	return o
 }
 
 // SetPage adds the page to the get cloud connector groups using g e t params
-func (o *GetCloudConnectorGroupsUsingGETParams) SetPage(page int32) {
+func (o *GetCloudConnectorGroupsUsingGETParams) SetPage(page string) {
 	o.Page = page
 }
 
 // WithPagesize adds the pagesize to the get cloud connector groups using g e t params
-func (o *GetCloudConnectorGroupsUsingGETParams) WithPagesize(pagesize int32) *GetCloudConnectorGroupsUsingGETParams {
+func (o *GetCloudConnectorGroupsUsingGETParams) WithPagesize(pagesize string) *GetCloudConnectorGroupsUsingGETParams {
 	o.SetPagesize(pagesize)
 	return o
 }
 
 // SetPagesize adds the pagesize to the get cloud connector groups using g e t params
-func (o *GetCloudConnectorGroupsUsingGETParams) SetPagesize(pagesize int32) {
+func (o *GetCloudConnectorGroupsUsingGETParams) SetPagesize(pagesize string) {
 	o.Pagesize = pagesize
 }
 
@@ -200,7 +195,7 @@ func (o *GetCloudConnectorGroupsUsingGETParams) WriteToRequest(r runtime.ClientR
 
 	// query param page
 	qrPage := o.Page
-	qPage := swag.FormatInt32(qrPage)
+	qPage := qrPage
 
 	if err := r.SetQueryParam("page", qPage); err != nil {
 		return err
@@ -208,7 +203,7 @@ func (o *GetCloudConnectorGroupsUsingGETParams) WriteToRequest(r runtime.ClientR
 
 	// query param pagesize
 	qrPagesize := o.Pagesize
-	qPagesize := swag.FormatInt32(qrPagesize)
+	qPagesize := qrPagesize
 
 	if err := r.SetQueryParam("pagesize", qPagesize); err != nil {
 		return err

@@ -29,6 +29,12 @@ func (o *GetAllAttributesUsingGET1Reader) ReadResponse(response runtime.ClientRe
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewGetAllAttributesUsingGET1BadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	case 401:
 		result := NewGetAllAttributesUsingGET1Unauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -43,6 +49,12 @@ func (o *GetAllAttributesUsingGET1Reader) ReadResponse(response runtime.ClientRe
 		return nil, result
 	case 404:
 		result := NewGetAllAttributesUsingGET1NotFound()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
+	case 429:
+		result := NewGetAllAttributesUsingGET1TooManyRequests()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -78,6 +90,27 @@ func (o *GetAllAttributesUsingGET1OK) readResponse(response runtime.ClientRespon
 	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
 		return err
 	}
+
+	return nil
+}
+
+// NewGetAllAttributesUsingGET1BadRequest creates a GetAllAttributesUsingGET1BadRequest with default headers values
+func NewGetAllAttributesUsingGET1BadRequest() *GetAllAttributesUsingGET1BadRequest {
+	return &GetAllAttributesUsingGET1BadRequest{}
+}
+
+/* GetAllAttributesUsingGET1BadRequest describes a response with status code 400, with default header values.
+
+BadRequest
+*/
+type GetAllAttributesUsingGET1BadRequest struct {
+}
+
+func (o *GetAllAttributesUsingGET1BadRequest) Error() string {
+	return fmt.Sprintf("[GET /mgmtconfig/v1/admin/customers/{customerId}/posture][%d] getAllAttributesUsingGET1BadRequest ", 400)
+}
+
+func (o *GetAllAttributesUsingGET1BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -141,6 +174,27 @@ func (o *GetAllAttributesUsingGET1NotFound) Error() string {
 }
 
 func (o *GetAllAttributesUsingGET1NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	return nil
+}
+
+// NewGetAllAttributesUsingGET1TooManyRequests creates a GetAllAttributesUsingGET1TooManyRequests with default headers values
+func NewGetAllAttributesUsingGET1TooManyRequests() *GetAllAttributesUsingGET1TooManyRequests {
+	return &GetAllAttributesUsingGET1TooManyRequests{}
+}
+
+/* GetAllAttributesUsingGET1TooManyRequests describes a response with status code 429, with default header values.
+
+TooManyRequest
+*/
+type GetAllAttributesUsingGET1TooManyRequests struct {
+}
+
+func (o *GetAllAttributesUsingGET1TooManyRequests) Error() string {
+	return fmt.Sprintf("[GET /mgmtconfig/v1/admin/customers/{customerId}/posture][%d] getAllAttributesUsingGET1TooManyRequests ", 429)
+}
+
+func (o *GetAllAttributesUsingGET1TooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }

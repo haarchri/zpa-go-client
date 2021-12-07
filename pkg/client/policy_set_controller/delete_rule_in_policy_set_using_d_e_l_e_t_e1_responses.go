@@ -26,6 +26,12 @@ func (o *DeleteRuleInPolicySetUsingDELETE1Reader) ReadResponse(response runtime.
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewDeleteRuleInPolicySetUsingDELETE1BadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	case 401:
 		result := NewDeleteRuleInPolicySetUsingDELETE1Unauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -34,6 +40,12 @@ func (o *DeleteRuleInPolicySetUsingDELETE1Reader) ReadResponse(response runtime.
 		return nil, result
 	case 403:
 		result := NewDeleteRuleInPolicySetUsingDELETE1Forbidden()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
+	case 429:
+		result := NewDeleteRuleInPolicySetUsingDELETE1TooManyRequests()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -60,6 +72,27 @@ func (o *DeleteRuleInPolicySetUsingDELETE1NoContent) Error() string {
 }
 
 func (o *DeleteRuleInPolicySetUsingDELETE1NoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	return nil
+}
+
+// NewDeleteRuleInPolicySetUsingDELETE1BadRequest creates a DeleteRuleInPolicySetUsingDELETE1BadRequest with default headers values
+func NewDeleteRuleInPolicySetUsingDELETE1BadRequest() *DeleteRuleInPolicySetUsingDELETE1BadRequest {
+	return &DeleteRuleInPolicySetUsingDELETE1BadRequest{}
+}
+
+/* DeleteRuleInPolicySetUsingDELETE1BadRequest describes a response with status code 400, with default header values.
+
+BadRequest
+*/
+type DeleteRuleInPolicySetUsingDELETE1BadRequest struct {
+}
+
+func (o *DeleteRuleInPolicySetUsingDELETE1BadRequest) Error() string {
+	return fmt.Sprintf("[DELETE /mgmtconfig/v1/admin/customers/{customerId}/policySet/{policySetId}/rule/{ruleId}][%d] deleteRuleInPolicySetUsingDELETE1BadRequest ", 400)
+}
+
+func (o *DeleteRuleInPolicySetUsingDELETE1BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -102,6 +135,27 @@ func (o *DeleteRuleInPolicySetUsingDELETE1Forbidden) Error() string {
 }
 
 func (o *DeleteRuleInPolicySetUsingDELETE1Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	return nil
+}
+
+// NewDeleteRuleInPolicySetUsingDELETE1TooManyRequests creates a DeleteRuleInPolicySetUsingDELETE1TooManyRequests with default headers values
+func NewDeleteRuleInPolicySetUsingDELETE1TooManyRequests() *DeleteRuleInPolicySetUsingDELETE1TooManyRequests {
+	return &DeleteRuleInPolicySetUsingDELETE1TooManyRequests{}
+}
+
+/* DeleteRuleInPolicySetUsingDELETE1TooManyRequests describes a response with status code 429, with default header values.
+
+TooManyRequest
+*/
+type DeleteRuleInPolicySetUsingDELETE1TooManyRequests struct {
+}
+
+func (o *DeleteRuleInPolicySetUsingDELETE1TooManyRequests) Error() string {
+	return fmt.Sprintf("[DELETE /mgmtconfig/v1/admin/customers/{customerId}/policySet/{policySetId}/rule/{ruleId}][%d] deleteRuleInPolicySetUsingDELETE1TooManyRequests ", 429)
+}
+
+func (o *DeleteRuleInPolicySetUsingDELETE1TooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }

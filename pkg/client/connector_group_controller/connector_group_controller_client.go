@@ -30,11 +30,93 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
+	AddAppConnectorGroupUsingPOST1(params *AddAppConnectorGroupUsingPOST1Params, opts ...ClientOption) (*AddAppConnectorGroupUsingPOST1Created, error)
+
+	DeleteAppConnectorGroupUsingDELETE1(params *DeleteAppConnectorGroupUsingDELETE1Params, opts ...ClientOption) (*DeleteAppConnectorGroupUsingDELETE1NoContent, error)
+
 	GetAppConnectorGroupUsingGET1(params *GetAppConnectorGroupUsingGET1Params, opts ...ClientOption) (*GetAppConnectorGroupUsingGET1OK, error)
 
 	GetAppConnectorGroupsUsingGET1(params *GetAppConnectorGroupsUsingGET1Params, opts ...ClientOption) (*GetAppConnectorGroupsUsingGET1OK, error)
 
+	UpdateAppConnectorGroupUsingPUT1(params *UpdateAppConnectorGroupUsingPUT1Params, opts ...ClientOption) (*UpdateAppConnectorGroupUsingPUT1Created, *UpdateAppConnectorGroupUsingPUT1NoContent, error)
+
 	SetTransport(transport runtime.ClientTransport)
+}
+
+/*
+  AddAppConnectorGroupUsingPOST1 adds a new connector group
+*/
+func (a *Client) AddAppConnectorGroupUsingPOST1(params *AddAppConnectorGroupUsingPOST1Params, opts ...ClientOption) (*AddAppConnectorGroupUsingPOST1Created, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAddAppConnectorGroupUsingPOST1Params()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "addAppConnectorGroupUsingPOST_1",
+		Method:             "POST",
+		PathPattern:        "/mgmtconfig/v1/admin/customers/{customerId}/appConnectorGroup",
+		ProducesMediaTypes: []string{"*/*"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AddAppConnectorGroupUsingPOST1Reader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*AddAppConnectorGroupUsingPOST1Created)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for addAppConnectorGroupUsingPOST_1: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  DeleteAppConnectorGroupUsingDELETE1 deletes the connector group
+*/
+func (a *Client) DeleteAppConnectorGroupUsingDELETE1(params *DeleteAppConnectorGroupUsingDELETE1Params, opts ...ClientOption) (*DeleteAppConnectorGroupUsingDELETE1NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteAppConnectorGroupUsingDELETE1Params()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "deleteAppConnectorGroupUsingDELETE_1",
+		Method:             "DELETE",
+		PathPattern:        "/mgmtconfig/v1/admin/customers/{customerId}/appConnectorGroup/{appConnectorGroupId}",
+		ProducesMediaTypes: []string{"*/*"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteAppConnectorGroupUsingDELETE1Reader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*DeleteAppConnectorGroupUsingDELETE1NoContent)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for deleteAppConnectorGroupUsingDELETE_1: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
@@ -110,6 +192,45 @@ func (a *Client) GetAppConnectorGroupsUsingGET1(params *GetAppConnectorGroupsUsi
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for getAppConnectorGroupsUsingGET_1: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  UpdateAppConnectorGroupUsingPUT1 updates the connector group details
+*/
+func (a *Client) UpdateAppConnectorGroupUsingPUT1(params *UpdateAppConnectorGroupUsingPUT1Params, opts ...ClientOption) (*UpdateAppConnectorGroupUsingPUT1Created, *UpdateAppConnectorGroupUsingPUT1NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateAppConnectorGroupUsingPUT1Params()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "updateAppConnectorGroupUsingPUT_1",
+		Method:             "PUT",
+		PathPattern:        "/mgmtconfig/v1/admin/customers/{customerId}/appConnectorGroup/{appConnectorGroupId}",
+		ProducesMediaTypes: []string{"*/*"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateAppConnectorGroupUsingPUT1Reader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, nil, err
+	}
+	switch value := result.(type) {
+	case *UpdateAppConnectorGroupUsingPUT1Created:
+		return value, nil, nil
+	case *UpdateAppConnectorGroupUsingPUT1NoContent:
+		return nil, value, nil
+	}
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for connector_group_controller: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

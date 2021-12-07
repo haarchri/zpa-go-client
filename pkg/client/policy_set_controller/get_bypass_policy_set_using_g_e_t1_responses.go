@@ -29,6 +29,12 @@ func (o *GetBypassPolicySetUsingGET1Reader) ReadResponse(response runtime.Client
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewGetBypassPolicySetUsingGET1BadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	case 401:
 		result := NewGetBypassPolicySetUsingGET1Unauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -43,6 +49,12 @@ func (o *GetBypassPolicySetUsingGET1Reader) ReadResponse(response runtime.Client
 		return nil, result
 	case 404:
 		result := NewGetBypassPolicySetUsingGET1NotFound()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
+	case 429:
+		result := NewGetBypassPolicySetUsingGET1TooManyRequests()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -80,6 +92,27 @@ func (o *GetBypassPolicySetUsingGET1OK) readResponse(response runtime.ClientResp
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
+
+	return nil
+}
+
+// NewGetBypassPolicySetUsingGET1BadRequest creates a GetBypassPolicySetUsingGET1BadRequest with default headers values
+func NewGetBypassPolicySetUsingGET1BadRequest() *GetBypassPolicySetUsingGET1BadRequest {
+	return &GetBypassPolicySetUsingGET1BadRequest{}
+}
+
+/* GetBypassPolicySetUsingGET1BadRequest describes a response with status code 400, with default header values.
+
+BadRequest
+*/
+type GetBypassPolicySetUsingGET1BadRequest struct {
+}
+
+func (o *GetBypassPolicySetUsingGET1BadRequest) Error() string {
+	return fmt.Sprintf("[GET /mgmtconfig/v1/admin/customers/{customerId}/policySet/bypass][%d] getBypassPolicySetUsingGET1BadRequest ", 400)
+}
+
+func (o *GetBypassPolicySetUsingGET1BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -143,6 +176,27 @@ func (o *GetBypassPolicySetUsingGET1NotFound) Error() string {
 }
 
 func (o *GetBypassPolicySetUsingGET1NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	return nil
+}
+
+// NewGetBypassPolicySetUsingGET1TooManyRequests creates a GetBypassPolicySetUsingGET1TooManyRequests with default headers values
+func NewGetBypassPolicySetUsingGET1TooManyRequests() *GetBypassPolicySetUsingGET1TooManyRequests {
+	return &GetBypassPolicySetUsingGET1TooManyRequests{}
+}
+
+/* GetBypassPolicySetUsingGET1TooManyRequests describes a response with status code 429, with default header values.
+
+TooManyRequest
+*/
+type GetBypassPolicySetUsingGET1TooManyRequests struct {
+}
+
+func (o *GetBypassPolicySetUsingGET1TooManyRequests) Error() string {
+	return fmt.Sprintf("[GET /mgmtconfig/v1/admin/customers/{customerId}/policySet/bypass][%d] getBypassPolicySetUsingGET1TooManyRequests ", 429)
+}
+
+func (o *GetBypassPolicySetUsingGET1TooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }

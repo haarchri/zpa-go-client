@@ -29,6 +29,12 @@ func (o *GetAllTrustedNetworksUsingGET1Reader) ReadResponse(response runtime.Cli
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewGetAllTrustedNetworksUsingGET1BadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	case 401:
 		result := NewGetAllTrustedNetworksUsingGET1Unauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -43,6 +49,12 @@ func (o *GetAllTrustedNetworksUsingGET1Reader) ReadResponse(response runtime.Cli
 		return nil, result
 	case 404:
 		result := NewGetAllTrustedNetworksUsingGET1NotFound()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
+	case 429:
+		result := NewGetAllTrustedNetworksUsingGET1TooManyRequests()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -78,6 +90,27 @@ func (o *GetAllTrustedNetworksUsingGET1OK) readResponse(response runtime.ClientR
 	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
 		return err
 	}
+
+	return nil
+}
+
+// NewGetAllTrustedNetworksUsingGET1BadRequest creates a GetAllTrustedNetworksUsingGET1BadRequest with default headers values
+func NewGetAllTrustedNetworksUsingGET1BadRequest() *GetAllTrustedNetworksUsingGET1BadRequest {
+	return &GetAllTrustedNetworksUsingGET1BadRequest{}
+}
+
+/* GetAllTrustedNetworksUsingGET1BadRequest describes a response with status code 400, with default header values.
+
+BadRequest
+*/
+type GetAllTrustedNetworksUsingGET1BadRequest struct {
+}
+
+func (o *GetAllTrustedNetworksUsingGET1BadRequest) Error() string {
+	return fmt.Sprintf("[GET /mgmtconfig/v1/admin/customers/{customerId}/network][%d] getAllTrustedNetworksUsingGET1BadRequest ", 400)
+}
+
+func (o *GetAllTrustedNetworksUsingGET1BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -141,6 +174,27 @@ func (o *GetAllTrustedNetworksUsingGET1NotFound) Error() string {
 }
 
 func (o *GetAllTrustedNetworksUsingGET1NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	return nil
+}
+
+// NewGetAllTrustedNetworksUsingGET1TooManyRequests creates a GetAllTrustedNetworksUsingGET1TooManyRequests with default headers values
+func NewGetAllTrustedNetworksUsingGET1TooManyRequests() *GetAllTrustedNetworksUsingGET1TooManyRequests {
+	return &GetAllTrustedNetworksUsingGET1TooManyRequests{}
+}
+
+/* GetAllTrustedNetworksUsingGET1TooManyRequests describes a response with status code 429, with default header values.
+
+TooManyRequest
+*/
+type GetAllTrustedNetworksUsingGET1TooManyRequests struct {
+}
+
+func (o *GetAllTrustedNetworksUsingGET1TooManyRequests) Error() string {
+	return fmt.Sprintf("[GET /mgmtconfig/v1/admin/customers/{customerId}/network][%d] getAllTrustedNetworksUsingGET1TooManyRequests ", 429)
+}
+
+func (o *GetAllTrustedNetworksUsingGET1TooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }

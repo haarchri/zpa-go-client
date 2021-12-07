@@ -17,11 +17,20 @@
     "name" : "segment-group-controller",
     "description" : "Segment Group resource endpoints"
   }, {
+    "name" : "connector-controller",
+    "description" : "Connector resource endpoints"
+  }, {
     "name" : "connector-group-controller",
     "description" : "App Connector Group resource endpoints"
   }, {
     "name" : "ba-certificate-controller",
     "description" : "Browser Access certificate related endpoints"
+  }, {
+    "name" : "ba-certificate-controller-v-2",
+    "description" : "Browser Access certificate related v2 endpoints"
+  }, {
+    "name" : "customer-version-profile-controller",
+    "description" : "Customer Version profile resource endpoints"
   }, {
     "name" : "cloud-connector-group-controller",
     "description" : "Cloud Connector Group resource endpoints"
@@ -29,8 +38,14 @@
     "name" : "idp-controller",
     "description" : "IdP resource endpoints"
   }, {
+    "name" : "idp-controller-v-2",
+    "description" : "IdP resource v2 endpoints"
+  }, {
     "name" : "machine-group-controller",
     "description" : "Machine Group resource endpoints"
+  }, {
+    "name" : "provisioningKey-controller",
+    "description" : "Provisioning key endpoints"
   }, {
     "name" : "policy-set-controller",
     "description" : "ZPA policy endpoints"
@@ -38,8 +53,20 @@
     "name" : "posture-profile-controller",
     "description" : "Posture profile endpoints"
   }, {
+    "name" : "posture-profile-controller-v-2",
+    "description" : "Posture profile v2 endpoints"
+  }, {
+    "name" : "service-edge-controller",
+    "description" : "Service Edge resource endpoints"
+  }, {
+    "name" : "service-edge-group-controller",
+    "description" : "Service Edge group resource endpoints"
+  }, {
     "name" : "saml-attr-controller",
     "description" : "SAML attribute endpoints"
+  }, {
+    "name" : "saml-attr-controller-v-2",
+    "description" : "SAML attribute v2 endpoints"
   }, {
     "name" : "scim-attribute-header-controller",
     "description" : "SCIM attribute endpoints"
@@ -47,41 +74,101 @@
     "name" : "server-group-controller",
     "description" : "Server Group endpoints"
   }, {
+    "name" : "lss-config-controller-v-2",
+    "description" : "LSS V2 endpoints"
+  }, {
+    "name" : "enrollment-cert-controller",
+    "description" : "Signing Certificate related endpoints"
+  }, {
+    "name" : "enrollment-cert-controller-v-2",
+    "description" : "Signing certificate related v2 endpoints"
+  }, {
     "name" : "trusted-network-controller",
     "description" : "Trusted Network endpoints"
+  }, {
+    "name" : "trusted-network-controller-v-2",
+    "description" : "Trusted Network v2 endpoints"
   } ],
   "paths" : {
-    "/mgmtconfig/v1/admin/customers/{customerId}/posture/{id}" : {
+    "/mgmtconfig/v2/admin/lssConfig/clientTypes" : {
       "get" : {
-        "tags" : [ "posture-profile-controller" ],
-        "summary" : "Get the configured profile posture.",
-        "operationId" : "getPostureProfileUsingGET_1",
+        "tags" : [ "lss-config-controller-v-2" ],
+        "summary" : "Get list of all LSS client types.",
+        "operationId" : "getListOfLssClientTypesUsingGET_1",
+        "produces" : [ "*/*" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "type" : "object",
+              "additionalProperties" : {
+                "type" : "string"
+              }
+            },
+            "responseSchema" : {
+              "type" : "object",
+              "additionalProperties" : {
+                "type" : "string"
+              }
+            }
+          },
+          "400" : {
+            "description" : "BadRequest"
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "429" : {
+            "description" : "TooManyRequest"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "deprecated" : false
+      }
+    },
+    "/mgmtconfig/v1/admin/customers/{customerId}/connector/bulkDelete" : {
+      "post" : {
+        "tags" : [ "connector-controller" ],
+        "summary" : "Bulk delete the Connectors.",
+        "operationId" : "bulkDeleteConnectorUsingPOST_1",
+        "consumes" : [ "application/json" ],
         "produces" : [ "*/*" ],
         "parameters" : [ {
+          "in" : "body",
+          "name" : "bulkDeleteResource",
+          "description" : "The resource for bulk deleting the Connectors.",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/BulkDeleteResource"
+          }
+        }, {
           "name" : "customerId",
           "in" : "path",
           "description" : "The unique identifier of the ZPA tenant.",
           "required" : true,
           "type" : "string"
-        }, {
-          "name" : "id",
-          "in" : "path",
-          "description" : "The unique identifier of the posture profile.",
-          "required" : true,
-          "type" : "string"
         } ],
         "responses" : {
           "200" : {
-            "description" : "OK",
-            "schema" : {
-              "$ref" : "#/definitions/PostureProfile"
-            },
-            "responseSchema" : {
-              "$ref" : "#/definitions/PostureProfile"
-            }
+            "description" : "OK"
+          },
+          "201" : {
+            "description" : "Created"
+          },
+          "400" : {
+            "description" : "BadRequest"
           },
           "401" : {
             "description" : "Unauthorized"
+          },
+          "429" : {
+            "description" : "TooManyRequest"
           },
           "403" : {
             "description" : "Forbidden"
@@ -96,7 +183,7 @@
     "/mgmtconfig/v1/admin/customers/{customerId}/policySet/bypass" : {
       "get" : {
         "tags" : [ "policy-set-controller" ],
-        "summary" : "Get the bypass policy and all rules for a Client Forwarding policy rule.",
+        "summary" : "Get the bypass policy and all rules for a Client Forwarding policy rule. This API will be deprecated in a future release.",
         "operationId" : "getBypassPolicySetUsingGET_1",
         "produces" : [ "*/*" ],
         "parameters" : [ {
@@ -116,8 +203,14 @@
               "$ref" : "#/definitions/PolicySet"
             }
           },
+          "400" : {
+            "description" : "BadRequest"
+          },
           "401" : {
             "description" : "Unauthorized"
+          },
+          "429" : {
+            "description" : "TooManyRequest"
           },
           "403" : {
             "description" : "Forbidden"
@@ -129,11 +222,11 @@
         "deprecated" : false
       }
     },
-    "/mgmtconfig/v1/admin/customers/{customerId}/policySet/reauth" : {
+    "/mgmtconfig/v1/admin/customers/{customerId}/serviceEdge/{serviceEdgeId}" : {
       "get" : {
-        "tags" : [ "policy-set-controller" ],
-        "summary" : "Get the authentication policy and all rules for a Timeout policy rule.",
-        "operationId" : "getReauthPolicySetUsingGET_1",
+        "tags" : [ "service-edge-controller" ],
+        "summary" : "Get the Service Edge details.",
+        "operationId" : "getServiceEdgeUsingGET_1",
         "produces" : [ "*/*" ],
         "parameters" : [ {
           "name" : "customerId",
@@ -141,25 +234,126 @@
           "description" : "The unique identifier of the ZPA tenant.",
           "required" : true,
           "type" : "string"
+        }, {
+          "name" : "serviceEdgeId",
+          "in" : "path",
+          "description" : "The unique identifier of the Service Edge.",
+          "required" : true,
+          "type" : "string"
         } ],
         "responses" : {
           "200" : {
             "description" : "OK",
             "schema" : {
-              "$ref" : "#/definitions/PolicySet"
+              "$ref" : "#/definitions/ServiceEdge"
             },
             "responseSchema" : {
-              "$ref" : "#/definitions/PolicySet"
+              "$ref" : "#/definitions/ServiceEdge"
             }
+          },
+          "400" : {
+            "description" : "BadRequest"
           },
           "401" : {
             "description" : "Unauthorized"
+          },
+          "429" : {
+            "description" : "TooManyRequest"
           },
           "403" : {
             "description" : "Forbidden"
           },
           "404" : {
             "description" : "Not Found"
+          }
+        },
+        "deprecated" : false
+      },
+      "put" : {
+        "tags" : [ "service-edge-controller" ],
+        "summary" : "Update the Service Edge details.",
+        "operationId" : "updateServiceEdgeUsingPUT",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "*/*" ],
+        "parameters" : [ {
+          "name" : "customerId",
+          "in" : "path",
+          "description" : "The unique identifier of the ZPA tenant.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "serviceEdge",
+          "description" : "The object of the Service Edge.",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/ServiceEdge"
+          }
+        }, {
+          "name" : "serviceEdgeId",
+          "in" : "path",
+          "description" : "The unique identifier of the Service Edge.",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "Created"
+          },
+          "204" : {
+            "description" : "No Content"
+          },
+          "400" : {
+            "description" : "BadRequest"
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "429" : {
+            "description" : "TooManyRequest"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "deprecated" : false
+      },
+      "delete" : {
+        "tags" : [ "service-edge-controller" ],
+        "summary" : "Delete the Service Edge.",
+        "operationId" : "deleteServiceEdgeUsingDELETE",
+        "produces" : [ "*/*" ],
+        "parameters" : [ {
+          "name" : "customerId",
+          "in" : "path",
+          "description" : "The unique identifier of the ZPA tenant.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "serviceEdgeId",
+          "in" : "path",
+          "description" : "The unique identifier of the Service Edge.",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "204" : {
+            "description" : "No Content"
+          },
+          "400" : {
+            "description" : "BadRequest"
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "429" : {
+            "description" : "TooManyRequest"
+          },
+          "403" : {
+            "description" : "Forbidden"
           }
         },
         "deprecated" : false
@@ -168,8 +362,8 @@
     "/mgmtconfig/v1/admin/customers/{customerId}/samlAttribute" : {
       "get" : {
         "tags" : [ "saml-attr-controller" ],
-        "summary" : "Get all SAML attributes.",
-        "operationId" : "getAllAttributesUsingGET_3",
+        "summary" : "Get all SAML attributes. This API will be deprecated in a future release.",
+        "operationId" : "getAllAttributesUsingGET_4",
         "produces" : [ "*/*" ],
         "parameters" : [ {
           "name" : "customerId",
@@ -194,8 +388,209 @@
               }
             }
           },
+          "400" : {
+            "description" : "BadRequest"
+          },
           "401" : {
             "description" : "Unauthorized"
+          },
+          "429" : {
+            "description" : "TooManyRequest"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "deprecated" : false
+      }
+    },
+    "/mgmtconfig/v1/admin/customers/{customerId}/connector/{connectorId}" : {
+      "get" : {
+        "tags" : [ "connector-controller" ],
+        "summary" : "Get the Connector details.",
+        "operationId" : "getConnectorUsingGET_1",
+        "produces" : [ "*/*" ],
+        "parameters" : [ {
+          "name" : "connectorId",
+          "in" : "path",
+          "description" : "The unique identifier of the Connector.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "customerId",
+          "in" : "path",
+          "description" : "The unique identifier of the ZPA tenant.",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/Connector"
+            },
+            "responseSchema" : {
+              "$ref" : "#/definitions/Connector"
+            }
+          },
+          "400" : {
+            "description" : "BadRequest"
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "429" : {
+            "description" : "TooManyRequest"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "deprecated" : false
+      },
+      "put" : {
+        "tags" : [ "connector-controller" ],
+        "summary" : "Update the Connector details.",
+        "operationId" : "updateConnectorUsingPUT_1",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "*/*" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "connector",
+          "description" : "The object of the Connector.",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/Connector"
+          }
+        }, {
+          "name" : "connectorId",
+          "in" : "path",
+          "description" : "The unique identifier of the Connector.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "customerId",
+          "in" : "path",
+          "description" : "The unique identifier of the ZPA tenant.",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "Created"
+          },
+          "204" : {
+            "description" : "No Content"
+          },
+          "400" : {
+            "description" : "BadRequest"
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "429" : {
+            "description" : "TooManyRequest"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "deprecated" : false
+      },
+      "delete" : {
+        "tags" : [ "connector-controller" ],
+        "summary" : "Delete the Connector.",
+        "operationId" : "deleteConnectorUsingDELETE_1",
+        "produces" : [ "*/*" ],
+        "parameters" : [ {
+          "name" : "connectorId",
+          "in" : "path",
+          "description" : "The unique identifier of the Connector.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "customerId",
+          "in" : "path",
+          "description" : "The unique identifier of the ZPA tenant.",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "204" : {
+            "description" : "No Content"
+          },
+          "400" : {
+            "description" : "BadRequest"
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "429" : {
+            "description" : "TooManyRequest"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          }
+        },
+        "deprecated" : false
+      }
+    },
+    "/mgmtconfig/v1/admin/customers/{customerId}/policySet/{policySetId}/rule/{ruleId}/reorder/{newOrder}" : {
+      "put" : {
+        "tags" : [ "policy-set-controller" ],
+        "summary" : "Update rule order.",
+        "operationId" : "reOrderPolicyRuleUsingPUT_1",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "*/*" ],
+        "parameters" : [ {
+          "name" : "customerId",
+          "in" : "path",
+          "description" : "The unique identifier of the ZPA tenant.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "newOrder",
+          "in" : "path",
+          "description" : "The new order of the rule.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "policySetId",
+          "in" : "path",
+          "description" : "The unique identifier of the policy.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "ruleId",
+          "in" : "path",
+          "description" : "The unique identifier of a rule in a policy.",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "Created"
+          },
+          "204" : {
+            "description" : "No Content"
+          },
+          "400" : {
+            "description" : "BadRequest"
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "429" : {
+            "description" : "TooManyRequest"
           },
           "403" : {
             "description" : "Forbidden"
@@ -242,6 +637,9 @@
           "401" : {
             "description" : "Unauthorized"
           },
+          "429" : {
+            "description" : "TooManyRequest"
+          },
           "403" : {
             "description" : "Forbidden"
           },
@@ -285,8 +683,14 @@
           "204" : {
             "description" : "No Content"
           },
+          "400" : {
+            "description" : "BadRequest"
+          },
           "401" : {
             "description" : "Unauthorized"
+          },
+          "429" : {
+            "description" : "TooManyRequest"
           },
           "403" : {
             "description" : "Forbidden"
@@ -319,8 +723,14 @@
           "204" : {
             "description" : "No Content"
           },
+          "400" : {
+            "description" : "BadRequest"
+          },
           "401" : {
             "description" : "Unauthorized"
+          },
+          "429" : {
+            "description" : "TooManyRequest"
           },
           "403" : {
             "description" : "Forbidden"
@@ -346,8 +756,7 @@
           "in" : "query",
           "description" : "Specifies the page number.",
           "required" : false,
-          "type" : "integer",
-          "format" : "int32",
+          "type" : "string",
           "allowEmptyValue" : true,
           "x-example" : 1
         }, {
@@ -355,8 +764,7 @@
           "in" : "query",
           "description" : "Specifies the page size. If not provided, the default page size is 20. The max page size is 500.",
           "required" : false,
-          "type" : "integer",
-          "format" : "int32",
+          "type" : "string",
           "allowEmptyValue" : true,
           "x-example" : 20
         }, {
@@ -377,8 +785,14 @@
               "$ref" : "#/definitions/PageListOfSegmentGroup"
             }
           },
+          "400" : {
+            "description" : "BadRequest"
+          },
           "401" : {
             "description" : "Unauthorized"
+          },
+          "429" : {
+            "description" : "TooManyRequest"
           },
           "403" : {
             "description" : "Forbidden"
@@ -420,8 +834,2380 @@
               "$ref" : "#/definitions/SegmentGroup"
             }
           },
+          "400" : {
+            "description" : "BadRequest"
+          },
           "401" : {
             "description" : "Unauthorized"
+          },
+          "429" : {
+            "description" : "TooManyRequest"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "deprecated" : false
+      }
+    },
+    "/mgmtconfig/v1/admin/customers/{customerId}/network" : {
+      "get" : {
+        "tags" : [ "trusted-network-controller" ],
+        "summary" : "Get all the Trusted Networks. This API will be deprecated in a future release.",
+        "operationId" : "getAllTrustedNetworksUsingGET_1",
+        "produces" : [ "*/*" ],
+        "parameters" : [ {
+          "name" : "customerId",
+          "in" : "path",
+          "description" : "The unique identifier of the ZPA tenant.",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/TrustedNetwork"
+              }
+            },
+            "responseSchema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/TrustedNetwork"
+              }
+            }
+          },
+          "400" : {
+            "description" : "BadRequest"
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "429" : {
+            "description" : "TooManyRequest"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "deprecated" : false
+      }
+    },
+    "/mgmtconfig/v1/admin/customers/{customerId}/policySet/policyType/{policyType}" : {
+      "get" : {
+        "tags" : [ "policy-set-controller" ],
+        "summary" : "For a customer, get policy set by policy type",
+        "operationId" : "getPolicySetByPolicyTypeUsingGET_1",
+        "produces" : [ "*/*" ],
+        "parameters" : [ {
+          "name" : "customerId",
+          "in" : "path",
+          "description" : "customerId",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "policyType",
+          "in" : "path",
+          "description" : "Type for differentiating policy types. Supported values : ACCESS_POLICY/GLOBAL_POLICY, TIMEOUT_POLICY/REAUTH_POLICY, SIEM_POLICY, CLIENT_FORWARDING_POLICY/BYPASS_POLICY",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/PolicySet"
+            },
+            "responseSchema" : {
+              "$ref" : "#/definitions/PolicySet"
+            }
+          },
+          "400" : {
+            "description" : "BadRequest"
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "429" : {
+            "description" : "TooManyRequest"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "deprecated" : false
+      }
+    },
+    "/mgmtconfig/v1/admin/customers/{customerId}/server" : {
+      "get" : {
+        "tags" : [ "app-server-controller" ],
+        "summary" : "Get all the configured Servers.",
+        "operationId" : "getAllAppServersUsingGET_1",
+        "produces" : [ "*/*" ],
+        "parameters" : [ {
+          "name" : "customerId",
+          "in" : "path",
+          "description" : "The unique identifier of the ZPA tenant.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "page",
+          "in" : "query",
+          "description" : "Specifies the page number.",
+          "required" : false,
+          "type" : "string",
+          "allowEmptyValue" : true,
+          "x-example" : 1
+        }, {
+          "name" : "pagesize",
+          "in" : "query",
+          "description" : "Specifies the page size. If not provided, the default page size is 20. The max page size is 500.",
+          "required" : false,
+          "type" : "string",
+          "allowEmptyValue" : true,
+          "x-example" : 20
+        }, {
+          "name" : "search",
+          "in" : "query",
+          "description" : "The search string used to support search by features and fields for the API.",
+          "required" : false,
+          "type" : "string",
+          "allowEmptyValue" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/PageListOfApplicationServer"
+            },
+            "responseSchema" : {
+              "$ref" : "#/definitions/PageListOfApplicationServer"
+            }
+          },
+          "400" : {
+            "description" : "BadRequest"
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "429" : {
+            "description" : "TooManyRequest"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "deprecated" : false
+      },
+      "post" : {
+        "tags" : [ "app-server-controller" ],
+        "summary" : "Add a new Server.",
+        "operationId" : "addAppServerUsingPOST_1",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "*/*" ],
+        "parameters" : [ {
+          "name" : "customerId",
+          "in" : "path",
+          "description" : "The unique identifier of the ZPA tenant.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "server",
+          "description" : "The object of the Server.",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/ApplicationServer"
+          }
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "Created",
+            "schema" : {
+              "$ref" : "#/definitions/ApplicationServer"
+            },
+            "responseSchema" : {
+              "$ref" : "#/definitions/ApplicationServer"
+            }
+          },
+          "400" : {
+            "description" : "BadRequest"
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "429" : {
+            "description" : "TooManyRequest"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "deprecated" : false
+      }
+    },
+    "/mgmtconfig/v1/admin/customers/{customerId}/application" : {
+      "get" : {
+        "tags" : [ "application-controller" ],
+        "summary" : "Get all configured Application Segments.",
+        "operationId" : "getAllApplicationsUsingGET_3",
+        "produces" : [ "*/*" ],
+        "parameters" : [ {
+          "name" : "customerId",
+          "in" : "path",
+          "description" : "The unique identifier of the ZPA tenant.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "page",
+          "in" : "query",
+          "description" : "Specifies the page number.",
+          "required" : false,
+          "type" : "string",
+          "allowEmptyValue" : true,
+          "x-example" : 1
+        }, {
+          "name" : "pagesize",
+          "in" : "query",
+          "description" : "Specifies the page size. If not provided, the default page size is 20. The max page size is 500.",
+          "required" : false,
+          "type" : "string",
+          "allowEmptyValue" : true,
+          "x-example" : 20
+        }, {
+          "name" : "search",
+          "in" : "query",
+          "description" : "The search string used to support search by features and fields for the API.",
+          "required" : false,
+          "type" : "string",
+          "allowEmptyValue" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/PageListOfApplicationResource"
+            },
+            "responseSchema" : {
+              "$ref" : "#/definitions/PageListOfApplicationResource"
+            }
+          },
+          "400" : {
+            "description" : "BadRequest"
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "429" : {
+            "description" : "TooManyRequest"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "deprecated" : false
+      },
+      "post" : {
+        "tags" : [ "application-controller" ],
+        "summary" : "Add a new Application Segment.",
+        "operationId" : "addApplicationUsingPOST_1",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "*/*" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "application",
+          "description" : "The object of the Application Segment.",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/ApplicationResource"
+          }
+        }, {
+          "name" : "customerId",
+          "in" : "path",
+          "description" : "The unique identifier of the ZPA tenant.",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "Created",
+            "schema" : {
+              "$ref" : "#/definitions/ApplicationResource"
+            },
+            "responseSchema" : {
+              "$ref" : "#/definitions/ApplicationResource"
+            }
+          },
+          "400" : {
+            "description" : "BadRequest"
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "429" : {
+            "description" : "TooManyRequest"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "deprecated" : false
+      }
+    },
+    "/mgmtconfig/v2/admin/customers/{customerId}/samlAttribute/idp/{idpId}" : {
+      "get" : {
+        "tags" : [ "saml-attr-controller-v-2" ],
+        "summary" : "Get all attributes configured for a given customer",
+        "operationId" : "getAllAttributesByIdpIdAndPageUsingGET",
+        "produces" : [ "*/*" ],
+        "parameters" : [ {
+          "name" : "customerId",
+          "in" : "path",
+          "description" : "The unique identifier of the ZPA tenant.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "idpId",
+          "in" : "path",
+          "description" : "The unique identifier of the IdP.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "page",
+          "in" : "query",
+          "description" : "Specifies the page number.",
+          "required" : false,
+          "type" : "string",
+          "allowEmptyValue" : true,
+          "x-example" : 1
+        }, {
+          "name" : "pagesize",
+          "in" : "query",
+          "description" : "Specifies the page size. If not provided, the default page size is 20. The max page size is 500.",
+          "required" : false,
+          "type" : "string",
+          "allowEmptyValue" : true,
+          "x-example" : 20
+        }, {
+          "name" : "search",
+          "in" : "query",
+          "description" : "The search string used to support search by features and fields for the API.",
+          "required" : false,
+          "type" : "string",
+          "allowEmptyValue" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/PageListOfSamlAttribute"
+            },
+            "responseSchema" : {
+              "$ref" : "#/definitions/PageListOfSamlAttribute"
+            }
+          },
+          "400" : {
+            "description" : "BadRequest"
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "429" : {
+            "description" : "TooManyRequest"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "deprecated" : false
+      }
+    },
+    "/mgmtconfig/v2/admin/customers/{customerId}/lssConfig/{lssId}" : {
+      "get" : {
+        "tags" : [ "lss-config-controller-v-2" ],
+        "summary" : "Get the LSS details",
+        "operationId" : "getLssUsingGET_3",
+        "produces" : [ "*/*" ],
+        "parameters" : [ {
+          "name" : "customerId",
+          "in" : "path",
+          "description" : "The unique identifier of the ZPA tenant.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "lssId",
+          "in" : "path",
+          "description" : "The unique identifier of the LSS resource.",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/LssResource"
+            },
+            "responseSchema" : {
+              "$ref" : "#/definitions/LssResource"
+            }
+          },
+          "400" : {
+            "description" : "BadRequest"
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "429" : {
+            "description" : "TooManyRequest"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "deprecated" : false
+      },
+      "put" : {
+        "tags" : [ "lss-config-controller-v-2" ],
+        "summary" : "Update a LSS Attribute.",
+        "operationId" : "updateLssUsingPUT_3",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "*/*" ],
+        "parameters" : [ {
+          "name" : "customerId",
+          "in" : "path",
+          "description" : "The unique identifier of the ZPA tenant.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "lssId",
+          "in" : "path",
+          "description" : "The unique identifier of the LSS resource.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "lssResource",
+          "description" : "The object of the LSS Resource.",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/LssResource"
+          }
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "Created"
+          },
+          "204" : {
+            "description" : "No Content"
+          },
+          "400" : {
+            "description" : "BadRequest"
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "429" : {
+            "description" : "TooManyRequest"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "deprecated" : false
+      },
+      "delete" : {
+        "tags" : [ "lss-config-controller-v-2" ],
+        "summary" : "Delete a LSS attribute.",
+        "operationId" : "deleteLssUsingDELETE_3",
+        "produces" : [ "*/*" ],
+        "parameters" : [ {
+          "name" : "customerId",
+          "in" : "path",
+          "description" : "The unique identifier of the ZPA tenant.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "lssId",
+          "in" : "path",
+          "description" : "The unique identifier of the LSS resource.",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "204" : {
+            "description" : "No Content"
+          },
+          "400" : {
+            "description" : "BadRequest"
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "429" : {
+            "description" : "TooManyRequest"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          }
+        },
+        "deprecated" : false
+      }
+    },
+    "/mgmtconfig/v1/admin/customers/{customerId}/idp/{idpId}/scimattribute" : {
+      "get" : {
+        "tags" : [ "scim-attribute-header-controller" ],
+        "summary" : "Get all the SCIM attributes.",
+        "operationId" : "getAllSCIMAttributesUsingGET_1",
+        "produces" : [ "*/*" ],
+        "parameters" : [ {
+          "name" : "customerId",
+          "in" : "path",
+          "description" : "The unique identifier of the ZPA tenant.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "idpId",
+          "in" : "path",
+          "description" : "The unique identifier of the IdP.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "page",
+          "in" : "query",
+          "description" : "Specifies the page number.",
+          "required" : false,
+          "type" : "string",
+          "allowEmptyValue" : true,
+          "x-example" : 1
+        }, {
+          "name" : "pagesize",
+          "in" : "query",
+          "description" : "Specifies the page size. If not provided, the default page size is 20. The max page size is 500.",
+          "required" : false,
+          "type" : "string",
+          "allowEmptyValue" : true,
+          "x-example" : 20
+        }, {
+          "name" : "search",
+          "in" : "query",
+          "description" : "The search string used to support search by features and fields for the API.",
+          "required" : false,
+          "type" : "string",
+          "allowEmptyValue" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/PageListOfSCIMAttributeHeader"
+            },
+            "responseSchema" : {
+              "$ref" : "#/definitions/PageListOfSCIMAttributeHeader"
+            }
+          },
+          "400" : {
+            "description" : "BadRequest"
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "429" : {
+            "description" : "TooManyRequest"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "deprecated" : false
+      }
+    },
+    "/mgmtconfig/v1/admin/customers/{customerId}/serverGroup" : {
+      "get" : {
+        "tags" : [ "server-group-controller" ],
+        "summary" : "Get all configured Server Groups.",
+        "operationId" : "getAllServerGroupsUsingGET_1",
+        "produces" : [ "*/*" ],
+        "parameters" : [ {
+          "name" : "customerId",
+          "in" : "path",
+          "description" : "The unique identifier of the ZPA tenant.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "page",
+          "in" : "query",
+          "description" : "Specifies the page number.",
+          "required" : false,
+          "type" : "string",
+          "allowEmptyValue" : true,
+          "x-example" : 1
+        }, {
+          "name" : "pagesize",
+          "in" : "query",
+          "description" : "Specifies the page size. If not provided, the default page size is 20. The max page size is 500.",
+          "required" : false,
+          "type" : "string",
+          "allowEmptyValue" : true,
+          "x-example" : 20
+        }, {
+          "name" : "search",
+          "in" : "query",
+          "description" : "The search string used to support search by features and fields for the API.",
+          "required" : false,
+          "type" : "string",
+          "allowEmptyValue" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/PageListOfServerGroupDTO"
+            },
+            "responseSchema" : {
+              "$ref" : "#/definitions/PageListOfServerGroupDTO"
+            }
+          },
+          "400" : {
+            "description" : "BadRequest"
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "429" : {
+            "description" : "TooManyRequest"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "deprecated" : false
+      },
+      "post" : {
+        "tags" : [ "server-group-controller" ],
+        "summary" : "Add a new Server Group.",
+        "operationId" : "addAppServerGroupUsingPOST_1",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "*/*" ],
+        "parameters" : [ {
+          "name" : "customerId",
+          "in" : "path",
+          "description" : "The unique identifier of the ZPA tenant.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "group",
+          "description" : "The object of the Server Group.",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/ServerGroupDTO"
+          }
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "Created",
+            "schema" : {
+              "$ref" : "#/definitions/ServerGroupDTO"
+            },
+            "responseSchema" : {
+              "$ref" : "#/definitions/ServerGroupDTO"
+            }
+          },
+          "400" : {
+            "description" : "BadRequest"
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "429" : {
+            "description" : "TooManyRequest"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "deprecated" : false
+      }
+    },
+    "/mgmtconfig/v1/admin/customers/{customerId}/policySet/{policySetId}/rule" : {
+      "post" : {
+        "tags" : [ "policy-set-controller" ],
+        "summary" : "Add a new policy rule for a given policy.",
+        "operationId" : "addRuleToPolicySetUsingPOST_1",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "*/*" ],
+        "parameters" : [ {
+          "name" : "customerId",
+          "in" : "path",
+          "description" : "The unique identifier of the ZPA tenant.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "policySetId",
+          "in" : "path",
+          "description" : "The unique identifier of the policy.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "rule",
+          "description" : "The object of the policy rule.",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/PolicyRule"
+          }
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "Created",
+            "schema" : {
+              "$ref" : "#/definitions/PolicyRule"
+            },
+            "responseSchema" : {
+              "$ref" : "#/definitions/PolicyRule"
+            }
+          },
+          "400" : {
+            "description" : "BadRequest"
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "429" : {
+            "description" : "TooManyRequest"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "deprecated" : false
+      }
+    },
+    "/mgmtconfig/v1/admin/customers/{customerId}/clientlessCertificate/issued" : {
+      "get" : {
+        "tags" : [ "ba-certificate-controller" ],
+        "summary" : "Get all the issued certificates. This API will be deprecated in a future release.",
+        "operationId" : "getAllIssuedCertsUsingGET_1",
+        "produces" : [ "*/*" ],
+        "parameters" : [ {
+          "name" : "customerId",
+          "in" : "path",
+          "description" : "The unique identifier of the ZPA tenant.",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/BACertificate"
+              }
+            },
+            "responseSchema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/BACertificate"
+              }
+            }
+          },
+          "400" : {
+            "description" : "BadRequest"
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "429" : {
+            "description" : "TooManyRequest"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "deprecated" : false
+      }
+    },
+    "/mgmtconfig/v1/admin/customers/{customerId}/clientlessCertificate/{certificateId}" : {
+      "get" : {
+        "tags" : [ "ba-certificate-controller" ],
+        "summary" : "Get the details of the Browser Access certificate.",
+        "operationId" : "getUsingGET_1",
+        "produces" : [ "*/*" ],
+        "parameters" : [ {
+          "name" : "certificateId",
+          "in" : "path",
+          "description" : "The unique identifier of the Browser Access certificate.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "customerId",
+          "in" : "path",
+          "description" : "The unique identifier of the ZPA tenant.",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/BACertificate"
+            },
+            "responseSchema" : {
+              "$ref" : "#/definitions/BACertificate"
+            }
+          },
+          "400" : {
+            "description" : "BadRequest"
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "429" : {
+            "description" : "TooManyRequest"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "deprecated" : false
+      }
+    },
+    "/mgmtconfig/v2/admin/customers/{customerId}/enrollmentCert" : {
+      "get" : {
+        "tags" : [ "enrollment-cert-controller-v-2" ],
+        "summary" : "Get all the configured Enrollment Cert details.",
+        "operationId" : "getAllSigningCertUsingGET_2",
+        "produces" : [ "*/*" ],
+        "parameters" : [ {
+          "name" : "customerId",
+          "in" : "path",
+          "description" : "The unique identifier of the ZPA tenant.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "page",
+          "in" : "query",
+          "description" : "Specifies the page number.",
+          "required" : false,
+          "type" : "string",
+          "allowEmptyValue" : true,
+          "x-example" : 1
+        }, {
+          "name" : "pagesize",
+          "in" : "query",
+          "description" : "Specifies the page size. If not provided, the default page size is 20. The max page size is 500.",
+          "required" : false,
+          "type" : "string",
+          "allowEmptyValue" : true,
+          "x-example" : 20
+        }, {
+          "name" : "search",
+          "in" : "query",
+          "description" : "The search string used to support search by features and fields for the API.",
+          "required" : false,
+          "type" : "string",
+          "allowEmptyValue" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/PageListOfEnrollmentCert"
+            },
+            "responseSchema" : {
+              "$ref" : "#/definitions/PageListOfEnrollmentCert"
+            }
+          },
+          "400" : {
+            "description" : "BadRequest"
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "429" : {
+            "description" : "TooManyRequest"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "deprecated" : false
+      }
+    },
+    "/mgmtconfig/v1/admin/customers/{customerId}/machineGroup/{Id}" : {
+      "get" : {
+        "tags" : [ "machine-group-controller" ],
+        "summary" : "Get the Machine Group details.",
+        "operationId" : "getMachineGroupUsingGET",
+        "produces" : [ "*/*" ],
+        "parameters" : [ {
+          "name" : "Id",
+          "in" : "path",
+          "description" : "The unique identifier of the Machine Group.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "customerId",
+          "in" : "path",
+          "description" : "The unique identifier of the ZPA tenant.",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/MachineGroup"
+            },
+            "responseSchema" : {
+              "$ref" : "#/definitions/MachineGroup"
+            }
+          },
+          "400" : {
+            "description" : "BadRequest"
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "429" : {
+            "description" : "TooManyRequest"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "deprecated" : false
+      }
+    },
+    "/mgmtconfig/v1/admin/customers/{customerId}/serverGroup/{groupId}" : {
+      "get" : {
+        "tags" : [ "server-group-controller" ],
+        "summary" : "Get the Server Group details.",
+        "operationId" : "getServerGroupUsingGET_1",
+        "produces" : [ "*/*" ],
+        "parameters" : [ {
+          "name" : "customerId",
+          "in" : "path",
+          "description" : "The unique identifier of the ZPA tenant.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "groupId",
+          "in" : "path",
+          "description" : "The unique identifier of the Segment Group.",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/ServerGroupDTO"
+            },
+            "responseSchema" : {
+              "$ref" : "#/definitions/ServerGroupDTO"
+            }
+          },
+          "400" : {
+            "description" : "BadRequest"
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "429" : {
+            "description" : "TooManyRequest"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "deprecated" : false
+      },
+      "put" : {
+        "tags" : [ "server-group-controller" ],
+        "summary" : "Update the Server Group.",
+        "operationId" : "updateAppServerGroupUsingPUT_1",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "*/*" ],
+        "parameters" : [ {
+          "name" : "customerId",
+          "in" : "path",
+          "description" : "The unique identifier of the ZPA tenant.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "group",
+          "description" : "The object of the Server Group.",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/ServerGroupDTO"
+          }
+        }, {
+          "name" : "groupId",
+          "in" : "path",
+          "description" : "The unique identifier of the Server Group.",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "Created"
+          },
+          "204" : {
+            "description" : "No Content"
+          },
+          "400" : {
+            "description" : "BadRequest"
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "429" : {
+            "description" : "TooManyRequest"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "deprecated" : false
+      },
+      "delete" : {
+        "tags" : [ "server-group-controller" ],
+        "summary" : "Delete a Server Group.",
+        "operationId" : "deleteAppServerGroupUsingDELETE_1",
+        "produces" : [ "*/*" ],
+        "parameters" : [ {
+          "name" : "customerId",
+          "in" : "path",
+          "description" : "The unique identifier of the ZPA tenant.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "groupId",
+          "in" : "path",
+          "description" : "The unique identifier of the Server Group.",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "204" : {
+            "description" : "No Content"
+          },
+          "400" : {
+            "description" : "BadRequest"
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "429" : {
+            "description" : "TooManyRequest"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          }
+        },
+        "deprecated" : false
+      }
+    },
+    "/mgmtconfig/v1/admin/customers/{customerId}/serviceEdge" : {
+      "get" : {
+        "tags" : [ "service-edge-controller" ],
+        "summary" : "Get all the configured Service Edge details.",
+        "operationId" : "getAllServiceEdgesUsingGET",
+        "produces" : [ "*/*" ],
+        "parameters" : [ {
+          "name" : "customerId",
+          "in" : "path",
+          "description" : "The unique identifier of the ZPA tenant.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "page",
+          "in" : "query",
+          "description" : "Specifies the page number.",
+          "required" : false,
+          "type" : "string",
+          "allowEmptyValue" : true,
+          "x-example" : 1
+        }, {
+          "name" : "pagesize",
+          "in" : "query",
+          "description" : "Specifies the page size. If not provided, the default page size is 20. The max page size is 500.",
+          "required" : false,
+          "type" : "string",
+          "allowEmptyValue" : true,
+          "x-example" : 20
+        }, {
+          "name" : "search",
+          "in" : "query",
+          "description" : "The search string used to support search by features and fields for the API.",
+          "required" : false,
+          "type" : "string",
+          "allowEmptyValue" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/PageListOfServiceEdge"
+            },
+            "responseSchema" : {
+              "$ref" : "#/definitions/PageListOfServiceEdge"
+            }
+          },
+          "400" : {
+            "description" : "BadRequest"
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "429" : {
+            "description" : "TooManyRequest"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "deprecated" : false
+      }
+    },
+    "/mgmtconfig/v1/admin/customers/{customerId}/posture" : {
+      "get" : {
+        "tags" : [ "posture-profile-controller" ],
+        "summary" : "Get all posture profiles. This API will be deprecated in a future release.",
+        "operationId" : "getAllAttributesUsingGET_1",
+        "produces" : [ "*/*" ],
+        "parameters" : [ {
+          "name" : "customerId",
+          "in" : "path",
+          "description" : "The unique identifier of the ZPA tenant.",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/PostureProfile"
+              }
+            },
+            "responseSchema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/PostureProfile"
+              }
+            }
+          },
+          "400" : {
+            "description" : "BadRequest"
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "429" : {
+            "description" : "TooManyRequest"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "deprecated" : false
+      }
+    },
+    "/mgmtconfig/v2/admin/customers/{customerId}/clientlessCertificate/issued" : {
+      "get" : {
+        "tags" : [ "ba-certificate-controller-v-2" ],
+        "summary" : "Get all the issued certificates.",
+        "operationId" : "getAllIssuedCertsUsingGET_2",
+        "produces" : [ "*/*" ],
+        "parameters" : [ {
+          "name" : "customerId",
+          "in" : "path",
+          "description" : "The unique identifier of the ZPA tenant.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "page",
+          "in" : "query",
+          "description" : "Specifies the page number.",
+          "required" : false,
+          "type" : "string",
+          "allowEmptyValue" : true,
+          "x-example" : 1
+        }, {
+          "name" : "pagesize",
+          "in" : "query",
+          "description" : "Specifies the page size. If not provided, the default page size is 20. The max page size is 500.",
+          "required" : false,
+          "type" : "string",
+          "allowEmptyValue" : true,
+          "x-example" : 20
+        }, {
+          "name" : "search",
+          "in" : "query",
+          "description" : "The search string used to support search by features and fields for the API.",
+          "required" : false,
+          "type" : "string",
+          "allowEmptyValue" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/PageListOfBACertificate"
+            },
+            "responseSchema" : {
+              "$ref" : "#/definitions/PageListOfBACertificate"
+            }
+          },
+          "400" : {
+            "description" : "BadRequest"
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "429" : {
+            "description" : "TooManyRequest"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "deprecated" : false
+      }
+    },
+    "/mgmtconfig/v1/admin/customers/{customerId}/idp" : {
+      "get" : {
+        "tags" : [ "idp-controller" ],
+        "summary" : "Get the configured IdP details. This API will be deprecated in a future release.",
+        "operationId" : "getIdpUsingGET_1",
+        "produces" : [ "*/*" ],
+        "parameters" : [ {
+          "name" : "customerId",
+          "in" : "path",
+          "description" : "The unique identifier of the ZPA tenant.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "scimEnabled",
+          "in" : "query",
+          "description" : "Returns all SCIM IdPs if set to true. Returns all non SCIM IdPs if set to false.",
+          "required" : false,
+          "type" : "boolean",
+          "allowEmptyValue" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/Idp"
+              }
+            },
+            "responseSchema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/Idp"
+              }
+            }
+          },
+          "400" : {
+            "description" : "BadRequest"
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "429" : {
+            "description" : "TooManyRequest"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "deprecated" : false
+      }
+    },
+    "/mgmtconfig/v2/admin/customers/{customerId}/samlAttribute" : {
+      "get" : {
+        "tags" : [ "saml-attr-controller-v-2" ],
+        "summary" : "Get all SAML attributes by page.",
+        "operationId" : "getAllAttributesByPageUsingGET",
+        "produces" : [ "*/*" ],
+        "parameters" : [ {
+          "name" : "customerId",
+          "in" : "path",
+          "description" : "The unique identifier of the ZPA tenant.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "page",
+          "in" : "query",
+          "description" : "Specifies the page number.",
+          "required" : false,
+          "type" : "string",
+          "allowEmptyValue" : true,
+          "x-example" : 1
+        }, {
+          "name" : "pagesize",
+          "in" : "query",
+          "description" : "Specifies the page size. If not provided, the default page size is 20. The max page size is 500.",
+          "required" : false,
+          "type" : "string",
+          "allowEmptyValue" : true,
+          "x-example" : 20
+        }, {
+          "name" : "search",
+          "in" : "query",
+          "description" : "The search string used to support search by features and fields for the API.",
+          "required" : false,
+          "type" : "string",
+          "allowEmptyValue" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/PageListOfSamlAttribute"
+            },
+            "responseSchema" : {
+              "$ref" : "#/definitions/PageListOfSamlAttribute"
+            }
+          },
+          "400" : {
+            "description" : "BadRequest"
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "429" : {
+            "description" : "TooManyRequest"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "deprecated" : false
+      }
+    },
+    "/mgmtconfig/v1/admin/customers/{customerId}/associationType/{associationType}/provisioningKey" : {
+      "get" : {
+        "tags" : [ "provisioningKey-controller" ],
+        "summary" : "Get all the configured Provisioning Key details.",
+        "operationId" : "getProvisioningKeyForAssociationTypeUsingGET_1",
+        "produces" : [ "*/*" ],
+        "parameters" : [ {
+          "name" : "associationType",
+          "in" : "path",
+          "description" : "Specifies the provisioning key type for App Connectors or ZPA Private Service Edges. The supported values are CONNECTOR_GRP and SERVICE_EDGE_GRP.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "customerId",
+          "in" : "path",
+          "description" : "The unique identifier of the ZPA tenant.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "page",
+          "in" : "query",
+          "description" : "Specifies the page number.",
+          "required" : false,
+          "type" : "string",
+          "allowEmptyValue" : true,
+          "x-example" : 1
+        }, {
+          "name" : "pagesize",
+          "in" : "query",
+          "description" : "Specifies the page size. If not provided, the default page size is 20. The max page size is 500.",
+          "required" : false,
+          "type" : "string",
+          "allowEmptyValue" : true,
+          "x-example" : 20
+        }, {
+          "name" : "search",
+          "in" : "query",
+          "description" : "The search string used to support search by features and fields for the API.",
+          "required" : false,
+          "type" : "string",
+          "allowEmptyValue" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/PageListOfProvisioningKey"
+            },
+            "responseSchema" : {
+              "$ref" : "#/definitions/PageListOfProvisioningKey"
+            }
+          },
+          "400" : {
+            "description" : "BadRequest"
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "429" : {
+            "description" : "TooManyRequest"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "deprecated" : false
+      },
+      "post" : {
+        "tags" : [ "provisioningKey-controller" ],
+        "summary" : "Add a new Provisioning Key.",
+        "operationId" : "createProvisioningKeyUsingPOST_1",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "*/*" ],
+        "parameters" : [ {
+          "name" : "associationType",
+          "in" : "path",
+          "description" : "Specifies the provisioning key type for App Connectors or ZPA Private Service Edges. The supported values are CONNECTOR_GRP and SERVICE_EDGE_GRP.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "customerId",
+          "in" : "path",
+          "description" : "The unique identifier of the ZPA tenant.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "provisioningKey",
+          "description" : "The object of the Provisioning Key.",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/Provisioning Key"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/Provisioning Key"
+            },
+            "responseSchema" : {
+              "$ref" : "#/definitions/Provisioning Key"
+            }
+          },
+          "201" : {
+            "description" : "Created"
+          },
+          "400" : {
+            "description" : "BadRequest"
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "429" : {
+            "description" : "TooManyRequest"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "deprecated" : false
+      }
+    },
+    "/mgmtconfig/v1/admin/customers/{customerId}/associationType/{associationType}/provisioningKey/{provisioningKeyId}" : {
+      "get" : {
+        "tags" : [ "provisioningKey-controller" ],
+        "summary" : "Get the Provisioning Key details.",
+        "operationId" : "getProvisioningKeyUsingGET_1",
+        "produces" : [ "*/*" ],
+        "parameters" : [ {
+          "name" : "associationType",
+          "in" : "path",
+          "description" : "Specifies the provisioning key type for App Connectors or ZPA Private Service Edges. The supported values are CONNECTOR_GRP and SERVICE_EDGE_GRP.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "customerId",
+          "in" : "path",
+          "description" : "The unique identifier of the ZPA tenant.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "provisioningKeyId",
+          "in" : "path",
+          "description" : "The unique identifier of the Provisioning Key.",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/Provisioning Key"
+            },
+            "responseSchema" : {
+              "$ref" : "#/definitions/Provisioning Key"
+            }
+          },
+          "400" : {
+            "description" : "BadRequest"
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "429" : {
+            "description" : "TooManyRequest"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "deprecated" : false
+      },
+      "put" : {
+        "tags" : [ "provisioningKey-controller" ],
+        "summary" : "Update the Provisioning Key details.",
+        "operationId" : "updateProvisioningKeyUsingPUT_1",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "*/*" ],
+        "parameters" : [ {
+          "name" : "associationType",
+          "in" : "path",
+          "description" : "Specifies the provisioning key type for App Connectors or ZPA Private Service Edges. The supported values are CONNECTOR_GRP and SERVICE_EDGE_GRP.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "customerId",
+          "in" : "path",
+          "description" : "The unique identifier of the ZPA tenant.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "provisioningKey",
+          "description" : "The object of the Provisioning Key.",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/Provisioning Key"
+          }
+        }, {
+          "name" : "provisioningKeyId",
+          "in" : "path",
+          "description" : "The unique identifier of the Provisioning Key.",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "Created"
+          },
+          "204" : {
+            "description" : "No Content"
+          },
+          "400" : {
+            "description" : "BadRequest"
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "429" : {
+            "description" : "TooManyRequest"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "deprecated" : false
+      },
+      "delete" : {
+        "tags" : [ "provisioningKey-controller" ],
+        "summary" : "Delete the Provisioning Key.",
+        "operationId" : "deleteProvisioningKeyUsingDELETE_1",
+        "produces" : [ "*/*" ],
+        "parameters" : [ {
+          "name" : "associationType",
+          "in" : "path",
+          "description" : "Specifies the provisioning key type for App Connectors or ZPA Private Service Edges. The supported values are CONNECTOR_GRP and SERVICE_EDGE_GRP.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "customerId",
+          "in" : "path",
+          "description" : "The unique identifier of the ZPA tenant.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "provisioningKeyId",
+          "in" : "path",
+          "description" : "The unique identifier of the Provisioning Key.",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "204" : {
+            "description" : "No Content"
+          },
+          "400" : {
+            "description" : "BadRequest"
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "429" : {
+            "description" : "TooManyRequest"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          }
+        },
+        "deprecated" : false
+      }
+    },
+    "/mgmtconfig/v1/admin/customers/{customerId}/policySet/rules/policyType/{policyType}" : {
+      "get" : {
+        "tags" : [ "policy-set-controller" ],
+        "summary" : "Get paginated policy rules for a given policy type.",
+        "operationId" : "getPolicyRulesByPageUsingGET_1",
+        "produces" : [ "*/*" ],
+        "parameters" : [ {
+          "name" : "customerId",
+          "in" : "path",
+          "description" : "The unique identifier of the ZPA tenant.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "page",
+          "in" : "query",
+          "description" : "Specifies the page number.",
+          "required" : false,
+          "type" : "string",
+          "allowEmptyValue" : true,
+          "x-example" : 1
+        }, {
+          "name" : "pagesize",
+          "in" : "query",
+          "description" : "Specifies the page size. If not provided, the default page size is 20. The max page size is 500.",
+          "required" : false,
+          "type" : "string",
+          "allowEmptyValue" : true,
+          "x-example" : 20
+        }, {
+          "name" : "policyType",
+          "in" : "path",
+          "description" : "Type for differentiating policy types. Supported values : ACCESS_POLICY/GLOBAL_POLICY, TIMEOUT_POLICY/REAUTH_POLICY, SIEM_POLICY, CLIENT_FORWARDING_POLICY/BYPASS_POLICY",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "search",
+          "in" : "query",
+          "description" : "The search string used to support search by features and fields for the API.",
+          "required" : false,
+          "type" : "string",
+          "allowEmptyValue" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/PageListOfPolicyRule"
+            },
+            "responseSchema" : {
+              "$ref" : "#/definitions/PageListOfPolicyRule"
+            }
+          },
+          "400" : {
+            "description" : "BadRequest"
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "429" : {
+            "description" : "TooManyRequest"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "deprecated" : false
+      }
+    },
+    "/mgmtconfig/v2/admin/customers/{customerId}/posture" : {
+      "get" : {
+        "tags" : [ "posture-profile-controller-v-2" ],
+        "summary" : "Get all posture profiles.",
+        "operationId" : "getAllAttributesUsingGET_2",
+        "produces" : [ "*/*" ],
+        "parameters" : [ {
+          "name" : "customerId",
+          "in" : "path",
+          "description" : "The unique identifier of the ZPA tenant.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "page",
+          "in" : "query",
+          "description" : "Specifies the page number.",
+          "required" : false,
+          "type" : "string",
+          "allowEmptyValue" : true,
+          "x-example" : 1
+        }, {
+          "name" : "pagesize",
+          "in" : "query",
+          "description" : "Specifies the page size. If not provided, the default page size is 20. The max page size is 500.",
+          "required" : false,
+          "type" : "string",
+          "allowEmptyValue" : true,
+          "x-example" : 20
+        }, {
+          "name" : "search",
+          "in" : "query",
+          "description" : "The search string used to support search by features and fields for the API.",
+          "required" : false,
+          "type" : "string",
+          "allowEmptyValue" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/PageListOfPostureProfile"
+            },
+            "responseSchema" : {
+              "$ref" : "#/definitions/PageListOfPostureProfile"
+            }
+          },
+          "400" : {
+            "description" : "BadRequest"
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "429" : {
+            "description" : "TooManyRequest"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "deprecated" : false
+      }
+    },
+    "/mgmtconfig/v1/admin/customers/{customerId}/application/{applicationId}" : {
+      "get" : {
+        "tags" : [ "application-controller" ],
+        "summary" : "Get the Application Segment details.",
+        "operationId" : "getApplicationUsingGET_1",
+        "produces" : [ "*/*" ],
+        "parameters" : [ {
+          "name" : "applicationId",
+          "in" : "path",
+          "description" : "The unique identifier of the Application Segment.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "customerId",
+          "in" : "path",
+          "description" : "The unique identifier of the ZPA tenant.",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/ApplicationResource"
+            },
+            "responseSchema" : {
+              "$ref" : "#/definitions/ApplicationResource"
+            }
+          },
+          "400" : {
+            "description" : "BadRequest"
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "429" : {
+            "description" : "TooManyRequest"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "deprecated" : false
+      },
+      "put" : {
+        "tags" : [ "application-controller" ],
+        "summary" : "Update the Application Segment details.",
+        "operationId" : "updateApplicationV2UsingPUT_1",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "*/*" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "application",
+          "description" : "The object of the Application Segment.",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/ApplicationResource"
+          }
+        }, {
+          "name" : "applicationId",
+          "in" : "path",
+          "description" : "The unique identifier of the Application Segment.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "customerId",
+          "in" : "path",
+          "description" : "The unique identifier of the ZPA tenant.",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "Created"
+          },
+          "204" : {
+            "description" : "No Content"
+          },
+          "400" : {
+            "description" : "BadRequest"
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "429" : {
+            "description" : "TooManyRequest"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "deprecated" : false
+      },
+      "delete" : {
+        "tags" : [ "application-controller" ],
+        "summary" : "Delete an Application Segment.",
+        "operationId" : "deleteApplicationUsingDELETE_1",
+        "produces" : [ "*/*" ],
+        "parameters" : [ {
+          "name" : "applicationId",
+          "in" : "path",
+          "description" : "The unique identifier of the Application Segment.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "customerId",
+          "in" : "path",
+          "description" : "The unique identifier of the ZPA tenant.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "forceDelete",
+          "in" : "query",
+          "description" : "Setting this field to true will delete the mapping between Application Segment and Segment Group",
+          "required" : false,
+          "type" : "boolean",
+          "default" : false,
+          "allowEmptyValue" : false
+        } ],
+        "responses" : {
+          "204" : {
+            "description" : "No Content"
+          },
+          "400" : {
+            "description" : "BadRequest"
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "429" : {
+            "description" : "TooManyRequest"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          }
+        },
+        "deprecated" : false
+      }
+    },
+    "/mgmtconfig/v1/admin/customers/{customerId}/policySet/global" : {
+      "get" : {
+        "tags" : [ "policy-set-controller" ],
+        "summary" : "Get the global policy. This API will be deprecated in a future release.",
+        "operationId" : "getGlobalPolicySetUsingGET_1",
+        "produces" : [ "*/*" ],
+        "parameters" : [ {
+          "name" : "customerId",
+          "in" : "path",
+          "description" : "The unique identifier of the ZPA tenant.",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/PolicySet"
+            },
+            "responseSchema" : {
+              "$ref" : "#/definitions/PolicySet"
+            }
+          },
+          "400" : {
+            "description" : "BadRequest"
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "429" : {
+            "description" : "TooManyRequest"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "deprecated" : false
+      }
+    },
+    "/mgmtconfig/v1/admin/customers/{customerId}/connector" : {
+      "get" : {
+        "tags" : [ "connector-controller" ],
+        "summary" : "Get all the configured Connector details.",
+        "operationId" : "getAllConnectorsUsingGET_1",
+        "produces" : [ "*/*" ],
+        "parameters" : [ {
+          "name" : "customerId",
+          "in" : "path",
+          "description" : "The unique identifier of the ZPA tenant.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "page",
+          "in" : "query",
+          "description" : "Specifies the page number.",
+          "required" : false,
+          "type" : "string",
+          "allowEmptyValue" : true,
+          "x-example" : 1
+        }, {
+          "name" : "pagesize",
+          "in" : "query",
+          "description" : "Specifies the page size. If not provided, the default page size is 20. The max page size is 500.",
+          "required" : false,
+          "type" : "string",
+          "allowEmptyValue" : true,
+          "x-example" : 20
+        }, {
+          "name" : "search",
+          "in" : "query",
+          "description" : "The search string used to support search by features and fields for the API.",
+          "required" : false,
+          "type" : "string",
+          "allowEmptyValue" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/PageListOfConnector"
+            },
+            "responseSchema" : {
+              "$ref" : "#/definitions/PageListOfConnector"
+            }
+          },
+          "400" : {
+            "description" : "BadRequest"
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "429" : {
+            "description" : "TooManyRequest"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "deprecated" : false
+      }
+    },
+    "/mgmtconfig/v1/admin/customers/{customerId}/posture/{id}" : {
+      "get" : {
+        "tags" : [ "posture-profile-controller" ],
+        "summary" : "Get the configured profile posture.",
+        "operationId" : "getPostureProfileUsingGET_1",
+        "produces" : [ "*/*" ],
+        "parameters" : [ {
+          "name" : "customerId",
+          "in" : "path",
+          "description" : "The unique identifier of the ZPA tenant.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "id",
+          "in" : "path",
+          "description" : "The unique identifier of the posture profile.",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/PostureProfile"
+            },
+            "responseSchema" : {
+              "$ref" : "#/definitions/PostureProfile"
+            }
+          },
+          "400" : {
+            "description" : "BadRequest"
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "429" : {
+            "description" : "TooManyRequest"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "deprecated" : false
+      }
+    },
+    "/mgmtconfig/v1/admin/customers/{customerId}/policySet/reauth" : {
+      "get" : {
+        "tags" : [ "policy-set-controller" ],
+        "summary" : "Get the authentication policy and all rules for a Timeout policy rule. This API will be deprecated in a future release.",
+        "operationId" : "getReauthPolicySetUsingGET_1",
+        "produces" : [ "*/*" ],
+        "parameters" : [ {
+          "name" : "customerId",
+          "in" : "path",
+          "description" : "The unique identifier of the ZPA tenant.",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/PolicySet"
+            },
+            "responseSchema" : {
+              "$ref" : "#/definitions/PolicySet"
+            }
+          },
+          "400" : {
+            "description" : "BadRequest"
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "429" : {
+            "description" : "TooManyRequest"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "deprecated" : false
+      }
+    },
+    "/mgmtconfig/v2/admin/customers/{customerId}/idp" : {
+      "get" : {
+        "tags" : [ "idp-controller-v-2" ],
+        "summary" : "Get the configured IdP details.",
+        "operationId" : "getAllIdpUsingGET",
+        "produces" : [ "*/*" ],
+        "parameters" : [ {
+          "name" : "customerId",
+          "in" : "path",
+          "description" : "The unique identifier of the ZPA tenant.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "page",
+          "in" : "query",
+          "description" : "Specifies the page number.",
+          "required" : false,
+          "type" : "string",
+          "allowEmptyValue" : true,
+          "x-example" : 1
+        }, {
+          "name" : "pagesize",
+          "in" : "query",
+          "description" : "Specifies the page size. If not provided, the default page size is 20. The max page size is 500.",
+          "required" : false,
+          "type" : "string",
+          "allowEmptyValue" : true,
+          "x-example" : 20
+        }, {
+          "name" : "scimEnabled",
+          "in" : "query",
+          "description" : "Returns all SCIM IdPs if set to true. Returns all non SCIM IdPs if set to false.",
+          "required" : false,
+          "type" : "boolean",
+          "allowEmptyValue" : true
+        }, {
+          "name" : "search",
+          "in" : "query",
+          "description" : "The search string used to support search by features and fields for the API.",
+          "required" : false,
+          "type" : "string",
+          "allowEmptyValue" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/PageListOfIdp"
+            },
+            "responseSchema" : {
+              "$ref" : "#/definitions/PageListOfIdp"
+            }
+          },
+          "400" : {
+            "description" : "BadRequest"
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "429" : {
+            "description" : "TooManyRequest"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "deprecated" : false
+      }
+    },
+    "/mgmtconfig/v2/admin/customers/{customerId}/lssConfig" : {
+      "get" : {
+        "tags" : [ "lss-config-controller-v-2" ],
+        "summary" : "Get all LSS configured for a given customer",
+        "operationId" : "getAllUsingGET_8",
+        "produces" : [ "*/*" ],
+        "parameters" : [ {
+          "name" : "customerId",
+          "in" : "path",
+          "description" : "The unique identifier of the ZPA tenant.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "page",
+          "in" : "query",
+          "description" : "Specifies the page number.",
+          "required" : false,
+          "type" : "string",
+          "allowEmptyValue" : true,
+          "x-example" : 1
+        }, {
+          "name" : "pagesize",
+          "in" : "query",
+          "description" : "Specifies the page size. If not provided, the default page size is 20. The max page size is 500.",
+          "required" : false,
+          "type" : "string",
+          "allowEmptyValue" : true,
+          "x-example" : 20
+        }, {
+          "name" : "search",
+          "in" : "query",
+          "description" : "The search string used to support search by features and fields for the API.",
+          "required" : false,
+          "type" : "string",
+          "allowEmptyValue" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/PageListOfLssResource"
+            },
+            "responseSchema" : {
+              "$ref" : "#/definitions/PageListOfLssResource"
+            }
+          },
+          "400" : {
+            "description" : "BadRequest"
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "429" : {
+            "description" : "TooManyRequest"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "deprecated" : false
+      },
+      "post" : {
+        "tags" : [ "lss-config-controller-v-2" ],
+        "summary" : "Add a new LSS for a given customer.",
+        "operationId" : "addLssUsingPOST_3",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "*/*" ],
+        "parameters" : [ {
+          "name" : "customerId",
+          "in" : "path",
+          "description" : "The unique identifier of the ZPA tenant.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "lssResource",
+          "description" : "The object of the LSS resource.",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/LssResource"
+          }
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "Created",
+            "schema" : {
+              "$ref" : "#/definitions/LssResource"
+            },
+            "responseSchema" : {
+              "$ref" : "#/definitions/LssResource"
+            }
+          },
+          "400" : {
+            "description" : "BadRequest"
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "429" : {
+            "description" : "TooManyRequest"
           },
           "403" : {
             "description" : "Forbidden"
@@ -462,50 +3248,14 @@
               "$ref" : "#/definitions/SamlAttribute"
             }
           },
-          "401" : {
-            "description" : "Unauthorized"
-          },
-          "403" : {
-            "description" : "Forbidden"
-          },
-          "404" : {
-            "description" : "Not Found"
-          }
-        },
-        "deprecated" : false
-      }
-    },
-    "/mgmtconfig/v1/admin/customers/{customerId}/network" : {
-      "get" : {
-        "tags" : [ "trusted-network-controller" ],
-        "summary" : "Get all the Trusted Networks.",
-        "operationId" : "getAllTrustedNetworksUsingGET_1",
-        "produces" : [ "*/*" ],
-        "parameters" : [ {
-          "name" : "customerId",
-          "in" : "path",
-          "description" : "The unique identifier of the ZPA tenant.",
-          "required" : true,
-          "type" : "string"
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "OK",
-            "schema" : {
-              "type" : "array",
-              "items" : {
-                "$ref" : "#/definitions/TrustedNetwork"
-              }
-            },
-            "responseSchema" : {
-              "type" : "array",
-              "items" : {
-                "$ref" : "#/definitions/TrustedNetwork"
-              }
-            }
+          "400" : {
+            "description" : "BadRequest"
           },
           "401" : {
             "description" : "Unauthorized"
+          },
+          "429" : {
+            "description" : "TooManyRequest"
           },
           "403" : {
             "description" : "Forbidden"
@@ -546,8 +3296,14 @@
               "$ref" : "#/definitions/Idp"
             }
           },
+          "400" : {
+            "description" : "BadRequest"
+          },
           "401" : {
             "description" : "Unauthorized"
+          },
+          "429" : {
+            "description" : "TooManyRequest"
           },
           "403" : {
             "description" : "Forbidden"
@@ -594,8 +3350,14 @@
               "$ref" : "#/definitions/PolicyRule"
             }
           },
+          "400" : {
+            "description" : "BadRequest"
+          },
           "401" : {
             "description" : "Unauthorized"
+          },
+          "429" : {
+            "description" : "TooManyRequest"
           },
           "403" : {
             "description" : "Forbidden"
@@ -646,8 +3408,14 @@
           "204" : {
             "description" : "No Content"
           },
+          "400" : {
+            "description" : "BadRequest"
+          },
           "401" : {
             "description" : "Unauthorized"
+          },
+          "429" : {
+            "description" : "TooManyRequest"
           },
           "403" : {
             "description" : "Forbidden"
@@ -686,8 +3454,14 @@
           "204" : {
             "description" : "No Content"
           },
+          "400" : {
+            "description" : "BadRequest"
+          },
           "401" : {
             "description" : "Unauthorized"
+          },
+          "429" : {
+            "description" : "TooManyRequest"
           },
           "403" : {
             "description" : "Forbidden"
@@ -696,11 +3470,11 @@
         "deprecated" : false
       }
     },
-    "/mgmtconfig/v1/admin/customers/{customerId}/server" : {
+    "/mgmtconfig/v2/admin/customers/{customerId}/network" : {
       "get" : {
-        "tags" : [ "app-server-controller" ],
-        "summary" : "Get all the configured Servers.",
-        "operationId" : "getAllAppServersUsingGET_1",
+        "tags" : [ "trusted-network-controller-v-2" ],
+        "summary" : "Get all the Trusted Networks.",
+        "operationId" : "getAllTrustedNetworksUsingGET_2",
         "produces" : [ "*/*" ],
         "parameters" : [ {
           "name" : "customerId",
@@ -713,8 +3487,7 @@
           "in" : "query",
           "description" : "Specifies the page number.",
           "required" : false,
-          "type" : "integer",
-          "format" : "int32",
+          "type" : "string",
           "allowEmptyValue" : true,
           "x-example" : 1
         }, {
@@ -722,8 +3495,7 @@
           "in" : "query",
           "description" : "Specifies the page size. If not provided, the default page size is 20. The max page size is 500.",
           "required" : false,
-          "type" : "integer",
-          "format" : "int32",
+          "type" : "string",
           "allowEmptyValue" : true,
           "x-example" : 20
         }, {
@@ -738,157 +3510,10 @@
           "200" : {
             "description" : "OK",
             "schema" : {
-              "$ref" : "#/definitions/PageListOfApplicationServer"
+              "$ref" : "#/definitions/PageListOfTrustedNetwork"
             },
             "responseSchema" : {
-              "$ref" : "#/definitions/PageListOfApplicationServer"
-            }
-          },
-          "401" : {
-            "description" : "Unauthorized"
-          },
-          "403" : {
-            "description" : "Forbidden"
-          },
-          "404" : {
-            "description" : "Not Found"
-          }
-        },
-        "deprecated" : false
-      },
-      "post" : {
-        "tags" : [ "app-server-controller" ],
-        "summary" : "Add a new Server.",
-        "operationId" : "addAppServerUsingPOST_1",
-        "consumes" : [ "application/json" ],
-        "produces" : [ "*/*" ],
-        "parameters" : [ {
-          "name" : "customerId",
-          "in" : "path",
-          "description" : "The unique identifier of the ZPA tenant.",
-          "required" : true,
-          "type" : "string"
-        }, {
-          "in" : "body",
-          "name" : "server",
-          "description" : "The object of the Server.",
-          "required" : false,
-          "schema" : {
-            "$ref" : "#/definitions/ApplicationServer"
-          }
-        } ],
-        "responses" : {
-          "201" : {
-            "description" : "Created",
-            "schema" : {
-              "$ref" : "#/definitions/ApplicationServer"
-            },
-            "responseSchema" : {
-              "$ref" : "#/definitions/ApplicationServer"
-            }
-          },
-          "401" : {
-            "description" : "Unauthorized"
-          },
-          "403" : {
-            "description" : "Forbidden"
-          },
-          "404" : {
-            "description" : "Not Found"
-          }
-        },
-        "deprecated" : false
-      }
-    },
-    "/mgmtconfig/v1/admin/customers/{customerId}/application" : {
-      "get" : {
-        "tags" : [ "application-controller" ],
-        "summary" : "Get all configured Application Segments.",
-        "operationId" : "getAllApplicationsUsingGET_3",
-        "produces" : [ "*/*" ],
-        "parameters" : [ {
-          "name" : "customerId",
-          "in" : "path",
-          "description" : "The unique identifier of the ZPA tenant.",
-          "required" : true,
-          "type" : "string"
-        }, {
-          "name" : "page",
-          "in" : "query",
-          "description" : "Specifies the page number.",
-          "required" : false,
-          "type" : "integer",
-          "format" : "int32",
-          "allowEmptyValue" : true,
-          "x-example" : 1
-        }, {
-          "name" : "pagesize",
-          "in" : "query",
-          "description" : "Specifies the page size. If not provided, the default page size is 20. The max page size is 500.",
-          "required" : false,
-          "type" : "integer",
-          "format" : "int32",
-          "allowEmptyValue" : true,
-          "x-example" : 20
-        }, {
-          "name" : "search",
-          "in" : "query",
-          "description" : "The search string used to support search by features and fields for the API.",
-          "required" : false,
-          "type" : "string",
-          "allowEmptyValue" : true
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "OK",
-            "schema" : {
-              "$ref" : "#/definitions/PageListOfApplicationResource"
-            },
-            "responseSchema" : {
-              "$ref" : "#/definitions/PageListOfApplicationResource"
-            }
-          },
-          "401" : {
-            "description" : "Unauthorized"
-          },
-          "403" : {
-            "description" : "Forbidden"
-          },
-          "404" : {
-            "description" : "Not Found"
-          }
-        },
-        "deprecated" : false
-      },
-      "post" : {
-        "tags" : [ "application-controller" ],
-        "summary" : "Add a new Application Segment.",
-        "operationId" : "addApplicationUsingPOST_1",
-        "consumes" : [ "application/json" ],
-        "produces" : [ "*/*" ],
-        "parameters" : [ {
-          "in" : "body",
-          "name" : "application",
-          "description" : "The object of the Application Segment.",
-          "required" : false,
-          "schema" : {
-            "$ref" : "#/definitions/ApplicationResource"
-          }
-        }, {
-          "name" : "customerId",
-          "in" : "path",
-          "description" : "The unique identifier of the ZPA tenant.",
-          "required" : true,
-          "type" : "string"
-        } ],
-        "responses" : {
-          "201" : {
-            "description" : "Created",
-            "schema" : {
-              "$ref" : "#/definitions/ApplicationResource"
-            },
-            "responseSchema" : {
-              "$ref" : "#/definitions/ApplicationResource"
+              "$ref" : "#/definitions/PageListOfTrustedNetwork"
             }
           },
           "400" : {
@@ -897,176 +3522,8 @@
           "401" : {
             "description" : "Unauthorized"
           },
-          "403" : {
-            "description" : "Forbidden"
-          },
-          "404" : {
-            "description" : "Not Found"
-          }
-        },
-        "deprecated" : false
-      }
-    },
-    "/mgmtconfig/v1/admin/customers/{customerId}/idp/{idpId}/scimattribute" : {
-      "get" : {
-        "tags" : [ "scim-attribute-header-controller" ],
-        "summary" : "Get all the SCIM attributes.",
-        "operationId" : "getAllSCIMAttributesUsingGET_1",
-        "produces" : [ "*/*" ],
-        "parameters" : [ {
-          "name" : "customerId",
-          "in" : "path",
-          "description" : "The unique identifier of the ZPA tenant.",
-          "required" : true,
-          "type" : "string"
-        }, {
-          "name" : "idpId",
-          "in" : "path",
-          "description" : "The unique identifier of the IdP.",
-          "required" : true,
-          "type" : "string"
-        }, {
-          "name" : "page",
-          "in" : "query",
-          "description" : "Specifies the page number.",
-          "required" : false,
-          "type" : "integer",
-          "format" : "int32",
-          "allowEmptyValue" : true,
-          "x-example" : 1
-        }, {
-          "name" : "pagesize",
-          "in" : "query",
-          "description" : "Specifies the page size. If not provided, the default page size is 20. The max page size is 500.",
-          "required" : false,
-          "type" : "integer",
-          "format" : "int32",
-          "allowEmptyValue" : true,
-          "x-example" : 20
-        }, {
-          "name" : "search",
-          "in" : "query",
-          "description" : "The search string used to support search by features and fields for the API.",
-          "required" : false,
-          "type" : "string",
-          "allowEmptyValue" : true
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "OK",
-            "schema" : {
-              "$ref" : "#/definitions/PageListOfSCIMAttributeHeader"
-            },
-            "responseSchema" : {
-              "$ref" : "#/definitions/PageListOfSCIMAttributeHeader"
-            }
-          },
-          "401" : {
-            "description" : "Unauthorized"
-          },
-          "403" : {
-            "description" : "Forbidden"
-          },
-          "404" : {
-            "description" : "Not Found"
-          }
-        },
-        "deprecated" : false
-      }
-    },
-    "/mgmtconfig/v1/admin/customers/{customerId}/serverGroup" : {
-      "get" : {
-        "tags" : [ "server-group-controller" ],
-        "summary" : "Get all configured Server Groups.",
-        "operationId" : "getAllServerGroupsUsingGET_1",
-        "produces" : [ "*/*" ],
-        "parameters" : [ {
-          "name" : "customerId",
-          "in" : "path",
-          "description" : "The unique identifier of the ZPA tenant.",
-          "required" : true,
-          "type" : "string"
-        }, {
-          "name" : "page",
-          "in" : "query",
-          "description" : "Specifies the page number.",
-          "required" : false,
-          "type" : "integer",
-          "format" : "int32",
-          "allowEmptyValue" : true,
-          "x-example" : 1
-        }, {
-          "name" : "pagesize",
-          "in" : "query",
-          "description" : "Specifies the page size. If not provided, the default page size is 20. The max page size is 500.",
-          "required" : false,
-          "type" : "integer",
-          "format" : "int32",
-          "allowEmptyValue" : true,
-          "x-example" : 20
-        }, {
-          "name" : "search",
-          "in" : "query",
-          "description" : "The search string used to support search by features and fields for the API.",
-          "required" : false,
-          "type" : "string",
-          "allowEmptyValue" : true
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "OK",
-            "schema" : {
-              "$ref" : "#/definitions/PageListOfServerGroupDTO"
-            },
-            "responseSchema" : {
-              "$ref" : "#/definitions/PageListOfServerGroupDTO"
-            }
-          },
-          "401" : {
-            "description" : "Unauthorized"
-          },
-          "403" : {
-            "description" : "Forbidden"
-          },
-          "404" : {
-            "description" : "Not Found"
-          }
-        },
-        "deprecated" : false
-      },
-      "post" : {
-        "tags" : [ "server-group-controller" ],
-        "summary" : "Add a new Server Group.",
-        "operationId" : "addAppServerGroupUsingPOST_1",
-        "consumes" : [ "application/json" ],
-        "produces" : [ "*/*" ],
-        "parameters" : [ {
-          "name" : "customerId",
-          "in" : "path",
-          "description" : "The unique identifier of the ZPA tenant.",
-          "required" : true,
-          "type" : "string"
-        }, {
-          "in" : "body",
-          "name" : "group",
-          "description" : "The object of the Server Group.",
-          "required" : false,
-          "schema" : {
-            "$ref" : "#/definitions/ServerGroupDTO"
-          }
-        } ],
-        "responses" : {
-          "201" : {
-            "description" : "Created",
-            "schema" : {
-              "$ref" : "#/definitions/ServerGroupDTO"
-            },
-            "responseSchema" : {
-              "$ref" : "#/definitions/ServerGroupDTO"
-            }
-          },
-          "401" : {
-            "description" : "Unauthorized"
+          "429" : {
+            "description" : "TooManyRequest"
           },
           "403" : {
             "description" : "Forbidden"
@@ -1087,7 +3544,7 @@
         "parameters" : [ {
           "name" : "appConnectorGroupId",
           "in" : "path",
-          "description" : "The unique identifier of the App Connector Group.",
+          "description" : "The unique identifier of the Connector Group.",
           "required" : true,
           "type" : "string"
         }, {
@@ -1107,8 +3564,14 @@
               "$ref" : "#/definitions/AppConnectorGroup"
             }
           },
+          "400" : {
+            "description" : "BadRequest"
+          },
           "401" : {
             "description" : "Unauthorized"
+          },
+          "429" : {
+            "description" : "TooManyRequest"
           },
           "403" : {
             "description" : "Forbidden"
@@ -1118,54 +3581,92 @@
           }
         },
         "deprecated" : false
-      }
-    },
-    "/mgmtconfig/v1/admin/customers/{customerId}/policySet/{policySetId}/rule" : {
-      "post" : {
-        "tags" : [ "policy-set-controller" ],
-        "summary" : "Add a new policy rule for a given policy.",
-        "operationId" : "addRuleToPolicySetUsingPOST_1",
+      },
+      "put" : {
+        "tags" : [ "connector-group-controller" ],
+        "summary" : "Update the Connector Group details.",
+        "operationId" : "updateAppConnectorGroupUsingPUT_1",
         "consumes" : [ "application/json" ],
         "produces" : [ "*/*" ],
         "parameters" : [ {
+          "in" : "body",
+          "name" : "appConnectorGroup",
+          "description" : "The object of the Connector Group.",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/AppConnectorGroup"
+          }
+        }, {
+          "name" : "appConnectorGroupId",
+          "in" : "path",
+          "description" : "The unique identifier of the Connector Group.",
+          "required" : true,
+          "type" : "string"
+        }, {
           "name" : "customerId",
           "in" : "path",
           "description" : "The unique identifier of the ZPA tenant.",
           "required" : true,
           "type" : "string"
-        }, {
-          "name" : "policySetId",
-          "in" : "path",
-          "description" : "The unique identifier of the policy.",
-          "required" : true,
-          "type" : "string"
-        }, {
-          "in" : "body",
-          "name" : "rule",
-          "description" : "The object of the policy rule.",
-          "required" : true,
-          "schema" : {
-            "$ref" : "#/definitions/PolicyRule"
-          }
         } ],
         "responses" : {
           "201" : {
-            "description" : "Created",
-            "schema" : {
-              "$ref" : "#/definitions/PolicyRule"
-            },
-            "responseSchema" : {
-              "$ref" : "#/definitions/PolicyRule"
-            }
+            "description" : "Created"
+          },
+          "204" : {
+            "description" : "No Content"
+          },
+          "400" : {
+            "description" : "BadRequest"
           },
           "401" : {
             "description" : "Unauthorized"
+          },
+          "429" : {
+            "description" : "TooManyRequest"
           },
           "403" : {
             "description" : "Forbidden"
           },
           "404" : {
             "description" : "Not Found"
+          }
+        },
+        "deprecated" : false
+      },
+      "delete" : {
+        "tags" : [ "connector-group-controller" ],
+        "summary" : "Delete the Connector Group.",
+        "operationId" : "deleteAppConnectorGroupUsingDELETE_1",
+        "produces" : [ "*/*" ],
+        "parameters" : [ {
+          "name" : "appConnectorGroupId",
+          "in" : "path",
+          "description" : "The unique identifier of the Connector Group.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "customerId",
+          "in" : "path",
+          "description" : "The unique identifier of the ZPA tenant.",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "204" : {
+            "description" : "No Content"
+          },
+          "400" : {
+            "description" : "BadRequest"
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "429" : {
+            "description" : "TooManyRequest"
+          },
+          "403" : {
+            "description" : "Forbidden"
           }
         },
         "deprecated" : false
@@ -1206,8 +3707,14 @@
               "$ref" : "#/definitions/SCIMAttributeHeader"
             }
           },
+          "400" : {
+            "description" : "BadRequest"
+          },
           "401" : {
             "description" : "Unauthorized"
+          },
+          "429" : {
+            "description" : "TooManyRequest"
           },
           "403" : {
             "description" : "Forbidden"
@@ -1219,37 +3726,39 @@
         "deprecated" : false
       }
     },
-    "/mgmtconfig/v1/admin/customers/{customerId}/clientlessCertificate/issued" : {
+    "/mgmtconfig/v2/admin/lssConfig/statusCodes" : {
       "get" : {
-        "tags" : [ "ba-certificate-controller" ],
-        "summary" : "Get all the issued certificates.",
-        "operationId" : "getAllIssuedCertsUsingGET_1",
+        "tags" : [ "lss-config-controller-v-2" ],
+        "summary" : "Get list of LSS status codes.",
+        "operationId" : "getStatusCodesUsingGET_1",
         "produces" : [ "*/*" ],
-        "parameters" : [ {
-          "name" : "customerId",
-          "in" : "path",
-          "description" : "The unique identifier of the ZPA tenant.",
-          "required" : true,
-          "type" : "string"
-        } ],
+        "parameters" : [ ],
         "responses" : {
           "200" : {
             "description" : "OK",
             "schema" : {
-              "type" : "array",
-              "items" : {
-                "$ref" : "#/definitions/BACertificate"
+              "type" : "object",
+              "additionalProperties" : {
+                "type" : "object",
+                "properties" : { }
               }
             },
             "responseSchema" : {
-              "type" : "array",
-              "items" : {
-                "$ref" : "#/definitions/BACertificate"
+              "type" : "object",
+              "additionalProperties" : {
+                "type" : "object",
+                "properties" : { }
               }
             }
           },
+          "400" : {
+            "description" : "BadRequest"
+          },
           "401" : {
             "description" : "Unauthorized"
+          },
+          "429" : {
+            "description" : "TooManyRequest"
           },
           "403" : {
             "description" : "Forbidden"
@@ -1290,50 +3799,14 @@
               "$ref" : "#/definitions/TrustedNetwork"
             }
           },
-          "401" : {
-            "description" : "Unauthorized"
-          },
-          "403" : {
-            "description" : "Forbidden"
-          },
-          "404" : {
-            "description" : "Not Found"
-          }
-        },
-        "deprecated" : false
-      }
-    },
-    "/mgmtconfig/v1/admin/customers/{customerId}/clientlessCertificate/{certificateId}" : {
-      "get" : {
-        "tags" : [ "ba-certificate-controller" ],
-        "summary" : "Get the details of the Browser Access certificate.",
-        "operationId" : "getUsingGET_1",
-        "produces" : [ "*/*" ],
-        "parameters" : [ {
-          "name" : "certificateId",
-          "in" : "path",
-          "description" : "The unique identifier of the Browser Access certificate.",
-          "required" : true,
-          "type" : "string"
-        }, {
-          "name" : "customerId",
-          "in" : "path",
-          "description" : "The unique identifier of the ZPA tenant.",
-          "required" : true,
-          "type" : "string"
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "OK",
-            "schema" : {
-              "$ref" : "#/definitions/BACertificate"
-            },
-            "responseSchema" : {
-              "$ref" : "#/definitions/BACertificate"
-            }
+          "400" : {
+            "description" : "BadRequest"
           },
           "401" : {
             "description" : "Unauthorized"
+          },
+          "429" : {
+            "description" : "TooManyRequest"
           },
           "403" : {
             "description" : "Forbidden"
@@ -1362,8 +3835,7 @@
           "in" : "query",
           "description" : "Specifies the page number.",
           "required" : false,
-          "type" : "integer",
-          "format" : "int32",
+          "type" : "string",
           "allowEmptyValue" : true,
           "x-example" : 1
         }, {
@@ -1371,8 +3843,7 @@
           "in" : "query",
           "description" : "Specifies the page size. If not provided, the default page size is 20. The max page size is 500.",
           "required" : false,
-          "type" : "integer",
-          "format" : "int32",
+          "type" : "string",
           "allowEmptyValue" : true,
           "x-example" : 20
         }, {
@@ -1393,8 +3864,14 @@
               "$ref" : "#/definitions/PageListOfMachineGroup"
             }
           },
+          "400" : {
+            "description" : "BadRequest"
+          },
           "401" : {
             "description" : "Unauthorized"
+          },
+          "429" : {
+            "description" : "TooManyRequest"
           },
           "403" : {
             "description" : "Forbidden"
@@ -1406,75 +3883,36 @@
         "deprecated" : false
       }
     },
-    "/mgmtconfig/v1/admin/customers/{customerId}/machineGroup/{Id}" : {
+    "/mgmtconfig/v2/admin/lssConfig/logType/formats" : {
       "get" : {
-        "tags" : [ "machine-group-controller" ],
-        "summary" : "Get the Machine Group details.",
-        "operationId" : "getMachineGroupUsingGET",
+        "tags" : [ "lss-config-controller-v-2" ],
+        "summary" : "Get all LSS log format.",
+        "operationId" : "getLssLogFormatUsingGET_3",
         "produces" : [ "*/*" ],
         "parameters" : [ {
-          "name" : "Id",
-          "in" : "path",
-          "description" : "The unique identifier of the Machine Group.",
-          "required" : true,
-          "type" : "string"
-        }, {
-          "name" : "customerId",
-          "in" : "path",
-          "description" : "The unique identifier of the ZPA tenant.",
-          "required" : true,
-          "type" : "string"
+          "name" : "logType",
+          "in" : "query",
+          "description" : "Supported Log type values are : zpn_trans_log, zpn_auth_log, zpn_ast_auth_log, zpn_http_trans_log, zpn_audit_log.",
+          "required" : false,
+          "type" : "string",
+          "allowEmptyValue" : true
         } ],
         "responses" : {
           "200" : {
             "description" : "OK",
             "schema" : {
-              "$ref" : "#/definitions/MachineGroup"
+              "type" : "object",
+              "additionalProperties" : {
+                "type" : "object",
+                "properties" : { }
+              }
             },
             "responseSchema" : {
-              "$ref" : "#/definitions/MachineGroup"
-            }
-          },
-          "401" : {
-            "description" : "Unauthorized"
-          },
-          "403" : {
-            "description" : "Forbidden"
-          },
-          "404" : {
-            "description" : "Not Found"
-          }
-        },
-        "deprecated" : false
-      }
-    },
-    "/mgmtconfig/v1/admin/customers/{customerId}/serverGroup/{groupId}" : {
-      "get" : {
-        "tags" : [ "server-group-controller" ],
-        "summary" : "Get the Server Group details.",
-        "operationId" : "getServerGroupUsingGET_1",
-        "produces" : [ "*/*" ],
-        "parameters" : [ {
-          "name" : "customerId",
-          "in" : "path",
-          "description" : "The unique identifier of the ZPA tenant.",
-          "required" : true,
-          "type" : "string"
-        }, {
-          "name" : "groupId",
-          "in" : "path",
-          "description" : "The unique identifier of the Segment Group.",
-          "required" : true,
-          "type" : "string"
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "OK",
-            "schema" : {
-              "$ref" : "#/definitions/ServerGroupDTO"
-            },
-            "responseSchema" : {
-              "$ref" : "#/definitions/ServerGroupDTO"
+              "type" : "object",
+              "additionalProperties" : {
+                "type" : "object",
+                "properties" : { }
+              }
             }
           },
           "400" : {
@@ -1483,6 +3921,9 @@
           "401" : {
             "description" : "Unauthorized"
           },
+          "429" : {
+            "description" : "TooManyRequest"
+          },
           "403" : {
             "description" : "Forbidden"
           },
@@ -1491,165 +3932,45 @@
           }
         },
         "deprecated" : false
-      },
-      "put" : {
-        "tags" : [ "server-group-controller" ],
-        "summary" : "Update the Server Group.",
-        "operationId" : "updateAppServerGroupUsingPUT_1",
+      }
+    },
+    "/mgmtconfig/v1/admin/customers/{customerId}/serviceEdge/bulkDelete" : {
+      "post" : {
+        "tags" : [ "service-edge-controller" ],
+        "summary" : "Bulk delete the Service Edges.",
+        "operationId" : "bulkDeleteServiceEdgeUsingPOST",
         "consumes" : [ "application/json" ],
         "produces" : [ "*/*" ],
         "parameters" : [ {
+          "in" : "body",
+          "name" : "bulkDeleteResource",
+          "description" : "The resource for bulk deleting the Service Edges.",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/BulkDeleteResource"
+          }
+        }, {
           "name" : "customerId",
           "in" : "path",
           "description" : "The unique identifier of the ZPA tenant.",
           "required" : true,
           "type" : "string"
-        }, {
-          "in" : "body",
-          "name" : "group",
-          "description" : "The object of the Server Group.",
-          "required" : false,
-          "schema" : {
-            "$ref" : "#/definitions/ServerGroupDTO"
-          }
-        }, {
-          "name" : "groupId",
-          "in" : "path",
-          "description" : "The unique identifier of the Server Group.",
-          "required" : true,
-          "type" : "string"
         } ],
         "responses" : {
+          "200" : {
+            "description" : "OK"
+          },
           "201" : {
             "description" : "Created"
           },
-          "204" : {
-            "description" : "No Content"
+          "400" : {
+            "description" : "BadRequest"
           },
           "401" : {
             "description" : "Unauthorized"
           },
-          "403" : {
-            "description" : "Forbidden"
-          },
-          "404" : {
-            "description" : "Not Found"
-          }
-        },
-        "deprecated" : false
-      },
-      "delete" : {
-        "tags" : [ "server-group-controller" ],
-        "summary" : "Delete a Server Group.",
-        "operationId" : "deleteAppServerGroupUsingDELETE_1",
-        "produces" : [ "*/*" ],
-        "parameters" : [ {
-          "name" : "customerId",
-          "in" : "path",
-          "description" : "The unique identifier of the ZPA tenant.",
-          "required" : true,
-          "type" : "string"
-        }, {
-          "name" : "groupId",
-          "in" : "path",
-          "description" : "The unique identifier of the Server Group.",
-          "required" : true,
-          "type" : "string"
-        } ],
-        "responses" : {
-          "204" : {
-            "description" : "No Content"
-          },
-          "401" : {
-            "description" : "Unauthorized"
-          },
-          "403" : {
-            "description" : "Forbidden"
-          }
-        },
-        "deprecated" : false
-      }
-    },
-    "/mgmtconfig/v1/admin/customers/{customerId}/posture" : {
-      "get" : {
-        "tags" : [ "posture-profile-controller" ],
-        "summary" : "Get all posture profiles.",
-        "operationId" : "getAllAttributesUsingGET_1",
-        "produces" : [ "*/*" ],
-        "parameters" : [ {
-          "name" : "customerId",
-          "in" : "path",
-          "description" : "The unique identifier of the ZPA tenant.",
-          "required" : true,
-          "type" : "string"
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "OK",
-            "schema" : {
-              "type" : "array",
-              "items" : {
-                "$ref" : "#/definitions/PostureProfile"
-              }
-            },
-            "responseSchema" : {
-              "type" : "array",
-              "items" : {
-                "$ref" : "#/definitions/PostureProfile"
-              }
-            }
-          },
-          "401" : {
-            "description" : "Unauthorized"
-          },
-          "403" : {
-            "description" : "Forbidden"
-          },
-          "404" : {
-            "description" : "Not Found"
-          }
-        },
-        "deprecated" : false
-      }
-    },
-    "/mgmtconfig/v1/admin/customers/{customerId}/idp" : {
-      "get" : {
-        "tags" : [ "idp-controller" ],
-        "summary" : "Get the configured IdP details.",
-        "operationId" : "getIdpUsingGET_1",
-        "produces" : [ "*/*" ],
-        "parameters" : [ {
-          "name" : "customerId",
-          "in" : "path",
-          "description" : "The unique identifier of the ZPA tenant.",
-          "required" : true,
-          "type" : "string"
-        }, {
-          "name" : "scimEnabled",
-          "in" : "query",
-          "description" : "Returns all SCIM IdPs if set to true. Returns all non SCIM IdPs if set to false.",
-          "required" : false,
-          "type" : "boolean",
-          "allowEmptyValue" : true
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "OK",
-            "schema" : {
-              "type" : "array",
-              "items" : {
-                "$ref" : "#/definitions/Idp"
-              }
-            },
-            "responseSchema" : {
-              "type" : "array",
-              "items" : {
-                "$ref" : "#/definitions/Idp"
-              }
-            }
-          },
-          "401" : {
-            "description" : "Unauthorized"
+          "429" : {
+            "description" : "TooManyRequest"
           },
           "403" : {
             "description" : "Forbidden"
@@ -1695,6 +4016,9 @@
           },
           "401" : {
             "description" : "Unauthorized"
+          },
+          "429" : {
+            "description" : "TooManyRequest"
           },
           "403" : {
             "description" : "Forbidden"
@@ -1745,6 +4069,9 @@
           "401" : {
             "description" : "Unauthorized"
           },
+          "429" : {
+            "description" : "TooManyRequest"
+          },
           "403" : {
             "description" : "Forbidden"
           },
@@ -1776,8 +4103,14 @@
           "204" : {
             "description" : "No Content"
           },
+          "400" : {
+            "description" : "BadRequest"
+          },
           "401" : {
             "description" : "Unauthorized"
+          },
+          "429" : {
+            "description" : "TooManyRequest"
           },
           "403" : {
             "description" : "Forbidden"
@@ -1803,8 +4136,7 @@
           "in" : "query",
           "description" : "Specifies the page number.",
           "required" : false,
-          "type" : "integer",
-          "format" : "int32",
+          "type" : "string",
           "allowEmptyValue" : true,
           "x-example" : 1
         }, {
@@ -1812,8 +4144,7 @@
           "in" : "query",
           "description" : "Specifies the page size. If not provided, the default page size is 20. The max page size is 500.",
           "required" : false,
-          "type" : "integer",
-          "format" : "int32",
+          "type" : "string",
           "allowEmptyValue" : true,
           "x-example" : 20
         }, {
@@ -1834,14 +4165,206 @@
               "$ref" : "#/definitions/PageListOfAppConnectorGroup"
             }
           },
+          "400" : {
+            "description" : "BadRequest"
+          },
           "401" : {
             "description" : "Unauthorized"
+          },
+          "429" : {
+            "description" : "TooManyRequest"
           },
           "403" : {
             "description" : "Forbidden"
           },
           "404" : {
             "description" : "Not Found"
+          }
+        },
+        "deprecated" : false
+      },
+      "post" : {
+        "tags" : [ "connector-group-controller" ],
+        "summary" : "Add a new Connector Group.",
+        "operationId" : "addAppConnectorGroupUsingPOST_1",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "*/*" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "appConnectorGroup",
+          "description" : "The object of the Connector Group.",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/AppConnectorGroup"
+          }
+        }, {
+          "name" : "customerId",
+          "in" : "path",
+          "description" : "The unique identifier of the ZPA tenant.",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "Created",
+            "schema" : {
+              "$ref" : "#/definitions/AppConnectorGroup"
+            },
+            "responseSchema" : {
+              "$ref" : "#/definitions/AppConnectorGroup"
+            }
+          },
+          "400" : {
+            "description" : "BadRequest"
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "429" : {
+            "description" : "TooManyRequest"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "deprecated" : false
+      }
+    },
+    "/mgmtconfig/v1/admin/customers/{customerId}/serviceEdgeGroup/{serviceEdgeGroupId}" : {
+      "get" : {
+        "tags" : [ "service-edge-group-controller" ],
+        "summary" : "Get the Service Edge Group details.",
+        "operationId" : "getServiceEdgeGroupUsingGET",
+        "produces" : [ "*/*" ],
+        "parameters" : [ {
+          "name" : "customerId",
+          "in" : "path",
+          "description" : "The unique identifier of the ZPA tenant.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "serviceEdgeGroupId",
+          "in" : "path",
+          "description" : "The unique identifier of the Service Edge Group.",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/ServiceEdgeGroup"
+            },
+            "responseSchema" : {
+              "$ref" : "#/definitions/ServiceEdgeGroup"
+            }
+          },
+          "400" : {
+            "description" : "BadRequest"
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "429" : {
+            "description" : "TooManyRequest"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "deprecated" : false
+      },
+      "put" : {
+        "tags" : [ "service-edge-group-controller" ],
+        "summary" : "Update the Service Edge Group details.",
+        "operationId" : "updateServiceEdgeGroupUsingPUT",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "*/*" ],
+        "parameters" : [ {
+          "name" : "customerId",
+          "in" : "path",
+          "description" : "The unique identifier of the ZPA tenant.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "serviceEdgeGroup",
+          "description" : "The object of the Service Edge Group.",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/ServiceEdgeGroup"
+          }
+        }, {
+          "name" : "serviceEdgeGroupId",
+          "in" : "path",
+          "description" : "The unique identifier of the Service Edge Group.",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "Created"
+          },
+          "204" : {
+            "description" : "No Content"
+          },
+          "400" : {
+            "description" : "BadRequest"
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "429" : {
+            "description" : "TooManyRequest"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "deprecated" : false
+      },
+      "delete" : {
+        "tags" : [ "service-edge-group-controller" ],
+        "summary" : "Delete the Service Edge Group.",
+        "operationId" : "deleteServiceEdgeGroupUsingDELETE",
+        "produces" : [ "*/*" ],
+        "parameters" : [ {
+          "name" : "customerId",
+          "in" : "path",
+          "description" : "The unique identifier of the ZPA tenant.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "serviceEdgeGroupId",
+          "in" : "path",
+          "description" : "The unique identifier of the Service Edge Group.",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "204" : {
+            "description" : "No Content"
+          },
+          "400" : {
+            "description" : "BadRequest"
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "429" : {
+            "description" : "TooManyRequest"
+          },
+          "403" : {
+            "description" : "Forbidden"
           }
         },
         "deprecated" : false
@@ -1876,8 +4399,14 @@
               "$ref" : "#/definitions/CloudConnectorGroupResource"
             }
           },
+          "400" : {
+            "description" : "BadRequest"
+          },
           "401" : {
             "description" : "Unauthorized"
+          },
+          "429" : {
+            "description" : "TooManyRequest"
           },
           "403" : {
             "description" : "Forbidden"
@@ -1889,11 +4418,11 @@
         "deprecated" : false
       }
     },
-    "/mgmtconfig/v1/admin/customers/{customerId}/policySet/rules/policyType/{policyType}" : {
+    "/mgmtconfig/v1/admin/customers/{customerId}/visible/versionProfiles" : {
       "get" : {
-        "tags" : [ "policy-set-controller" ],
-        "summary" : "Get paginated policy rules for a given policy type.",
-        "operationId" : "getPolicyRulesByPageUsingGET_1",
+        "tags" : [ "customer-version-profile-controller" ],
+        "summary" : "Get Version Profiles visible to a customer",
+        "operationId" : "getAllVersionProfilesVisibileByCustomerIdUsingGET",
         "produces" : [ "*/*" ],
         "parameters" : [ {
           "name" : "customerId",
@@ -1906,8 +4435,7 @@
           "in" : "query",
           "description" : "Specifies the page number.",
           "required" : false,
-          "type" : "integer",
-          "format" : "int32",
+          "type" : "string",
           "allowEmptyValue" : true,
           "x-example" : 1
         }, {
@@ -1915,16 +4443,9 @@
           "in" : "query",
           "description" : "Specifies the page size. If not provided, the default page size is 20. The max page size is 500.",
           "required" : false,
-          "type" : "integer",
-          "format" : "int32",
+          "type" : "string",
           "allowEmptyValue" : true,
           "x-example" : 20
-        }, {
-          "name" : "policyType",
-          "in" : "path",
-          "description" : "The type of policy.",
-          "required" : true,
-          "type" : "string"
         }, {
           "name" : "search",
           "in" : "query",
@@ -1937,14 +4458,20 @@
           "200" : {
             "description" : "OK",
             "schema" : {
-              "$ref" : "#/definitions/PageListOfPolicyRule"
+              "$ref" : "#/definitions/PageListOfVersionProfile"
             },
             "responseSchema" : {
-              "$ref" : "#/definitions/PageListOfPolicyRule"
+              "$ref" : "#/definitions/PageListOfVersionProfile"
             }
+          },
+          "400" : {
+            "description" : "BadRequest"
           },
           "401" : {
             "description" : "Unauthorized"
+          },
+          "429" : {
+            "description" : "TooManyRequest"
           },
           "403" : {
             "description" : "Forbidden"
@@ -1973,8 +4500,7 @@
           "in" : "query",
           "description" : "Specifies the page number.",
           "required" : false,
-          "type" : "integer",
-          "format" : "int32",
+          "type" : "string",
           "allowEmptyValue" : true,
           "x-example" : 1
         }, {
@@ -1982,8 +4508,7 @@
           "in" : "query",
           "description" : "Specifies the page size. If not provided, the default page size is 20. The max page size is 500.",
           "required" : false,
-          "type" : "integer",
-          "format" : "int32",
+          "type" : "string",
           "allowEmptyValue" : true,
           "x-example" : 20
         }, {
@@ -2004,8 +4529,14 @@
               "$ref" : "#/definitions/PageListOfCloudConnectorGroupResource"
             }
           },
+          "400" : {
+            "description" : "BadRequest"
+          },
           "401" : {
             "description" : "Unauthorized"
+          },
+          "429" : {
+            "description" : "TooManyRequest"
           },
           "403" : {
             "description" : "Forbidden"
@@ -2017,33 +4548,50 @@
         "deprecated" : false
       }
     },
-    "/mgmtconfig/v1/admin/customers/{customerId}/application/{applicationId}" : {
+    "/mgmtconfig/v1/admin/customers/{customerId}/serviceEdgeGroup" : {
       "get" : {
-        "tags" : [ "application-controller" ],
-        "summary" : "Get the Application Segment details.",
-        "operationId" : "getApplicationUsingGET_1",
+        "tags" : [ "service-edge-group-controller" ],
+        "summary" : "Get all the configured Service Edge Group details.",
+        "operationId" : "getServiceEdgeGroupsUsingGET",
         "produces" : [ "*/*" ],
         "parameters" : [ {
-          "name" : "applicationId",
-          "in" : "path",
-          "description" : "The unique identifier of the Application Segment.",
-          "required" : true,
-          "type" : "string"
-        }, {
           "name" : "customerId",
           "in" : "path",
           "description" : "The unique identifier of the ZPA tenant.",
           "required" : true,
           "type" : "string"
+        }, {
+          "name" : "page",
+          "in" : "query",
+          "description" : "Specifies the page number.",
+          "required" : false,
+          "type" : "string",
+          "allowEmptyValue" : true,
+          "x-example" : 1
+        }, {
+          "name" : "pagesize",
+          "in" : "query",
+          "description" : "Specifies the page size. If not provided, the default page size is 20. The max page size is 500.",
+          "required" : false,
+          "type" : "string",
+          "allowEmptyValue" : true,
+          "x-example" : 20
+        }, {
+          "name" : "search",
+          "in" : "query",
+          "description" : "The search string used to support search by features and fields for the API.",
+          "required" : false,
+          "type" : "string",
+          "allowEmptyValue" : true
         } ],
         "responses" : {
           "200" : {
             "description" : "OK",
             "schema" : {
-              "$ref" : "#/definitions/ApplicationResource"
+              "$ref" : "#/definitions/PageListOfServiceEdgeGroup"
             },
             "responseSchema" : {
-              "$ref" : "#/definitions/ApplicationResource"
+              "$ref" : "#/definitions/PageListOfServiceEdgeGroup"
             }
           },
           "400" : {
@@ -2052,6 +4600,9 @@
           "401" : {
             "description" : "Unauthorized"
           },
+          "429" : {
+            "description" : "TooManyRequest"
+          },
           "403" : {
             "description" : "Forbidden"
           },
@@ -2061,102 +4612,72 @@
         },
         "deprecated" : false
       },
-      "put" : {
-        "tags" : [ "application-controller" ],
-        "summary" : "Update the Application Segment details.",
-        "operationId" : "updateApplicationV2UsingPUT_1",
+      "post" : {
+        "tags" : [ "service-edge-group-controller" ],
+        "summary" : "Add a new Service Edge Group.",
+        "operationId" : "addServiceEdgeGroupUsingPOST",
         "consumes" : [ "application/json" ],
         "produces" : [ "*/*" ],
         "parameters" : [ {
-          "in" : "body",
-          "name" : "application",
-          "description" : "The object of the Application Segment.",
-          "required" : false,
-          "schema" : {
-            "$ref" : "#/definitions/ApplicationResource"
-          }
-        }, {
-          "name" : "applicationId",
-          "in" : "path",
-          "description" : "The unique identifier of the Application Segment.",
-          "required" : true,
-          "type" : "string"
-        }, {
           "name" : "customerId",
           "in" : "path",
           "description" : "The unique identifier of the ZPA tenant.",
           "required" : true,
           "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "serviceEdgeGroup",
+          "description" : "The object of the Service Edge Group.",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/ServiceEdgeGroup"
+          }
         } ],
         "responses" : {
           "201" : {
-            "description" : "Created"
+            "description" : "Created",
+            "schema" : {
+              "$ref" : "#/definitions/ServiceEdgeGroup"
+            },
+            "responseSchema" : {
+              "$ref" : "#/definitions/ServiceEdgeGroup"
+            }
           },
-          "204" : {
-            "description" : "No Content"
+          "400" : {
+            "description" : "BadRequest"
           },
           "401" : {
             "description" : "Unauthorized"
+          },
+          "429" : {
+            "description" : "TooManyRequest"
           },
           "403" : {
             "description" : "Forbidden"
           },
           "404" : {
             "description" : "Not Found"
-          }
-        },
-        "deprecated" : false
-      },
-      "delete" : {
-        "tags" : [ "application-controller" ],
-        "summary" : "Delete an Application Segment.",
-        "operationId" : "deleteApplicationUsingDELETE_1",
-        "produces" : [ "*/*" ],
-        "parameters" : [ {
-          "name" : "applicationId",
-          "in" : "path",
-          "description" : "The unique identifier of the Application Segment.",
-          "required" : true,
-          "type" : "string"
-        }, {
-          "name" : "customerId",
-          "in" : "path",
-          "description" : "The unique identifier of the ZPA tenant.",
-          "required" : true,
-          "type" : "string"
-        }, {
-          "name" : "forceDelete",
-          "in" : "query",
-          "description" : "Setting this field to true will delete the mapping between Application Segment and Segment Group",
-          "required" : false,
-          "type" : "boolean",
-          "default" : false,
-          "allowEmptyValue" : false
-        } ],
-        "responses" : {
-          "204" : {
-            "description" : "No Content"
-          },
-          "401" : {
-            "description" : "Unauthorized"
-          },
-          "403" : {
-            "description" : "Forbidden"
           }
         },
         "deprecated" : false
       }
     },
-    "/mgmtconfig/v1/admin/customers/{customerId}/policySet/global" : {
+    "/mgmtconfig/v1/admin/customers/{customerId}/enrollmentCert/{enrollmentCertId}" : {
       "get" : {
-        "tags" : [ "policy-set-controller" ],
-        "summary" : "Get the global policy.",
-        "operationId" : "getGlobalPolicySetUsingGET_1",
+        "tags" : [ "enrollment-cert-controller" ],
+        "summary" : "Get the Enrollment Cert details.",
+        "operationId" : "getEnrollmentCertUsingGET_3",
         "produces" : [ "*/*" ],
         "parameters" : [ {
           "name" : "customerId",
           "in" : "path",
           "description" : "The unique identifier of the ZPA tenant.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "enrollmentCertId",
+          "in" : "path",
+          "description" : "The unique identifier of the Enrollment Cert.",
           "required" : true,
           "type" : "string"
         } ],
@@ -2164,14 +4685,20 @@
           "200" : {
             "description" : "OK",
             "schema" : {
-              "$ref" : "#/definitions/PolicySet"
+              "$ref" : "#/definitions/EnrollmentCert"
             },
             "responseSchema" : {
-              "$ref" : "#/definitions/PolicySet"
+              "$ref" : "#/definitions/EnrollmentCert"
             }
+          },
+          "400" : {
+            "description" : "BadRequest"
           },
           "401" : {
             "description" : "Unauthorized"
+          },
+          "429" : {
+            "description" : "TooManyRequest"
           },
           "403" : {
             "description" : "Forbidden"
@@ -2246,7 +4773,7 @@
             "$ref" : "#/definitions/AppServerGroup"
           }
         },
-        "siemAppConnectorGroup" : {
+        "lssAppConnectorGroup" : {
           "type" : "boolean"
         },
         "upgradeDay" : {
@@ -2266,6 +4793,26 @@
           "type" : "string",
           "description" : "Only applicable for a GET request. Ignored in PUT/POST/DELETE requests.",
           "enum" : [ "ALL", "NONE", "CUSTOM" ]
+        }
+      }
+    },
+    "AppConnectorGroupResource" : {
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        }
+      }
+    },
+    "AppPortRange" : {
+      "properties" : {
+        "from" : {
+          "type" : "string"
+        },
+        "to" : {
+          "type" : "string"
         }
       }
     },
@@ -2295,6 +4842,16 @@
           "type" : "string"
         },
         "modifiedTime" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        }
+      }
+    },
+    "AppServerGroupResource" : {
+      "properties" : {
+        "id" : {
           "type" : "string"
         },
         "name" : {
@@ -2379,6 +4936,12 @@
             "$ref" : "#/definitions/AppServerGroup"
           }
         },
+        "tcpPortRange" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/AppPortRange"
+          }
+        },
         "tcpPortRanges" : {
           "type" : "array",
           "items" : {
@@ -2395,6 +4958,12 @@
           "type" : "array",
           "items" : {
             "type" : "string"
+          }
+        },
+        "udpPortRange" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/AppPortRange"
           }
         },
         "udpPortRanges" : {
@@ -2503,10 +5072,22 @@
             "$ref" : "#/definitions/AppServerGroup"
           }
         },
+        "tcpPortRange" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/AppPortRange"
+          }
+        },
         "tcpPortRanges" : {
           "type" : "array",
           "items" : {
             "type" : "string"
+          }
+        },
+        "udpPortRange" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/AppPortRange"
           }
         },
         "udpPortRanges" : {
@@ -2672,6 +5253,17 @@
         }
       }
     },
+    "BulkDeleteResource" : {
+      "properties" : {
+        "ids" : {
+          "type" : "array",
+          "items" : {
+            "type" : "integer",
+            "format" : "int64"
+          }
+        }
+      }
+    },
     "CloudConnectorGroupResource" : {
       "properties" : {
         "creationTime" : {
@@ -2732,8 +5324,7 @@
           }
         },
         "applicationPort" : {
-          "type" : "integer",
-          "format" : "int32"
+          "type" : "string"
         },
         "applicationProtocol" : {
           "type" : "string",
@@ -2794,13 +5385,15 @@
         "deletedBaApps" : {
           "type" : "array",
           "items" : {
-            "type" : "string"
+            "type" : "integer",
+            "format" : "int64"
           }
         },
         "deletedInspectApps" : {
           "type" : "array",
           "items" : {
-            "type" : "string"
+            "type" : "integer",
+            "format" : "int64"
           }
         }
       }
@@ -2831,6 +5424,46 @@
         "operator" : {
           "type" : "string",
           "enum" : [ "AND", "OR" ]
+        }
+      }
+    },
+    "ConditionSetResource" : {
+      "properties" : {
+        "creationTime" : {
+          "type" : "string",
+          "description" : "Only applicable for a GET request. Ignored in PUT/POST/DELETE requests."
+        },
+        "id" : {
+          "type" : "string",
+          "description" : "Only applicable for a GET request. Ignored in PUT/POST/DELETE requests."
+        },
+        "modifiedBy" : {
+          "type" : "string",
+          "description" : "Only applicable for a GET request. Ignored in PUT/POST/DELETE requests."
+        },
+        "modifiedTime" : {
+          "type" : "string",
+          "description" : "Only applicable for a GET request. Ignored in PUT/POST/DELETE requests."
+        },
+        "negated" : {
+          "type" : "boolean"
+        },
+        "operands" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/OperandResource"
+          }
+        },
+        "operator" : {
+          "type" : "string",
+          "enum" : [ "AND", "OR" ]
+        },
+        "setIds" : {
+          "type" : "array",
+          "items" : {
+            "type" : "integer",
+            "format" : "int64"
+          }
         }
       }
     },
@@ -2895,7 +5528,15 @@
           "type" : "string",
           "description" : "Read only. Ignored in PUT/POST calls."
         },
+        "lastBrokerConnectTimeDuration" : {
+          "type" : "string",
+          "description" : "Read only. Ignored in PUT/POST calls."
+        },
         "lastBrokerDisconnectTime" : {
+          "type" : "string",
+          "description" : "Read only. Ignored in PUT/POST calls."
+        },
+        "lastBrokerDisconnectTimeDuration" : {
           "type" : "string",
           "description" : "Read only. Ignored in PUT/POST calls."
         },
@@ -2904,13 +5545,15 @@
           "description" : "Read only. Ignored in PUT/POST calls."
         },
         "latitude" : {
-          "type" : "string"
+          "type" : "number",
+          "format" : "double"
         },
         "location" : {
           "type" : "string"
         },
         "longitude" : {
-          "type" : "string"
+          "type" : "number",
+          "format" : "double"
         },
         "modifiedBy" : {
           "type" : "string"
@@ -2919,6 +5562,12 @@
           "type" : "string"
         },
         "name" : {
+          "type" : "string"
+        },
+        "provisioningKeyId" : {
+          "type" : "string"
+        },
+        "provisioningKeyName" : {
           "type" : "string"
         },
         "platform" : {
@@ -2937,7 +5586,7 @@
         "sargeVersion" : {
           "type" : "string"
         },
-        "signingCert" : {
+        "enrollmentCert" : {
           "type" : "object",
           "additionalProperties" : {
             "type" : "string"
@@ -2951,6 +5600,117 @@
           "type" : "string",
           "description" : "Read only. Ignored in PUT/POST calls.",
           "enum" : [ "COMPLETE", "IN_PROGRESS", "FAILED", "UNKNOWN", "RESTARTING" ]
+        }
+      }
+    },
+    "CustomScopeRequestCustomerIds" : {
+      "properties" : {
+        "addCustomerIds" : {
+          "type" : "array",
+          "items" : {
+            "type" : "integer",
+            "format" : "int64"
+          }
+        },
+        "deleteCustomerIds" : {
+          "type" : "array",
+          "items" : {
+            "type" : "integer",
+            "format" : "int64"
+          }
+        }
+      }
+    },
+    "CustomerIdNameDTO" : {
+      "properties" : {
+        "customerId" : {
+          "type" : "string"
+        },
+        "excludeConstellation" : {
+          "type" : "boolean"
+        },
+        "name" : {
+          "type" : "string"
+        }
+      }
+    },
+    "EnrollmentCert" : {
+      "required" : [ "certificate" ],
+      "properties" : {
+        "allowSigning" : {
+          "type" : "boolean",
+          "description" : "Not applicable for put and post calls. This field will be extracted from certificate."
+        },
+        "cName" : {
+          "type" : "string",
+          "description" : "Not applicable for put and post calls. This field will be extracted from certificate."
+        },
+        "certificate" : {
+          "type" : "string",
+          "description" : "certificate text in pem format."
+        },
+        "clientCertType" : {
+          "type" : "string",
+          "description" : "Read only property. Applicable only for GET calls, ignored in PUT/POST calls.",
+          "enum" : [ "ZAPP_CLIENT", "ISOLATION_CLIENT", "NONE" ]
+        },
+        "creationTime" : {
+          "type" : "string"
+        },
+        "csr" : {
+          "type" : "string"
+        },
+        "description" : {
+          "type" : "string"
+        },
+        "id" : {
+          "type" : "string"
+        },
+        "issuedBy" : {
+          "type" : "string"
+        },
+        "issuedTo" : {
+          "type" : "string"
+        },
+        "modifiedBy" : {
+          "type" : "string"
+        },
+        "modifiedTime" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "parentCertId" : {
+          "type" : "string"
+        },
+        "parentCertName" : {
+          "type" : "string",
+          "description" : "Read only property. Applicable only for GET calls, ignored in PUT/POST calls."
+        },
+        "privateKey" : {
+          "type" : "string"
+        },
+        "privateKeyPresent" : {
+          "type" : "boolean",
+          "description" : "Read only property. Applicable only for GET calls, ignored in PUT/POST calls."
+        },
+        "serialNo" : {
+          "type" : "string"
+        },
+        "validFromInEpochSec" : {
+          "type" : "string",
+          "description" : "Not applicable for put and post calls. This field will be extracted from certificate."
+        },
+        "validToInEpochSec" : {
+          "type" : "string",
+          "description" : "Not applicable for put and post calls. This field will be extracted from certificate."
+        },
+        "zrsaencryptedprivatekey" : {
+          "type" : "string"
+        },
+        "zrsaencryptedsessionkey" : {
+          "type" : "string"
         }
       }
     },
@@ -3028,9 +5788,6 @@
         "scimServiceProviderEndpoint" : {
           "type" : "string"
         },
-        "scimSharedSecret" : {
-          "type" : "string"
-        },
         "scimSharedSecretExists" : {
           "type" : "boolean"
         },
@@ -3080,8 +5837,7 @@
           "type" : "string"
         },
         "applicationPort" : {
-          "type" : "integer",
-          "format" : "int32"
+          "type" : "string"
         },
         "applicationProtocol" : {
           "type" : "string",
@@ -3107,6 +5863,89 @@
         },
         "name" : {
           "type" : "string"
+        }
+      }
+    },
+    "LhsRhsValueResource" : {
+      "properties" : {
+        "lhs" : {
+          "type" : "string"
+        },
+        "rhs" : {
+          "type" : "string"
+        }
+      }
+    },
+    "Lss" : {
+      "required" : [ "name" ],
+      "properties" : {
+        "auditMessage" : {
+          "type" : "string"
+        },
+        "creationTime" : {
+          "type" : "string"
+        },
+        "description" : {
+          "type" : "string"
+        },
+        "enabled" : {
+          "type" : "boolean"
+        },
+        "filter" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "format" : {
+          "type" : "string"
+        },
+        "id" : {
+          "type" : "string"
+        },
+        "modifiedBy" : {
+          "type" : "string"
+        },
+        "modifiedTime" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "lssHost" : {
+          "type" : "string"
+        },
+        "lssPort" : {
+          "type" : "string"
+        },
+        "sourceLogType" : {
+          "type" : "string",
+          "enum" : [ "zpn_trans_log", "zpn_auth_log", "zpn_ast_auth_log", "zpn_http_trans_log", "zpn_audit_log", "zpn_sys_auth_log", "zpn_ast_comprehensive_stats", "zpn_http_insp" ]
+        },
+        "useTls" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "LssResource" : {
+      "properties" : {
+        "config" : {
+          "$ref" : "#/definitions/Lss"
+        },
+        "connectorGroups" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/AppConnectorGroup"
+          }
+        },
+        "id" : {
+          "type" : "string"
+        },
+        "policyRule" : {
+          "$ref" : "#/definitions/PolicyRule"
+        },
+        "policyRuleResource" : {
+          "$ref" : "#/definitions/PolicyRuleResource"
         }
       }
     },
@@ -3146,7 +5985,7 @@
         "name" : {
           "type" : "string"
         },
-        "signingCert" : {
+        "enrollmentCert" : {
           "type" : "object",
           "additionalProperties" : {
             "type" : "string"
@@ -3228,6 +6067,48 @@
         }
       }
     },
+    "OperandResource" : {
+      "properties" : {
+        "commonProperties" : {
+          "$ref" : "#/definitions/Operand"
+        },
+        "creationTime" : {
+          "type" : "string",
+          "description" : "Only applicable for a GET request. Ignored in PUT/POST/DELETE requests."
+        },
+        "entryValues" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/LhsRhsValueResource"
+          }
+        },
+        "id" : {
+          "type" : "string",
+          "description" : "Only applicable for a GET request. Ignored in PUT/POST/DELETE requests."
+        },
+        "idpId" : {
+          "type" : "string"
+        },
+        "modifiedBy" : {
+          "type" : "string",
+          "description" : "Only applicable for a GET request. Ignored in PUT/POST/DELETE requests."
+        },
+        "modifiedTime" : {
+          "type" : "string",
+          "description" : "Only applicable for a GET request. Ignored in PUT/POST/DELETE requests."
+        },
+        "objectType" : {
+          "type" : "string",
+          "enum" : [ "USER", "USER_GROUP", "LOCATION", "APP", "APP_GROUP", "SAML", "POSTURE", "CLIENT_TYPE", "IDP", "TRUSTED_NETWORK", "EDGE_CONNECTOR_GROUP", "MACHINE_GRP", "SCIM", "SCIM_GROUP" ]
+        },
+        "values" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        }
+      }
+    },
     "PageListOfAppConnectorGroup" : {
       "properties" : {
         "list" : {
@@ -3237,8 +6118,7 @@
           }
         },
         "totalPages" : {
-          "type" : "integer",
-          "format" : "int32"
+          "type" : "string"
         }
       }
     },
@@ -3251,8 +6131,7 @@
           }
         },
         "totalPages" : {
-          "type" : "integer",
-          "format" : "int32"
+          "type" : "string"
         }
       }
     },
@@ -3265,8 +6144,20 @@
           }
         },
         "totalPages" : {
-          "type" : "integer",
-          "format" : "int32"
+          "type" : "string"
+        }
+      }
+    },
+    "PageListOfBACertificate" : {
+      "properties" : {
+        "list" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/BACertificate"
+          }
+        },
+        "totalPages" : {
+          "type" : "string"
         }
       }
     },
@@ -3279,8 +6170,59 @@
           }
         },
         "totalPages" : {
-          "type" : "integer",
-          "format" : "int32"
+          "type" : "string"
+        }
+      }
+    },
+    "PageListOfConnector" : {
+      "properties" : {
+        "list" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Connector"
+          }
+        },
+        "totalPages" : {
+          "type" : "string"
+        }
+      }
+    },
+    "PageListOfEnrollmentCert" : {
+      "properties" : {
+        "list" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/EnrollmentCert"
+          }
+        },
+        "totalPages" : {
+          "type" : "string"
+        }
+      }
+    },
+    "PageListOfIdp" : {
+      "properties" : {
+        "list" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Idp"
+          }
+        },
+        "totalPages" : {
+          "type" : "string"
+        }
+      }
+    },
+    "PageListOfLssResource" : {
+      "properties" : {
+        "list" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/LssResource"
+          }
+        },
+        "totalPages" : {
+          "type" : "string"
         }
       }
     },
@@ -3293,8 +6235,7 @@
           }
         },
         "totalPages" : {
-          "type" : "integer",
-          "format" : "int32"
+          "type" : "string"
         }
       }
     },
@@ -3307,8 +6248,33 @@
           }
         },
         "totalPages" : {
-          "type" : "integer",
-          "format" : "int32"
+          "type" : "string"
+        }
+      }
+    },
+    "PageListOfPostureProfile" : {
+      "properties" : {
+        "list" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/PostureProfile"
+          }
+        },
+        "totalPages" : {
+          "type" : "string"
+        }
+      }
+    },
+    "PageListOfProvisioningKey" : {
+      "properties" : {
+        "list" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Provisioning Key"
+          }
+        },
+        "totalPages" : {
+          "type" : "string"
         }
       }
     },
@@ -3321,8 +6287,20 @@
           }
         },
         "totalPages" : {
-          "type" : "integer",
-          "format" : "int32"
+          "type" : "string"
+        }
+      }
+    },
+    "PageListOfSamlAttribute" : {
+      "properties" : {
+        "list" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/SamlAttribute"
+          }
+        },
+        "totalPages" : {
+          "type" : "string"
         }
       }
     },
@@ -3335,8 +6313,7 @@
           }
         },
         "totalPages" : {
-          "type" : "integer",
-          "format" : "int32"
+          "type" : "string"
         }
       }
     },
@@ -3349,8 +6326,59 @@
           }
         },
         "totalPages" : {
-          "type" : "integer",
-          "format" : "int32"
+          "type" : "string"
+        }
+      }
+    },
+    "PageListOfServiceEdge" : {
+      "properties" : {
+        "list" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/ServiceEdge"
+          }
+        },
+        "totalPages" : {
+          "type" : "string"
+        }
+      }
+    },
+    "PageListOfServiceEdgeGroup" : {
+      "properties" : {
+        "list" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/ServiceEdgeGroup"
+          }
+        },
+        "totalPages" : {
+          "type" : "string"
+        }
+      }
+    },
+    "PageListOfTrustedNetwork" : {
+      "properties" : {
+        "list" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/TrustedNetwork"
+          }
+        },
+        "totalPages" : {
+          "type" : "string"
+        }
+      }
+    },
+    "PageListOfVersionProfile" : {
+      "properties" : {
+        "list" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/VersionProfile"
+          }
+        },
+        "totalPages" : {
+          "type" : "string"
         }
       }
     },
@@ -3376,9 +6404,6 @@
             "$ref" : "#/definitions/AppConnectorGroup"
           }
         },
-        "bypassDefaultRule" : {
-          "type" : "boolean"
-        },
         "conditions" : {
           "type" : "array",
           "items" : {
@@ -3394,14 +6419,14 @@
         "defaultRule" : {
           "type" : "boolean"
         },
+        "defaultRuleName" : {
+          "type" : "string"
+        },
         "description" : {
           "type" : "string"
         },
         "id" : {
           "type" : "string"
-        },
-        "isolationDefaultRule" : {
-          "type" : "boolean"
         },
         "modifiedBy" : {
           "type" : "string"
@@ -3420,30 +6445,110 @@
           "type" : "string"
         },
         "policyType" : {
-          "type" : "integer",
-          "format" : "int32"
+          "type" : "string"
         },
         "priority" : {
-          "type" : "integer",
-          "format" : "int32"
-        },
-        "reauthDefaultRule" : {
-          "type" : "boolean"
+          "type" : "string"
         },
         "reauthIdleTimeout" : {
-          "type" : "integer",
-          "format" : "int32"
+          "type" : "string"
         },
         "reauthTimeout" : {
-          "type" : "integer",
-          "format" : "int32"
+          "type" : "string"
         },
         "ruleOrder" : {
-          "type" : "integer",
-          "format" : "int32"
+          "type" : "string"
         },
-        "siemDefaultRule" : {
-          "type" : "boolean"
+        "zpnCbiProfileId" : {
+          "type" : "string"
+        },
+        "zpnInspectionProfileId" : {
+          "type" : "string"
+        },
+        "zpnInspectionProfileName" : {
+          "type" : "string"
+        }
+      }
+    },
+    "PolicyRuleResource" : {
+      "properties" : {
+        "action" : {
+          "type" : "string",
+          "enum" : [ "ALLOW", "DENY", "LOG", "RE_AUTH", "NEVER", "BYPASS", "INTERCEPT", "NO_DOWNLOAD", "BYPASS_RE_AUTH", "INTERCEPT_ACCESSIBLE", "ISOLATE", "BYPASS_ISOLATE", "INSPECT", "BYPASS_INSPECT" ]
+        },
+        "actionId" : {
+          "type" : "string"
+        },
+        "appServerGroups" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/AppServerGroupResource"
+          }
+        },
+        "appConnectorGroups" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/AppConnectorGroupResource"
+          }
+        },
+        "auditMessage" : {
+          "type" : "string"
+        },
+        "conditions" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/ConditionSetResource"
+          }
+        },
+        "creationTime" : {
+          "type" : "string",
+          "description" : "Only applicable for a GET request. Ignored in PUT/POST/DELETE requests."
+        },
+        "customMsg" : {
+          "type" : "string"
+        },
+        "description" : {
+          "type" : "string"
+        },
+        "id" : {
+          "type" : "string",
+          "description" : "Only applicable for a GET request. Ignored in PUT/POST/DELETE requests."
+        },
+        "modifiedBy" : {
+          "type" : "string",
+          "description" : "Only applicable for a GET request. Ignored in PUT/POST/DELETE requests."
+        },
+        "modifiedTime" : {
+          "type" : "string",
+          "description" : "Only applicable for a GET request. Ignored in PUT/POST/DELETE requests."
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "operator" : {
+          "type" : "string",
+          "enum" : [ "AND", "OR" ]
+        },
+        "policySetId" : {
+          "type" : "string"
+        },
+        "policyType" : {
+          "type" : "string"
+        },
+        "priority" : {
+          "type" : "string"
+        },
+        "reauthIdleTimeout" : {
+          "type" : "string"
+        },
+        "reauthTimeout" : {
+          "type" : "string"
+        },
+        "ruleOrder" : {
+          "type" : "string"
+        },
+        "version" : {
+          "type" : "string"
         },
         "zpnCbiProfileId" : {
           "type" : "string"
@@ -3481,14 +6586,16 @@
           "type" : "string"
         },
         "policyType" : {
-          "type" : "integer",
-          "format" : "int32"
+          "type" : "string"
         },
         "rules" : {
           "type" : "array",
           "items" : {
             "$ref" : "#/definitions/PolicyRule"
           }
+        },
+        "sorted" : {
+          "type" : "boolean"
         }
       }
     },
@@ -3524,6 +6631,73 @@
         },
         "zscalerCustomerId" : {
           "type" : "string"
+        }
+      }
+    },
+    "Provisioning Key" : {
+      "required" : [ "enrollmentCertId", "maxUsage", "name" ],
+      "properties" : {
+        "appConnectorGroupId" : {
+          "type" : "string"
+        },
+        "appConnectorGroupName" : {
+          "type" : "string",
+          "description" : "Read only property. Applicable only for GET calls, ignored in PUT/POST calls."
+        },
+        "creationTime" : {
+          "type" : "string"
+        },
+        "enabled" : {
+          "type" : "boolean"
+        },
+        "expirationInEpochSec" : {
+          "type" : "string"
+        },
+        "id" : {
+          "type" : "string"
+        },
+        "ipAcl" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "maxUsage" : {
+          "type" : "string"
+        },
+        "modifiedBy" : {
+          "type" : "string"
+        },
+        "modifiedTime" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "provisioningKey" : {
+          "type" : "string",
+          "description" : "read only field. Ignored in PUT/POST calls."
+        },
+        "enrollmentCertId" : {
+          "type" : "string"
+        },
+        "enrollmentCertName" : {
+          "type" : "string",
+          "description" : "Read only property. Applicable only for GET calls, ignored in PUT/POST calls."
+        },
+        "uiConfig" : {
+          "type" : "string"
+        },
+        "usageCount" : {
+          "type" : "string",
+          "description" : "defaults to 0"
+        },
+        "zcomponentId" : {
+          "type" : "string"
+        },
+        "zcomponentName" : {
+          "type" : "string",
+          "description" : "Read only property. Applicable only for GET calls, ignored in PUT/POST calls."
         }
       }
     },
@@ -3715,6 +6889,232 @@
         }
       }
     },
+    "ServiceEdge" : {
+      "required" : [ "name" ],
+      "properties" : {
+        "applicationStartTime" : {
+          "type" : "string"
+        },
+        "controlChannelStatus" : {
+          "type" : "string",
+          "description" : "ReadOnly. Ignored in PUT/POST calls. Expected values: UNKNOWN/ZPN_STATUS_AUTHENTICATED(1)/ZPN_STATUS_DISCONNECTED",
+          "enum" : [ "UNKNOWN", "ZPN_STATUS_AUTHENTICATED", "ZPN_STATUS_DISCONNECTED" ]
+        },
+        "creationTime" : {
+          "type" : "string"
+        },
+        "ctrlBrokerName" : {
+          "type" : "string",
+          "description" : "ReadOnly. Ignored in PUT/POST calls."
+        },
+        "currentVersion" : {
+          "type" : "string",
+          "description" : "ReadOnly. Ignored in PUT/POST calls"
+        },
+        "description" : {
+          "type" : "string"
+        },
+        "enabled" : {
+          "type" : "boolean"
+        },
+        "expectedUpgradeTime" : {
+          "type" : "string",
+          "description" : "ReadOnly. Ignored in PUT/POST calls"
+        },
+        "expectedVersion" : {
+          "type" : "string",
+          "description" : "ReadOnly. Ignored in PUT/POST calls"
+        },
+        "fingerprint" : {
+          "type" : "string"
+        },
+        "id" : {
+          "type" : "string"
+        },
+        "ipAcl" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "issuedCertId" : {
+          "type" : "string"
+        },
+        "lastBrokerConnectTime" : {
+          "type" : "string",
+          "description" : "ReadOnly. Ignored in PUT/POST calls."
+        },
+        "lastBrokerConnectTimeDuration" : {
+          "type" : "string",
+          "description" : "Read only. Ignored in PUT/POST calls."
+        },
+        "lastBrokerDisconnectTime" : {
+          "type" : "string",
+          "description" : "ReadOnly. Ignored in PUT/POST calls."
+        },
+        "lastBrokerDisconnectTimeDuration" : {
+          "type" : "string",
+          "description" : "Read only. Ignored in PUT/POST calls."
+        },
+        "lastUpgradeTime" : {
+          "type" : "string",
+          "description" : "ReadOnly. Ignored in PUT/POST calls"
+        },
+        "latitude" : {
+          "type" : "string"
+        },
+        "listenIps" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "location" : {
+          "type" : "string"
+        },
+        "longitude" : {
+          "type" : "string"
+        },
+        "modifiedBy" : {
+          "type" : "string"
+        },
+        "modifiedTime" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "provisioningKeyId" : {
+          "type" : "string"
+        },
+        "provisioningKeyName" : {
+          "type" : "string"
+        },
+        "platform" : {
+          "type" : "string"
+        },
+        "previousVersion" : {
+          "type" : "string",
+          "description" : "ReadOnly. Ignored in PUT/POST calls"
+        },
+        "serviceEdgeGroupId" : {
+          "type" : "string"
+        },
+        "serviceEdgeGroupName" : {
+          "type" : "string"
+        },
+        "privateIp" : {
+          "type" : "string"
+        },
+        "publicIp" : {
+          "type" : "string"
+        },
+        "publishIps" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "sargeVersion" : {
+          "type" : "string"
+        },
+        "enrollmentCert" : {
+          "type" : "object",
+          "additionalProperties" : {
+            "type" : "string"
+          }
+        },
+        "upgradeAttempt" : {
+          "type" : "string",
+          "description" : "ReadOnly. Ignored in PUT/POST calls."
+        },
+        "upgradeStatus" : {
+          "type" : "string",
+          "description" : "ReadOnly. Ignored in PUT/POST calls",
+          "enum" : [ "COMPLETE", "IN_PROGRESS", "FAILED", "UNKNOWN", "RESTARTING" ]
+        }
+      }
+    },
+    "ServiceEdgeGroup" : {
+      "required" : [ "name" ],
+      "properties" : {
+        "cityCountry" : {
+          "type" : "string"
+        },
+        "countryCode" : {
+          "type" : "string"
+        },
+        "creationTime" : {
+          "type" : "string"
+        },
+        "description" : {
+          "type" : "string"
+        },
+        "enabled" : {
+          "type" : "boolean"
+        },
+        "geoLocationId" : {
+          "type" : "string"
+        },
+        "id" : {
+          "type" : "string"
+        },
+        "isPublic" : {
+          "type" : "string"
+        },
+        "latitude" : {
+          "type" : "string"
+        },
+        "location" : {
+          "type" : "string"
+        },
+        "longitude" : {
+          "type" : "string"
+        },
+        "modifiedBy" : {
+          "type" : "string"
+        },
+        "modifiedTime" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "overrideVersionProfile" : {
+          "type" : "boolean"
+        },
+        "serviceEdges" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/ServiceEdge"
+          }
+        },
+        "trustedNetworks" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/TrustedNetwork"
+          }
+        },
+        "upgradeDay" : {
+          "type" : "string"
+        },
+        "upgradeTimeInSecs" : {
+          "type" : "string"
+        },
+        "versionProfileId" : {
+          "type" : "string"
+        },
+        "versionProfileName" : {
+          "type" : "string",
+          "description" : "Only applicable for a GET request. Ignored in PUT/POST/DELETE requests."
+        },
+        "versionProfileVisibilityScope" : {
+          "type" : "string",
+          "description" : "Only applicable for a GET request. Ignored in PUT/POST/DELETE requests.",
+          "enum" : [ "ALL", "NONE", "CUSTOM" ]
+        }
+      }
+    },
     "ServiceProvider" : {
       "properties" : {
         "certificateUrl" : {
@@ -3766,6 +7166,90 @@
         }
       }
     },
+    "Version" : {
+      "properties" : {
+        "creationTime" : {
+          "type" : "string"
+        },
+        "customerId" : {
+          "type" : "string"
+        },
+        "id" : {
+          "type" : "string"
+        },
+        "modifiedBy" : {
+          "type" : "string"
+        },
+        "modifiedTime" : {
+          "type" : "string"
+        },
+        "platform" : {
+          "type" : "string"
+        },
+        "restartAfterUptimeInDays" : {
+          "type" : "string"
+        },
+        "role" : {
+          "type" : "string"
+        },
+        "version" : {
+          "type" : "string"
+        },
+        "version_profile_gid" : {
+          "type" : "string"
+        }
+      }
+    },
+    "VersionProfile" : {
+      "properties" : {
+        "creationTime" : {
+          "type" : "string"
+        },
+        "customScopeCustomerIds" : {
+          "type" : "array",
+          "description" : "Only applicable for a GET requests. Ignored in PUT/POST requests.",
+          "items" : {
+            "$ref" : "#/definitions/CustomerIdNameDTO"
+          }
+        },
+        "customScopeRequestCustomerIds" : {
+          "description" : "Not applicable for GET requests. Field is only applicable in PUT/POST requests.",
+          "$ref" : "#/definitions/CustomScopeRequestCustomerIds"
+        },
+        "customerId" : {
+          "type" : "string"
+        },
+        "description" : {
+          "type" : "string"
+        },
+        "id" : {
+          "type" : "string"
+        },
+        "modifiedBy" : {
+          "type" : "string"
+        },
+        "modifiedTime" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "upgradePriority" : {
+          "type" : "string",
+          "enum" : [ "WEEK", "DAY", "FORCE_NOW", "NOW" ]
+        },
+        "versions" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Version"
+          }
+        },
+        "visibilityScope" : {
+          "type" : "string",
+          "enum" : [ "ALL", "NONE", "CUSTOM" ]
+        }
+      }
+    },
     "Znf" : {
       "required" : [ "name" ],
       "properties" : {
@@ -3802,7 +7286,7 @@
         "name" : {
           "type" : "string"
         },
-        "signingCert" : {
+        "enrollmentCert" : {
           "type" : "object",
           "additionalProperties" : {
             "type" : "string"

@@ -29,6 +29,12 @@ func (o *AddRuleToPolicySetUsingPOST1Reader) ReadResponse(response runtime.Clien
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewAddRuleToPolicySetUsingPOST1BadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	case 401:
 		result := NewAddRuleToPolicySetUsingPOST1Unauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -43,6 +49,12 @@ func (o *AddRuleToPolicySetUsingPOST1Reader) ReadResponse(response runtime.Clien
 		return nil, result
 	case 404:
 		result := NewAddRuleToPolicySetUsingPOST1NotFound()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
+	case 429:
+		result := NewAddRuleToPolicySetUsingPOST1TooManyRequests()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -80,6 +92,27 @@ func (o *AddRuleToPolicySetUsingPOST1Created) readResponse(response runtime.Clie
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
+
+	return nil
+}
+
+// NewAddRuleToPolicySetUsingPOST1BadRequest creates a AddRuleToPolicySetUsingPOST1BadRequest with default headers values
+func NewAddRuleToPolicySetUsingPOST1BadRequest() *AddRuleToPolicySetUsingPOST1BadRequest {
+	return &AddRuleToPolicySetUsingPOST1BadRequest{}
+}
+
+/* AddRuleToPolicySetUsingPOST1BadRequest describes a response with status code 400, with default header values.
+
+BadRequest
+*/
+type AddRuleToPolicySetUsingPOST1BadRequest struct {
+}
+
+func (o *AddRuleToPolicySetUsingPOST1BadRequest) Error() string {
+	return fmt.Sprintf("[POST /mgmtconfig/v1/admin/customers/{customerId}/policySet/{policySetId}/rule][%d] addRuleToPolicySetUsingPOST1BadRequest ", 400)
+}
+
+func (o *AddRuleToPolicySetUsingPOST1BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -143,6 +176,27 @@ func (o *AddRuleToPolicySetUsingPOST1NotFound) Error() string {
 }
 
 func (o *AddRuleToPolicySetUsingPOST1NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	return nil
+}
+
+// NewAddRuleToPolicySetUsingPOST1TooManyRequests creates a AddRuleToPolicySetUsingPOST1TooManyRequests with default headers values
+func NewAddRuleToPolicySetUsingPOST1TooManyRequests() *AddRuleToPolicySetUsingPOST1TooManyRequests {
+	return &AddRuleToPolicySetUsingPOST1TooManyRequests{}
+}
+
+/* AddRuleToPolicySetUsingPOST1TooManyRequests describes a response with status code 429, with default header values.
+
+TooManyRequest
+*/
+type AddRuleToPolicySetUsingPOST1TooManyRequests struct {
+}
+
+func (o *AddRuleToPolicySetUsingPOST1TooManyRequests) Error() string {
+	return fmt.Sprintf("[POST /mgmtconfig/v1/admin/customers/{customerId}/policySet/{policySetId}/rule][%d] addRuleToPolicySetUsingPOST1TooManyRequests ", 429)
+}
+
+func (o *AddRuleToPolicySetUsingPOST1TooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }

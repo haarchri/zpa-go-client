@@ -23,7 +23,7 @@ type PageListOfPolicyRule struct {
 	List []*PolicyRule `json:"list"`
 
 	// total pages
-	TotalPages int32 `json:"totalPages,omitempty"`
+	TotalPages string `json:"totalPages,omitempty"`
 }
 
 // Validate validates this page list of policy rule

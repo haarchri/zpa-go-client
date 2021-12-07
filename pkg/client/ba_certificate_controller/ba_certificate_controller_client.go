@@ -38,7 +38,7 @@ type ClientService interface {
 }
 
 /*
-  GetAllIssuedCertsUsingGET1 gets all the issued certificates
+  GetAllIssuedCertsUsingGET1 gets all the issued certificates this API will be deprecated in a future release
 */
 func (a *Client) GetAllIssuedCertsUsingGET1(params *GetAllIssuedCertsUsingGET1Params, opts ...ClientOption) (*GetAllIssuedCertsUsingGET1OK, error) {
 	// TODO: Validate the params before sending

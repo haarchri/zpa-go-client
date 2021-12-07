@@ -31,7 +31,7 @@ type CommonAppConfigDto struct {
 	AppTypes []string `json:"appTypes"`
 
 	// application port
-	ApplicationPort int32 `json:"applicationPort,omitempty"`
+	ApplicationPort string `json:"applicationPort,omitempty"`
 
 	// application protocol
 	// Enum: [HTTP HTTPS FTP RDP]

@@ -53,6 +53,12 @@ func (o *GetApplicationUsingGET1Reader) ReadResponse(response runtime.ClientResp
 			return nil, err
 		}
 		return nil, result
+	case 429:
+		result := NewGetApplicationUsingGET1TooManyRequests()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -170,6 +176,27 @@ func (o *GetApplicationUsingGET1NotFound) Error() string {
 }
 
 func (o *GetApplicationUsingGET1NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	return nil
+}
+
+// NewGetApplicationUsingGET1TooManyRequests creates a GetApplicationUsingGET1TooManyRequests with default headers values
+func NewGetApplicationUsingGET1TooManyRequests() *GetApplicationUsingGET1TooManyRequests {
+	return &GetApplicationUsingGET1TooManyRequests{}
+}
+
+/* GetApplicationUsingGET1TooManyRequests describes a response with status code 429, with default header values.
+
+TooManyRequest
+*/
+type GetApplicationUsingGET1TooManyRequests struct {
+}
+
+func (o *GetApplicationUsingGET1TooManyRequests) Error() string {
+	return fmt.Sprintf("[GET /mgmtconfig/v1/admin/customers/{customerId}/application/{applicationId}][%d] getApplicationUsingGET1TooManyRequests ", 429)
+}
+
+func (o *GetApplicationUsingGET1TooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }

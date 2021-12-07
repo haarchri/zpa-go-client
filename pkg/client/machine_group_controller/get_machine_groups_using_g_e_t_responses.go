@@ -29,6 +29,12 @@ func (o *GetMachineGroupsUsingGETReader) ReadResponse(response runtime.ClientRes
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewGetMachineGroupsUsingGETBadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	case 401:
 		result := NewGetMachineGroupsUsingGETUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -43,6 +49,12 @@ func (o *GetMachineGroupsUsingGETReader) ReadResponse(response runtime.ClientRes
 		return nil, result
 	case 404:
 		result := NewGetMachineGroupsUsingGETNotFound()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
+	case 429:
+		result := NewGetMachineGroupsUsingGETTooManyRequests()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -80,6 +92,27 @@ func (o *GetMachineGroupsUsingGETOK) readResponse(response runtime.ClientRespons
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
+
+	return nil
+}
+
+// NewGetMachineGroupsUsingGETBadRequest creates a GetMachineGroupsUsingGETBadRequest with default headers values
+func NewGetMachineGroupsUsingGETBadRequest() *GetMachineGroupsUsingGETBadRequest {
+	return &GetMachineGroupsUsingGETBadRequest{}
+}
+
+/* GetMachineGroupsUsingGETBadRequest describes a response with status code 400, with default header values.
+
+BadRequest
+*/
+type GetMachineGroupsUsingGETBadRequest struct {
+}
+
+func (o *GetMachineGroupsUsingGETBadRequest) Error() string {
+	return fmt.Sprintf("[GET /mgmtconfig/v1/admin/customers/{customerId}/machineGroup][%d] getMachineGroupsUsingGETBadRequest ", 400)
+}
+
+func (o *GetMachineGroupsUsingGETBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -143,6 +176,27 @@ func (o *GetMachineGroupsUsingGETNotFound) Error() string {
 }
 
 func (o *GetMachineGroupsUsingGETNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	return nil
+}
+
+// NewGetMachineGroupsUsingGETTooManyRequests creates a GetMachineGroupsUsingGETTooManyRequests with default headers values
+func NewGetMachineGroupsUsingGETTooManyRequests() *GetMachineGroupsUsingGETTooManyRequests {
+	return &GetMachineGroupsUsingGETTooManyRequests{}
+}
+
+/* GetMachineGroupsUsingGETTooManyRequests describes a response with status code 429, with default header values.
+
+TooManyRequest
+*/
+type GetMachineGroupsUsingGETTooManyRequests struct {
+}
+
+func (o *GetMachineGroupsUsingGETTooManyRequests) Error() string {
+	return fmt.Sprintf("[GET /mgmtconfig/v1/admin/customers/{customerId}/machineGroup][%d] getMachineGroupsUsingGETTooManyRequests ", 429)
+}
+
+func (o *GetMachineGroupsUsingGETTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }

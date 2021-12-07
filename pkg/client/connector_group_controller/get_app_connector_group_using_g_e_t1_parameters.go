@@ -61,7 +61,7 @@ type GetAppConnectorGroupUsingGET1Params struct {
 
 	/* AppConnectorGroupID.
 
-	   The unique identifier of the App Connector Group.
+	   The unique identifier of the Connector Group.
 	*/
 	AppConnectorGroupID string
 

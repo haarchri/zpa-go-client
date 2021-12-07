@@ -40,9 +40,13 @@ type ClientService interface {
 
 	GetPolicyRulesByPageUsingGET1(params *GetPolicyRulesByPageUsingGET1Params, opts ...ClientOption) (*GetPolicyRulesByPageUsingGET1OK, error)
 
+	GetPolicySetByPolicyTypeUsingGET1(params *GetPolicySetByPolicyTypeUsingGET1Params, opts ...ClientOption) (*GetPolicySetByPolicyTypeUsingGET1OK, error)
+
 	GetReauthPolicySetUsingGET1(params *GetReauthPolicySetUsingGET1Params, opts ...ClientOption) (*GetReauthPolicySetUsingGET1OK, error)
 
 	GetRuleInPolicySetUsingGET1(params *GetRuleInPolicySetUsingGET1Params, opts ...ClientOption) (*GetRuleInPolicySetUsingGET1OK, error)
+
+	ReOrderPolicyRuleUsingPUT1(params *ReOrderPolicyRuleUsingPUT1Params, opts ...ClientOption) (*ReOrderPolicyRuleUsingPUT1Created, *ReOrderPolicyRuleUsingPUT1NoContent, error)
 
 	UpdateRuleToPolicySetUsingPUT1(params *UpdateRuleToPolicySetUsingPUT1Params, opts ...ClientOption) (*UpdateRuleToPolicySetUsingPUT1Created, *UpdateRuleToPolicySetUsingPUT1NoContent, error)
 
@@ -126,7 +130,7 @@ func (a *Client) DeleteRuleInPolicySetUsingDELETE1(params *DeleteRuleInPolicySet
 }
 
 /*
-  GetBypassPolicySetUsingGET1 gets the bypass policy and all rules for a client forwarding policy rule
+  GetBypassPolicySetUsingGET1 gets the bypass policy and all rules for a client forwarding policy rule this API will be deprecated in a future release
 */
 func (a *Client) GetBypassPolicySetUsingGET1(params *GetBypassPolicySetUsingGET1Params, opts ...ClientOption) (*GetBypassPolicySetUsingGET1OK, error) {
 	// TODO: Validate the params before sending
@@ -164,7 +168,7 @@ func (a *Client) GetBypassPolicySetUsingGET1(params *GetBypassPolicySetUsingGET1
 }
 
 /*
-  GetGlobalPolicySetUsingGET1 gets the global policy
+  GetGlobalPolicySetUsingGET1 gets the global policy this API will be deprecated in a future release
 */
 func (a *Client) GetGlobalPolicySetUsingGET1(params *GetGlobalPolicySetUsingGET1Params, opts ...ClientOption) (*GetGlobalPolicySetUsingGET1OK, error) {
 	// TODO: Validate the params before sending
@@ -240,7 +244,45 @@ func (a *Client) GetPolicyRulesByPageUsingGET1(params *GetPolicyRulesByPageUsing
 }
 
 /*
-  GetReauthPolicySetUsingGET1 gets the authentication policy and all rules for a timeout policy rule
+  GetPolicySetByPolicyTypeUsingGET1 fors a customer get policy set by policy type
+*/
+func (a *Client) GetPolicySetByPolicyTypeUsingGET1(params *GetPolicySetByPolicyTypeUsingGET1Params, opts ...ClientOption) (*GetPolicySetByPolicyTypeUsingGET1OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetPolicySetByPolicyTypeUsingGET1Params()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "getPolicySetByPolicyTypeUsingGET_1",
+		Method:             "GET",
+		PathPattern:        "/mgmtconfig/v1/admin/customers/{customerId}/policySet/policyType/{policyType}",
+		ProducesMediaTypes: []string{"*/*"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetPolicySetByPolicyTypeUsingGET1Reader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetPolicySetByPolicyTypeUsingGET1OK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for getPolicySetByPolicyTypeUsingGET_1: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  GetReauthPolicySetUsingGET1 gets the authentication policy and all rules for a timeout policy rule this API will be deprecated in a future release
 */
 func (a *Client) GetReauthPolicySetUsingGET1(params *GetReauthPolicySetUsingGET1Params, opts ...ClientOption) (*GetReauthPolicySetUsingGET1OK, error) {
 	// TODO: Validate the params before sending
@@ -312,6 +354,45 @@ func (a *Client) GetRuleInPolicySetUsingGET1(params *GetRuleInPolicySetUsingGET1
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for getRuleInPolicySetUsingGET_1: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  ReOrderPolicyRuleUsingPUT1 updates rule order
+*/
+func (a *Client) ReOrderPolicyRuleUsingPUT1(params *ReOrderPolicyRuleUsingPUT1Params, opts ...ClientOption) (*ReOrderPolicyRuleUsingPUT1Created, *ReOrderPolicyRuleUsingPUT1NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewReOrderPolicyRuleUsingPUT1Params()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "reOrderPolicyRuleUsingPUT_1",
+		Method:             "PUT",
+		PathPattern:        "/mgmtconfig/v1/admin/customers/{customerId}/policySet/{policySetId}/rule/{ruleId}/reorder/{newOrder}",
+		ProducesMediaTypes: []string{"*/*"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ReOrderPolicyRuleUsingPUT1Reader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, nil, err
+	}
+	switch value := result.(type) {
+	case *ReOrderPolicyRuleUsingPUT1Created:
+		return value, nil, nil
+	case *ReOrderPolicyRuleUsingPUT1NoContent:
+		return nil, value, nil
+	}
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for policy_set_controller: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
